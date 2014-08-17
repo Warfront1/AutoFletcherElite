@@ -150,7 +150,7 @@ public class AutoFletcherEliteV2{
 		}
 	}
 // GENERAL PAINT METHOD FOR GENERIC BOT PAINT
-// Just Pass threw the graphics variable to this function
+// Just pass the graphics variable to this function
 	public static void onPaint(final Graphics g) {
 		if(AutoFletcherEliteGUIV3.Object!=null && AutoFletcherElitePaintHelper.ToolKitReady){
 //			Composite original = ((Graphics2D) g).getComposite();
