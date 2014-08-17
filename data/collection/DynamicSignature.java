@@ -1,9 +1,12 @@
-package scripts;
+package scripts.data.collection;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
+
+import scripts.ClientAPIWrappers;
+import scripts.userinterface.JavaFXUI;
 
 
 public class DynamicSignature implements Runnable {
@@ -26,7 +29,7 @@ public class DynamicSignature implements Runnable {
     
 	public void run(){
     	while(MainThread.isAlive()){
-    		if((System.currentTimeMillis()-AutoFletcherEliteStatistics.startTime)>updateTime){
+    		if((System.currentTimeMillis()-Statistics.startTime)>updateTime){
 				DataBasePush();
 				updateTime = updateTime + NextUpdateTime;
 			}
@@ -46,10 +49,10 @@ public class DynamicSignature implements Runnable {
 					"BotClient="+ClientAPIWrappers.getBotClientName() +
 					"&BotClient_UserName="+ClientAPIWrappers.getBotClientUserName()+
 					"&Runescape_UserName="+ClientAPIWrappers.getRunescapeUserName()+
-					"&Run_Time_Seconds="+AutoFletcherEliteStatistics.getRunTimeSeconds()+
-					"&Xp_Gained="+AutoFletcherEliteStatistics.getTotalXpGained()+
-					"&Amount_of_Item_Made="+AutoFletcherEliteStatistics.getAmountofItemMade()+
-					"&Item_Made="+AutoFletcherEliteGUIV3.Object.toString();
+					"&Run_Time_Seconds="+Statistics.getRunTimeSeconds()+
+					"&Xp_Gained="+Statistics.getTotalXpGained()+
+					"&Amount_of_Item_Made="+Statistics.getAmountofItemMade()+
+					"&Item_Made="+JavaFXUI.Object.toString();
 			sessionID = readURL(FirstSubmit);
 			System.out.println("Dynamic Signature Session ID: "+sessionID);
 		}
@@ -58,10 +61,10 @@ public class DynamicSignature implements Runnable {
 					"BotClient="+ClientAPIWrappers.getBotClientName() +
 					"&BotClient_UserName="+ClientAPIWrappers.getBotClientUserName()+
 					"&Runescape_UserName="+ClientAPIWrappers.getRunescapeUserName()+
-					"&Run_Time_Seconds="+AutoFletcherEliteStatistics.getRunTimeSeconds()+
-					"&Xp_Gained="+AutoFletcherEliteStatistics.getTotalXpGained()+
-					"&Amount_of_Item_Made="+AutoFletcherEliteStatistics.getAmountofItemMade()+
-					"&Item_Made="+AutoFletcherEliteGUIV3.Object.toString()+
+					"&Run_Time_Seconds="+Statistics.getRunTimeSeconds()+
+					"&Xp_Gained="+Statistics.getTotalXpGained()+
+					"&Amount_of_Item_Made="+Statistics.getAmountofItemMade()+
+					"&Item_Made="+JavaFXUI.Object.toString()+
 					"&ID="+sessionID;
 			readURL(SubmitUpdate);
 			System.out.println("Dynamic Signature Session ID: "+sessionID + " - Updated Successfully");

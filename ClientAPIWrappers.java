@@ -16,7 +16,7 @@ import org.tribot.api2007.types.RSInterfaceChild;
 import org.tribot.api2007.types.RSItem;
 import org.tribot.api2007.types.RSItemDefinition;
 
-import scripts.AutoFletcherEliteUtilities.RSItems;
+import scripts.actions.Utilities.RSItems;
 
 public class ClientAPIWrappers {
 

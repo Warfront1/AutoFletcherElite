@@ -7,15 +7,24 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
 
-import scripts.AutoFletcherEliteData.Arrows.AttachArrowTips;
-import scripts.AutoFletcherEliteData.Arrows.HeadlessArrows;
-import scripts.AutoFletcherEliteData.Bolts.AttachBoltTips;
-import scripts.AutoFletcherEliteData.Bolts.AttachFeathersToBolts;
-import scripts.AutoFletcherEliteData.Bolts.CutGemstoTips;
-import scripts.AutoFletcherEliteData.Bolts.UncutGemCutting;
-import scripts.AutoFletcherEliteData.Bows.Cutting;
-import scripts.AutoFletcherEliteData.Bows.Stringing;
-import scripts.AutoFletcherEliteData.Darts.AttachFeathersToDartTips;
+import scripts.actions.FletchingActions;
+import scripts.actions.Utilities;
+import scripts.data.ItemData;
+import scripts.data.ItemInterface;
+import scripts.data.ItemData.Arrows.AttachArrowTips;
+import scripts.data.ItemData.Arrows.HeadlessArrows;
+import scripts.data.ItemData.Bolts.AttachBoltTips;
+import scripts.data.ItemData.Bolts.AttachFeathersToBolts;
+import scripts.data.ItemData.Bolts.CutGemstoTips;
+import scripts.data.ItemData.Bolts.UncutGemCutting;
+import scripts.data.ItemData.Bows.Cutting;
+import scripts.data.ItemData.Bows.Stringing;
+import scripts.data.ItemData.Darts.AttachFeathersToDartTips;
+import scripts.data.collection.Statistics;
+import scripts.data.collection.DynamicSignature;
+import scripts.userinterface.JavaFXUI;
+import scripts.userinterface.SwingUI;
+import scripts.userinterface.Paint;
 
 public class AutoFletcherEliteV2{
 
@@ -25,56 +34,56 @@ public class AutoFletcherEliteV2{
 //	=====================================================================	
 
 	
-	public static void fletchBows(AutoFletcherEliteData.Bows.Cutting BowToCut){
-		if(AutoFletcherEliteUtilities.isReadyToFletch(AutoFletcherEliteData.FletchingTools.Knife.InGameName,1,BowToCut.log.getInGameLogName(),27)){
-			AutoFletcherEliteActions.GenericBowCutting(BowToCut.log.getInGameLogName(), BowToCut.InterfaceMasterIndex, BowToCut.InterfaceMasterChild);
+	public static void fletchBows(ItemData.Bows.Cutting BowToCut){
+		if(Utilities.isReadyToFletch(ItemData.FletchingTools.Knife.InGameName,1,BowToCut.log.getInGameLogName(),27)){
+			FletchingActions.GenericBowCutting(BowToCut.log.getInGameLogName(), BowToCut.InterfaceMasterIndex, BowToCut.InterfaceMasterChild);
 		}
 	}
-	public static void fletchBows(AutoFletcherEliteData.Bows.Stringing BowToString){
-		if(AutoFletcherEliteUtilities.isReadyToFletch(AutoFletcherEliteData.FletchingTools.Bowstring.InGameName,14,BowToString.CutBow.endProductInGameName,14)){
-			AutoFletcherEliteActions.StringBows(BowToString.CutBow.endProductInGameName);
+	public static void fletchBows(ItemData.Bows.Stringing BowToString){
+		if(Utilities.isReadyToFletch(ItemData.FletchingTools.Bowstring.InGameName,14,BowToString.CutBow.endProductInGameName,14)){
+			FletchingActions.StringBows(BowToString.CutBow.endProductInGameName);
 		}
 	}
 	
-	public static void fletchArrows(AutoFletcherEliteData.Arrows.AttachArrowTips ArrowTips){
-		if(AutoFletcherEliteUtilities.isReadyToFletch("Headless arrow",1,ArrowTips.InGameArrowTipName,1)){
-			AutoFletcherEliteActions.useArrowHeadorBoltTip("Headless arrow", ArrowTips.InGameArrowTipName);
+	public static void fletchArrows(ItemData.Arrows.AttachArrowTips ArrowTips){
+		if(Utilities.isReadyToFletch("Headless arrow",1,ArrowTips.InGameArrowTipName,1)){
+			FletchingActions.useArrowHeadorBoltTip("Headless arrow", ArrowTips.InGameArrowTipName);
 		}
 	}
 	
 	public static void fletchHeadlessArrows(){
-		if(AutoFletcherEliteUtilities.isReadyToFletch("Arrow shaft",1,"Feather",1)){
-			AutoFletcherEliteActions.useArrowHeadorBoltTip("Arrow shaft", "Feather");
+		if(Utilities.isReadyToFletch("Arrow shaft",1,"Feather",1)){
+			FletchingActions.useArrowHeadorBoltTip("Arrow shaft", "Feather");
 		}
 	}
 	
-	public static void fletchDarts(AutoFletcherEliteData.Darts.AttachFeathersToDartTips Dart){
-		if(AutoFletcherEliteUtilities.isReadyToFletch(Dart.InGameDartTipName,1,"Feather",1)){
-			AutoFletcherEliteActions.useFeathers(Dart.InGameDartTipName, "Feather");
+	public static void fletchDarts(ItemData.Darts.AttachFeathersToDartTips Dart){
+		if(Utilities.isReadyToFletch(Dart.InGameDartTipName,1,"Feather",1)){
+			FletchingActions.useFeathers(Dart.InGameDartTipName, "Feather");
 		}
 	}
 	
-	public static void fletchBolts(AutoFletcherEliteData.Bolts.AttachFeathersToBolts Bolts){
-		if(AutoFletcherEliteUtilities.isReadyToFletch(Bolts.InGameBoltName,1,"Feather",1)){
-			AutoFletcherEliteActions.useFeathers(Bolts.InGameBoltName, "Feather");
+	public static void fletchBolts(ItemData.Bolts.AttachFeathersToBolts Bolts){
+		if(Utilities.isReadyToFletch(Bolts.InGameBoltName,1,"Feather",1)){
+			FletchingActions.useFeathers(Bolts.InGameBoltName, "Feather");
 		}
 	}
 	
-	public static void fletchBolts(AutoFletcherEliteData.Bolts.AttachBoltTips Bolts){
-		if(AutoFletcherEliteUtilities.isReadyToFletch(Bolts.Bolt.FinalProductInGameName,1,Bolts.InGameTipName,1)){
-			AutoFletcherEliteActions.useArrowHeadorBoltTip(Bolts.Bolt.FinalProductInGameName, Bolts.InGameTipName);
+	public static void fletchBolts(ItemData.Bolts.AttachBoltTips Bolts){
+		if(Utilities.isReadyToFletch(Bolts.Bolt.FinalProductInGameName,1,Bolts.InGameTipName,1)){
+			FletchingActions.useArrowHeadorBoltTip(Bolts.Bolt.FinalProductInGameName, Bolts.InGameTipName);
 		}
 	}
 	
-	public static void cutGems(AutoFletcherEliteData.Bolts.UncutGemCutting UnCutGem){
-		if(AutoFletcherEliteUtilities.isReadyToFletch(UnCutGem.InGameGemName,27,"Chisel",1)){
-			AutoFletcherEliteActions.cutGems("Chisel", UnCutGem.InGameGemName);
+	public static void cutGems(ItemData.Bolts.UncutGemCutting UnCutGem){
+		if(Utilities.isReadyToFletch(UnCutGem.InGameGemName,27,"Chisel",1)){
+			FletchingActions.cutGems("Chisel", UnCutGem.InGameGemName);
 		}
 	}
 	
-	public static void cutGems(AutoFletcherEliteData.Bolts.CutGemstoTips CutGem){
-		if(AutoFletcherEliteUtilities.isReadyToFletch(CutGem.UnCutGem.FinalProductCutGemInGameName,27,"Chisel",1)){
-			AutoFletcherEliteActions.cutGems("Chisel", CutGem.UnCutGem.FinalProductCutGemInGameName);
+	public static void cutGems(ItemData.Bolts.CutGemstoTips CutGem){
+		if(Utilities.isReadyToFletch(CutGem.UnCutGem.FinalProductCutGemInGameName,27,"Chisel",1)){
+			FletchingActions.cutGems("Chisel", CutGem.UnCutGem.FinalProductCutGemInGameName);
 		}
 	}
 	
@@ -84,29 +93,29 @@ public class AutoFletcherEliteV2{
 	
 //	Runs Auto Fletcher Elite utilizing java 8 javaFX libraries
 	public static void runFrontEndViaJavaFX(){
-		if(AutoFletcherEliteGUIV3.Object==null){
-			AutoFletcherEliteGUIV3.main(null);
-			AutoFletcherElitePaintHelper.main(null);
+		if(JavaFXUI.Object==null){
+			JavaFXUI.main(null);
+			Paint.main(null);
 			DynamicSignature.StartDynamicSignatureThread();
-			while(AutoFletcherEliteGUIV3.Object==null){
+			while(JavaFXUI.Object==null){
 				ClientAPIWrappers.sleep(500);
 			}
 		}
 		while(true){
 			AntiBanCompliance.enableAntiBan();
-			AutoFletcherEliteGenericRun(AutoFletcherEliteGUIV3.Object);
+			AutoFletcherEliteGenericRun(JavaFXUI.Object);
 		}
 	}
 //	Runs Auto Fletcher Elite utilizing old school swing library
 	public void runFrontEndViaSwing(){
-		if(!AutoFletcherEliteGUISwing.Start){
-			AutoFletcherEliteGUISwing.main(null);
-			while(!AutoFletcherEliteGUISwing.Start){
+		if(!SwingUI.Start){
+			SwingUI.main(null);
+			while(!SwingUI.Start){
 				ClientAPIWrappers.sleep(500);
 			}
 		}
 		while(true){
-			AutoFletcherEliteGenericRun(AutoFletcherEliteGUISwing.Object);
+			AutoFletcherEliteGenericRun(SwingUI.Object);
 		}
 	}
 		
@@ -115,8 +124,8 @@ public class AutoFletcherEliteV2{
 //	Extracts AutoFletcherElite data from webUI
 	public static void AutoFletcherEliteGenericRun(Object obj){
 		if(obj instanceof ItemInterface){
-			AutoFletcherEliteStatistics.ItemName=((ItemInterface) obj).getEndProduct();
-			AutoFletcherEliteStatistics.xpPerItem=((ItemInterface) obj).getXPperItem();
+			Statistics.ItemName=((ItemInterface) obj).getEndProduct();
+			Statistics.xpPerItem=((ItemInterface) obj).getXPperItem();
 		}
 		if(obj.getClass().equals(Cutting.class)){
 			AutoFletcherEliteV2.fletchBows((Cutting) obj);
@@ -150,22 +159,22 @@ public class AutoFletcherEliteV2{
 		}
 	}
 // GENERAL PAINT METHOD FOR GENERIC BOT PAINT
-// Just pass the graphics variable to this function
+// Just Pass threw the graphics variable to this function
 	public static void onPaint(final Graphics g) {
-		if(AutoFletcherEliteGUIV3.Object!=null && AutoFletcherElitePaintHelper.ToolKitReady){
+		if(JavaFXUI.Object!=null && Paint.ToolKitReady){
 //			Composite original = ((Graphics2D) g).getComposite();
 //			Set to semi translucent
 			Composite translucent = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.98f);
 			((Graphics2D)g).setComposite(translucent);
 			
-			AutoFletcherElitePaintHelper.updateAndSavePaint();
-			BufferedImage Paint = AutoFletcherElitePaintHelper.imageforPaint;
-			if(Paint!=null){
-				if(AutoFletcherElitePaintHelper.minimizePaint){
-					g.drawImage(Paint.getSubimage(Paint.getMinX(), Paint.getMinY(),Paint.getWidth(), 40),0, 339, null);
+			Paint.updateAndSavePaint();
+			BufferedImage Paintimage = Paint.imageforPaint;
+			if(Paintimage!=null){
+				if(Paint.minimizePaint){
+					g.drawImage(Paintimage.getSubimage(Paintimage.getMinX(), Paintimage.getMinY(),Paintimage.getWidth(), 40),0, 339, null);
 				}
 				else{
-					g.drawImage(Paint.getSubimage(Paint.getMinX(), Paint.getMinY(),Paint.getWidth(), 140),0, 339, null);
+					g.drawImage(Paintimage.getSubimage(Paintimage.getMinX(), Paintimage.getMinY(),Paintimage.getWidth(), 140),0, 339, null);
 				}
 			}
 			

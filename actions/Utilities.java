@@ -1,15 +1,17 @@
-package scripts;
+package scripts.actions;
 
-import java.awt.Color;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.Random;
 
-import scripts.AutoFletcherEliteData.Bows;
-import scripts.AutoFletcherEliteData.Bows.Cutting;
+import scripts.AntiBanCompliance;
+import scripts.ClientAPIWrappers;
+import scripts.data.ItemData.Bows;
+import scripts.data.ItemData.Bows.Cutting;
+import scripts.data.collection.Statistics;
 
-public class AutoFletcherEliteUtilities {
+public class Utilities {
 	
 	static boolean isCuttingIFaceOpen(){
 		for(Cutting BowType : Bows.Cutting.values()){
@@ -43,17 +45,17 @@ public class AutoFletcherEliteUtilities {
 			else if(NewFeaturesDueToUpgradeScreen2!=null){
 				NewFeaturesDueToUpgradeScreen2.click("");
 			}
-			AutoFletcherEliteUtilities.waitFor(new Condition() {@Override
+			Utilities.waitFor(new Condition() {@Override
 			    public boolean active() {
 			         return !(interfaces.get(165, 2)!=null || interfaces.get(519,2)!=null || interfaces.get(210,1)!=null);
 			    }
-			    }, AutoFletcherEliteUtilities.getRandom(1500, 2500));
+			    }, Utilities.getRandom(1500, 2500));
     	}
     	if(RSItems.get(ItemOneName)!=null && RSItems.get(ItemOneName).length>0 && RSItems.get(ItemTwoName)!=null && RSItems.get(ItemTwoName).length>0){
     		if(!ClientAPIWrappers.isBankScreenOpen()){
-    			if(AutoFletcherEliteUtilities.isInventoryOpen()){
+    			if(Utilities.isInventoryOpen()){
     				if(ClientAPIWrappers.getPlayerAnimation()!=-1){
-    					AutoFletcherEliteStatistics.Status="Fletching";
+    					Statistics.Status="Fletching";
     					AntiBanCompliance.runAntiBanActions();
     				}
     				else{
@@ -61,8 +63,8 @@ public class AutoFletcherEliteUtilities {
     				}
     			}
     			else{
-    				AutoFletcherEliteStatistics.Status="Opening Inventory";
-    				AutoFletcherEliteUtilities.openInventory();
+    				Statistics.Status="Opening Inventory";
+    				Utilities.openInventory();
     			}
     		}
     		else{
@@ -83,7 +85,7 @@ public class AutoFletcherEliteUtilities {
     	return false;
     }
     public static void GenericBanking(final String ItemName1, final int ItemAmount1, final String ItemName2, final int ItemAmount2){
-		AutoFletcherEliteStatistics.Status="Banking";
+		Statistics.Status="Banking";
     	if(ClientAPIWrappers.isBankScreenOpen()){
     		int CorrectItem = 0;
     		int SecondCorrectItem = 0;
@@ -98,26 +100,26 @@ public class AutoFletcherEliteUtilities {
     		ClientAPIWrappers.DepositAllItemsExcept(CorrectItem, SecondCorrectItem);
     		if(CorrectItem ==0){
     			ClientAPIWrappers.withdrawItems(ItemAmount1, ItemName1);
-    			AutoFletcherEliteUtilities.waitFor(new Condition() {@Override
+    			Utilities.waitFor(new Condition() {@Override
 				    public boolean active() {
 				         return (RSItems.get(ItemName1)!=null && RSItems.get(ItemName1).length>0 && (RSItems.get(ItemName1).length==ItemAmount1||RSItems.get(ItemName1)[0].getStackSize()==ItemAmount1 ));
 				    }
-				    }, AutoFletcherEliteUtilities.getRandom(2000, 2500));
+				    }, Utilities.getRandom(2000, 2500));
     		}
     		if(SecondCorrectItem==0){
     			ClientAPIWrappers.withdrawItems(ItemAmount2, ItemName2);
-    			AutoFletcherEliteUtilities.waitFor(new Condition() {@Override
+    			Utilities.waitFor(new Condition() {@Override
 				    public boolean active() {
 				         return (RSItems.get(ItemName2)!=null && RSItems.get(ItemName2).length>0 && (RSItems.get(ItemName2).length==ItemAmount2||RSItems.get(ItemName2)[0].getStackSize()==ItemAmount2 ));
 				    }
-				    }, AutoFletcherEliteUtilities.getRandom(2000, 2500));
+				    }, Utilities.getRandom(2000, 2500));
     		}
     	}
     	else{
     		ClientAPIWrappers.openBank();
     	}
     }
-    public static void SleepWhileFlashAnimating(scripts.Condition condition){
+    public static void SleepWhileFlashAnimating(scripts.actions.Condition condition){
     	long START_TIME = System.currentTimeMillis();
     	long ROLLING_TIME = System.currentTimeMillis();
     	while((ROLLING_TIME-START_TIME)<5000){
@@ -129,10 +131,10 @@ public class AutoFletcherEliteUtilities {
     			break;
     		}
     		ROLLING_TIME = System.currentTimeMillis();
-    		ClientAPIWrappers.sleep(AutoFletcherEliteUtilities.getRandom(150,250));
+    		ClientAPIWrappers.sleep(Utilities.getRandom(150,250));
     	}
     }
-    public static void SleepWhileInventoryIsChanging(scripts.Condition condition){
+    public static void SleepWhileInventoryIsChanging(scripts.actions.Condition condition){
     	long START_TIME = System.currentTimeMillis();
     	long ROLLING_TIME = System.currentTimeMillis();
     	RSItems[] AllInventoryItems = RSItems.getAll();
@@ -146,7 +148,7 @@ public class AutoFletcherEliteUtilities {
     			break;
     		}
     		ROLLING_TIME = System.currentTimeMillis();
-    		ClientAPIWrappers.sleep(AutoFletcherEliteUtilities.getRandom(150,250));
+    		ClientAPIWrappers.sleep(Utilities.getRandom(150,250));
     	}
     }
     private static boolean InventoriesAreTheSame(RSItems[] Array1, RSItems[] Array2){
@@ -165,7 +167,7 @@ public class AutoFletcherEliteUtilities {
 
         return randomNum;
     }
-    static boolean waitFor(scripts.Condition condition, int timeout) {
+    static boolean waitFor(scripts.actions.Condition condition, int timeout) {
         Timer time = new Timer(timeout);
         while ((time.isRunning()) && (!condition.active())) {
         	ClientAPIWrappers.sleep(20);
@@ -203,7 +205,7 @@ public class AutoFletcherEliteUtilities {
 		Rectangle ItemRectangle;
 		int StackSize;
 		int ID;
-		RSItems(String ItemName, Rectangle ItemRectangle, int StackSize, int ID){
+		public RSItems(String ItemName, Rectangle ItemRectangle, int StackSize, int ID){
 			this.ItemName=ItemName;
 			this.ItemRectangle=ItemRectangle;
 			this.StackSize=StackSize;

@@ -1,12 +1,14 @@
-package scripts;
+package scripts.data.collection;
 
 import java.text.DecimalFormat;
 
+import scripts.ClientAPIWrappers;
 
-public class AutoFletcherEliteStatistics {
-	static String Status = " ";
-	static String ItemName = " ";
-	static double xpPerItem = 1.0;
+
+public class Statistics {
+	public static String Status = " ";
+	public static String ItemName = " ";
+	public static double xpPerItem = 1.0;
 	static final long startTime =System.currentTimeMillis();
 	static int startingFletchingXP=ClientAPIWrappers.getFletchingXP();
 

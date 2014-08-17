@@ -9,6 +9,8 @@ import org.tribot.script.ScriptManifest;
 import org.tribot.script.interfaces.MouseActions;
 import org.tribot.script.interfaces.Painting;
 
+import scripts.userinterface.Paint;
+
 @ScriptManifest(authors = { "Warfront1" }, category = "Fletching", name = "Auto Fletcher Elite V2")
 public class TribotFrontEnd extends Script implements Painting, MouseActions{
 
@@ -24,7 +26,7 @@ public class TribotFrontEnd extends Script implements Painting, MouseActions{
 
 	@Override
 	public void mouseClicked(Point arg0, int arg1, boolean arg2) {
-		AutoFletcherElitePaintHelper.PaintToggleHandeling(General.getRealMousePos());
+		Paint.PaintToggleHandeling(General.getRealMousePos());
 	}
 
 	@Override

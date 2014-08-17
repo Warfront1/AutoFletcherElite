@@ -1,4 +1,4 @@
-package scripts;
+package scripts.userinterface;
 
 import com.sun.javafx.application.PlatformImpl;
 
@@ -28,24 +28,26 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
+import scripts.data.collection.Statistics;
+
 import netscape.javascript.JSObject;
 
 /** 
  * SwingFXWebView 
  */  
-public class AutoFletcherElitePaintHelper extends JPanel {  
+public class Paint extends JPanel {  
      
 	static Object Object= null;
-	static boolean ToolKitReady = false;
+	public static boolean ToolKitReady = false;
     Stage stage;  
     static WebEngine webenginetoModify;
-    static BufferedImage imageforPaint;
+    public static BufferedImage imageforPaint;
     static WebView browser;  
     private JFXPanel jfxPanel;   
-    static boolean minimizePaint = false;
+    public static boolean minimizePaint = false;
 //    private static WebEngine webEngine;  
   
-    public AutoFletcherElitePaintHelper(){  
+    public Paint(){  
         initComponents();  
         setBackground(new java.awt.Color(39, 43, 48));
     }  
@@ -57,7 +59,7 @@ public class AutoFletcherElitePaintHelper extends JPanel {
             public void run() {  
                 final JFrame frame = new JFrame();  
                  frame.setTitle("Auto Fletcher Elite");
-                frame.getContentPane().add(new AutoFletcherElitePaintHelper());  
+                frame.getContentPane().add(new Paint());  
                  
                 frame.setMinimumSize(new Dimension(535, 185));  
                 frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);  
@@ -153,7 +155,7 @@ public class AutoFletcherElitePaintHelper extends JPanel {
         	setRunTime();
         	setCurrentLevel();
         	setNextLevel();
-        	if(AutoFletcherEliteStatistics.getTotalXpGained()>0 && AutoFletcherEliteStatistics.getRunTimeSeconds()>0){
+        	if(Statistics.getTotalXpGained()>0 && Statistics.getRunTimeSeconds()>0){
 	        	setXPPerHour();
 	        	setTimeTolevel();
 	        	setProgressLevel();
@@ -163,34 +165,34 @@ public class AutoFletcherElitePaintHelper extends JPanel {
         	return " ";
         }
         public void setStatus(){
-        	engine.executeScript("setStatus('"+AutoFletcherEliteStatistics.Status+"');");
+        	engine.executeScript("setStatus('"+Statistics.Status+"');");
         }
         public void setItemName(){
-        	engine.executeScript("setItemName('"+AutoFletcherEliteStatistics.ItemName+"');");
+        	engine.executeScript("setItemName('"+Statistics.ItemName+"');");
         }
         public void setRunTime(){
-        	engine.executeScript("setRunTime('"+AutoFletcherEliteStatistics.getFormatedRunTime()+"');");
+        	engine.executeScript("setRunTime('"+Statistics.getFormatedRunTime()+"');");
         }
         public void setXPPerHour(){
-        	engine.executeScript("setXPPerHour('"+AutoFletcherEliteStatistics.getXpPerHour()+"');");
+        	engine.executeScript("setXPPerHour('"+Statistics.getXpPerHour()+"');");
         }
         public void setCurrentLevel(){
-        	engine.executeScript("setCurrentLevel('"+AutoFletcherEliteStatistics.getCurrentLevel()+"');");
+        	engine.executeScript("setCurrentLevel('"+Statistics.getCurrentLevel()+"');");
         }
         public void setNextLevel(){
-        	engine.executeScript("setNextLevel('"+AutoFletcherEliteStatistics.getNextLevel()+"');");
+        	engine.executeScript("setNextLevel('"+Statistics.getNextLevel()+"');");
         }
         public void setTimeTolevel(){
-        	engine.executeScript("setTimeTolevel('"+AutoFletcherEliteStatistics.getHoursTillNextLevel()+" H');");
+        	engine.executeScript("setTimeTolevel('"+Statistics.getHoursTillNextLevel()+" H');");
         }
         public void setProgressLevel(){
-        	engine.executeScript("setProgressBar('"+AutoFletcherEliteStatistics.getPercentCompleted(AutoFletcherEliteStatistics.getCurrentXP())+"');");
+        	engine.executeScript("setProgressBar('"+Statistics.getPercentCompleted(Statistics.getCurrentXP())+"');");
         }
         public void setAmountofItemMade(){
-        	engine.executeScript("setAmountofItemMade('"+AutoFletcherEliteStatistics.getAmountofItemMade()+"');");
+        	engine.executeScript("setAmountofItemMade('"+Statistics.getAmountofItemMade()+"');");
         }
         public void setAmountofItemMadePerHour(){
-        	engine.executeScript("setAmountofItemMadePerHour('"+AutoFletcherEliteStatistics.getAmountofItemMadePerHour()+"');");
+        	engine.executeScript("setAmountofItemMadePerHour('"+Statistics.getAmountofItemMadePerHour()+"');");
         }
     }
 
@@ -205,7 +207,7 @@ public class AutoFletcherElitePaintHelper extends JPanel {
 		javafx.application.Platform.runLater(new Runnable() {
             @Override
             public void run() {
-            	AutoFletcherElitePaintHelper.imageforPaint = AutoFletcherElitePaintHelper.getScreenshot(AutoFletcherElitePaintHelper.browser);
+            	Paint.imageforPaint = Paint.getScreenshot(Paint.browser);
             }
         });
     }
@@ -214,9 +216,9 @@ public class AutoFletcherElitePaintHelper extends JPanel {
 		javafx.application.Platform.runLater(new Runnable() {
             @Override
             public void run() {
-        		if(mouseposition!=null && AutoFletcherEliteGUIV3.Object!=null){
+        		if(mouseposition!=null && JavaFXUI.Object!=null){
         			if(new Rectangle(494, 340, 20, 20).contains(mouseposition)){
-        				AutoFletcherElitePaintHelper.browser.getEngine().executeScript( "setPaint(); ");
+        				Paint.browser.getEngine().executeScript( "setPaint(); ");
         				minimizePaint=!minimizePaint;
         				
         			}

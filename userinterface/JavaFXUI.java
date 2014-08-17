@@ -1,17 +1,13 @@
-package scripts;
+package scripts.userinterface;
 
 import com.sun.javafx.application.PlatformImpl;
-import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Worker;
 import javafx.embed.swing.JFXPanel;
-import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
@@ -19,32 +15,31 @@ import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 import netscape.javascript.JSObject;
 
-import scripts.AutoFletcherEliteData.Arrows;
-import scripts.AutoFletcherEliteData.Bolts;
-import scripts.AutoFletcherEliteData.Bows;
-import scripts.AutoFletcherEliteData.Darts;
+import scripts.data.ItemData;
+import scripts.data.ItemData.Arrows;
+import scripts.data.ItemData.Bolts;
+import scripts.data.ItemData.Bows;
+import scripts.data.ItemData.Darts;
   
 /** 
  * SwingFXWebView 
  */  
-public class AutoFletcherEliteGUIV3 extends JPanel {  
+public class JavaFXUI extends JPanel {  
      
-	static Object Object= null;
+	public static Object Object= null;
     private Stage stage;  
     private WebView browser;  
     private JFXPanel jfxPanel;  
-    private JButton swingButton;  
     final static JFrame frame = new JFrame(); 
 //    private static WebEngine webEngine;  
   
-    public AutoFletcherEliteGUIV3(){  
+    public JavaFXUI(){  
         initComponents();  
         setBackground(new java.awt.Color(39, 43, 48));
     }  
@@ -55,7 +50,7 @@ public class AutoFletcherEliteGUIV3 extends JPanel {
             @Override
             public void run() {  
                  frame.setTitle("Auto Fletcher Elite");
-                frame.getContentPane().add(new AutoFletcherEliteGUIV3());  
+                frame.getContentPane().add(new JavaFXUI());  
                  
                 frame.setMinimumSize(new Dimension(500, 696));  
                 frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);  
@@ -203,13 +198,13 @@ public class AutoFletcherEliteGUIV3 extends JPanel {
 			case "Bows":
 				switch((String) engine.executeScript("getSecondBoxString()")){
 					case "Cutting":
-						engine.executeScript("setFirstItemImage('"+AutoFletcherEliteData.FletchingTools.Knife.getImageLocation()+"','"+AutoFletcherEliteData.FletchingTools.Knife.InGameName+"');");
+						engine.executeScript("setFirstItemImage('"+ItemData.FletchingTools.Knife.getImageLocation()+"','"+ItemData.FletchingTools.Knife.InGameName+"');");
 						engine.executeScript(JavaArrayToJavaScript(Bows.Cutting.values()));
 						engine.executeScript("setThirdBoxString(x);");
 						engine.executeScript("showThirdBox();");
 					break;
 					case "Stringing":
-						engine.executeScript("setFirstItemImage('"+AutoFletcherEliteData.FletchingTools.Bowstring.getImageLocation()+"','"+AutoFletcherEliteData.FletchingTools.Bowstring.InGameName+"');");
+						engine.executeScript("setFirstItemImage('"+ItemData.FletchingTools.Bowstring.getImageLocation()+"','"+ItemData.FletchingTools.Bowstring.InGameName+"');");
 						engine.executeScript(JavaArrayToJavaScript(Bows.Stringing.values()));
 						engine.executeScript("setThirdBoxString(x);");
 						engine.executeScript("showThirdBox();");
@@ -219,22 +214,22 @@ public class AutoFletcherEliteGUIV3 extends JPanel {
 			case "Arrows":
 				switch((String) engine.executeScript("getSecondBoxString()")){
 					case "Arrow Tips":
-						engine.executeScript("setFirstItemImage('"+AutoFletcherEliteData.FletchingTools.HeadlessArrow.getImageLocation()+"','"+AutoFletcherEliteData.FletchingTools.HeadlessArrow.InGameName+"');");
+						engine.executeScript("setFirstItemImage('"+ItemData.FletchingTools.HeadlessArrow.getImageLocation()+"','"+ItemData.FletchingTools.HeadlessArrow.InGameName+"');");
 						engine.executeScript(JavaArrayToJavaScript(Arrows.AttachArrowTips.values()));
 						engine.executeScript("setThirdBoxString(x);");
 						engine.executeScript("showThirdBox();");
 					break;
 					case "Headless Arrows":
-						engine.executeScript("setFirstItemImage('"+AutoFletcherEliteData.FletchingTools.Feather.getImageLocation()+"','"+AutoFletcherEliteData.FletchingTools.Feather.InGameName+"');");
-						engine.executeScript("setSecondItemImage('"+AutoFletcherEliteData.Bows.Cutting.Shafts.getImageLocation()+"','"+AutoFletcherEliteData.Bows.Cutting.Shafts.endProductInGameName+"');");
-						engine.executeScript("setThirdItemImage('"+AutoFletcherEliteData.FletchingTools.HeadlessArrow.getImageLocation()+"','"+AutoFletcherEliteData.FletchingTools.HeadlessArrow.InGameName+"');");
+						engine.executeScript("setFirstItemImage('"+ItemData.FletchingTools.Feather.getImageLocation()+"','"+ItemData.FletchingTools.Feather.InGameName+"');");
+						engine.executeScript("setSecondItemImage('"+ItemData.Bows.Cutting.Shafts.getImageLocation()+"','"+ItemData.Bows.Cutting.Shafts.endProductInGameName+"');");
+						engine.executeScript("setThirdItemImage('"+ItemData.FletchingTools.HeadlessArrow.getImageLocation()+"','"+ItemData.FletchingTools.HeadlessArrow.InGameName+"');");
 						engine.executeScript("hideThirdBox();");
 						Object = Arrows.HeadlessArrows.Shafts;
 					break;
 					case "Shafts":
-						engine.executeScript("setFirstItemImage('"+AutoFletcherEliteData.FletchingTools.Knife.getImageLocation()+"','"+AutoFletcherEliteData.FletchingTools.Knife.InGameName+"');");
-						engine.executeScript("setSecondItemImage('"+AutoFletcherEliteData.LogType.Logs.getImageLocation()+"','"+AutoFletcherEliteData.LogType.Logs.InGameLogName+"');");
-						engine.executeScript("setThirdItemImage('"+AutoFletcherEliteData.Bows.Cutting.Shafts.getImageLocation()+"','"+AutoFletcherEliteData.Bows.Cutting.Shafts.endProductInGameName+"');");
+						engine.executeScript("setFirstItemImage('"+ItemData.FletchingTools.Knife.getImageLocation()+"','"+ItemData.FletchingTools.Knife.InGameName+"');");
+						engine.executeScript("setSecondItemImage('"+ItemData.LogType.Logs.getImageLocation()+"','"+ItemData.LogType.Logs.InGameLogName+"');");
+						engine.executeScript("setThirdItemImage('"+ItemData.Bows.Cutting.Shafts.getImageLocation()+"','"+ItemData.Bows.Cutting.Shafts.endProductInGameName+"');");
 						engine.executeScript("hideThirdBox();");
 						Object = Bows.Cutting.Shafts;
 					break;
@@ -243,7 +238,7 @@ public class AutoFletcherEliteGUIV3 extends JPanel {
 			case "Darts":
 				switch((String) engine.executeScript("getSecondBoxString()")){
 					case "Attach Feathers":
-						engine.executeScript("setFirstItemImage('"+AutoFletcherEliteData.FletchingTools.Feather.getImageLocation()+"','"+AutoFletcherEliteData.FletchingTools.Feather.InGameName+"');");
+						engine.executeScript("setFirstItemImage('"+ItemData.FletchingTools.Feather.getImageLocation()+"','"+ItemData.FletchingTools.Feather.InGameName+"');");
 						engine.executeScript(JavaArrayToJavaScript(Darts.AttachFeathersToDartTips.values()));
 						engine.executeScript("setThirdBoxString(x);");
 						engine.executeScript("showThirdBox();");
@@ -258,19 +253,19 @@ public class AutoFletcherEliteGUIV3 extends JPanel {
 						engine.executeScript("showThirdBox();");
 					break;
 					case "Attach Feathers":
-						engine.executeScript("setFirstItemImage('"+AutoFletcherEliteData.FletchingTools.Feather.getImageLocation()+"','"+AutoFletcherEliteData.FletchingTools.Feather.InGameName+"');");
+						engine.executeScript("setFirstItemImage('"+ItemData.FletchingTools.Feather.getImageLocation()+"','"+ItemData.FletchingTools.Feather.InGameName+"');");
 						engine.executeScript(JavaArrayToJavaScript(Bolts.AttachFeathersToBolts.values()));
 						engine.executeScript("setThirdBoxString(x);");
 						engine.executeScript("showThirdBox();");
 					break;
 					case  "Cut: Gems -> Tips":
-						engine.executeScript("setFirstItemImage('"+AutoFletcherEliteData.FletchingTools.Chisel.getImageLocation()+"','"+AutoFletcherEliteData.FletchingTools.Chisel.InGameName+"');");
+						engine.executeScript("setFirstItemImage('"+ItemData.FletchingTools.Chisel.getImageLocation()+"','"+ItemData.FletchingTools.Chisel.InGameName+"');");
 						engine.executeScript(JavaArrayToJavaScript(Bolts.CutGemstoTips.values()));
 						engine.executeScript("setThirdBoxString(x);");
 						engine.executeScript("showThirdBox();");
 					break;
 					case "Cut: Uncut Gems -> Gems":
-						engine.executeScript("setFirstItemImage('"+AutoFletcherEliteData.FletchingTools.Chisel.getImageLocation()+"','"+AutoFletcherEliteData.FletchingTools.Chisel.InGameName+"');");
+						engine.executeScript("setFirstItemImage('"+ItemData.FletchingTools.Chisel.getImageLocation()+"','"+ItemData.FletchingTools.Chisel.InGameName+"');");
 						engine.executeScript(JavaArrayToJavaScript(Bolts.UncutGemCutting.values()));
 						engine.executeScript("setThirdBoxString(x);");
 						engine.executeScript("showThirdBox();");
@@ -285,12 +280,12 @@ public class AutoFletcherEliteGUIV3 extends JPanel {
 			case "Bows":
 				switch((String) engine.executeScript("getSecondBoxString()")){
 					case "Cutting":
-						AutoFletcherEliteData.Bows.Cutting objectToReturn= valueOfIgnoreCase(Bows.Cutting.class,(String) engine.executeScript("getThirdBoxString()"));
+						ItemData.Bows.Cutting objectToReturn= valueOfIgnoreCase(Bows.Cutting.class,(String) engine.executeScript("getThirdBoxString()"));
 						engine.executeScript("setSecondItemImage('"+objectToReturn.log.getImageLocation()+"','"+objectToReturn.log.InGameLogName+"');");
 						engine.executeScript("setThirdItemImage('"+objectToReturn.getImageLocation()+"','"+objectToReturn.endProductInGameName+"');");
 						return objectToReturn;
 					case "Stringing":
-						AutoFletcherEliteData.Bows.Stringing objectToReturn2= valueOfIgnoreCase(Bows.Stringing.class,(String) engine.executeScript("getThirdBoxString()"));
+						ItemData.Bows.Stringing objectToReturn2= valueOfIgnoreCase(Bows.Stringing.class,(String) engine.executeScript("getThirdBoxString()"));
 						engine.executeScript("setSecondItemImage('"+objectToReturn2.CutBow.getImageLocation()+"','"+objectToReturn2.CutBow.endProductInGameName+"');");
 						engine.executeScript("setThirdItemImage('"+objectToReturn2.getImageLocation()+"','"+objectToReturn2.endProductInGameName+"');");
 						return objectToReturn2;

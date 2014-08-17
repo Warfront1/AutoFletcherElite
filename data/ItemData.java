@@ -1,8 +1,9 @@
-package scripts;
+package scripts.data;
 
-public class AutoFletcherEliteData {
 
-	enum LogType{
+public class ItemData {
+
+	public enum LogType{
 		Logs("Logs","Logs.png"),
 		OakLogs("Oak logs","Oak_logs.png"),
 		WillowLogs("Willow logs","Willow_logs.png"),
@@ -27,7 +28,7 @@ public class AutoFletcherEliteData {
 		}
 	}
 	
-	enum FletchingTools{
+	public enum FletchingTools{
 		Knife("Knife","Knife.png"),
 		Bowstring("Bow string","Bowstring.png"),
 		Chisel("Chisel","Chisel.png"),
@@ -74,12 +75,12 @@ public class AutoFletcherEliteData {
 				MagicLongBow("Magic longbow",303,11,LogType.MagicLogs,91.5,"maple_longbow_(u).gif","Magic longbow (u)");
 				
 				String guiOption;
-				int InterfaceMasterIndex;
-				int InterfaceMasterChild;
-				LogType log;
-				double xpPerBow;
-				String ImageFileName;
-				String endProductInGameName;
+				public int InterfaceMasterIndex;
+				public int InterfaceMasterChild;
+				public LogType log;
+				public double xpPerBow;
+				public  String ImageFileName;
+				public String endProductInGameName;
 				Cutting(String guiOption,int InterfaceMasterIndex, int InterfaceMasterChild, LogType log, double xpPerBow, String ImageFileName, String endProductInGameName){
 					this.guiOption=guiOption;
 					this.InterfaceMasterIndex=InterfaceMasterIndex;
@@ -120,10 +121,10 @@ public class AutoFletcherEliteData {
 				MagicShortBow("Magic shortbow",Cutting.MagicShortBow,83.3,"Magic_shortbow.png"),
 				MagicLongBow("Magic longbow",Cutting.MagicLongBow,91.5,"Magic_longbow.gif");
 				
-				String endProductInGameName;
-				Cutting CutBow;
-				double xpPerBow;
-				String ImageFileName;
+				public String endProductInGameName;
+				public Cutting CutBow;
+				public double xpPerBow;
+				public String ImageFileName;
 				Stringing(String endProductInGameName,Cutting CutBow,double xpPerBow,String ImageFileName){
 					this.endProductInGameName=endProductInGameName;
 					this.CutBow=CutBow;
@@ -158,12 +159,12 @@ public class AutoFletcherEliteData {
 			Rune("Rune","Rune arrowtips",13.8,"Rune_arrow.png","Adamant.png","Rune arrow"),
 			Dragon("Dragon","Dragon arrowtips",15,"Dragon_arrow.png","Dragon.png","Dragon arrow");
 
-			String guiOption;
-			String InGameArrowTipName;
-			double xpPerArrow;
-			String ImageFileNameFinalArrowPicture;
-			String ImageFileNameArrowTipPicture;
-			String FinalProductInGameName;
+			public String guiOption;
+			public String InGameArrowTipName;
+			public double xpPerArrow;
+			public String ImageFileNameFinalArrowPicture;
+			public String ImageFileNameArrowTipPicture;
+			public String FinalProductInGameName;
 			AttachArrowTips(String guiOption,String InGameArrowTipName,double xpPerArrow,String ImageFileNameFinalArrowPicture, String ImageFileNameArrowTipPicture, String FinalProductInGameName){
 				this.guiOption=guiOption;
 				this.InGameArrowTipName=InGameArrowTipName;
@@ -190,11 +191,11 @@ public class AutoFletcherEliteData {
 		public enum HeadlessArrows implements ItemInterface{
 			Shafts("Shafts",305,9,"Logs", 0.33);
 			
-			String guiOption;
-			int InterfaceMasterIndex;
-			int InterfaceMasterChild;
-			String InGameLogName;
-			double xpPer;
+			public String guiOption;
+			public int InterfaceMasterIndex;
+			public int InterfaceMasterChild;
+			public String InGameLogName;
+			public double xpPer;
 			HeadlessArrows(String guiOption,int InterfaceMasterIndex, int InterfaceMasterChild, String InGameLogName, double xpPer){
 				this.guiOption=guiOption;
 				this.InterfaceMasterIndex=InterfaceMasterIndex;
@@ -225,11 +226,11 @@ public class AutoFletcherEliteData {
 			Rune("Rune","Rune dart tip",18.8,"Rune.png","Rune dart"),
 			Dragon("Dragon","Dragon dart tip",25,"Dragon.png","Dragon dart");
 
-			String guiOption;
-			String InGameDartTipName;
-			double xpPerDart;
-			String ImageFileNamePicture;
-			String endProductInGameName;
+			public String guiOption;
+			public String InGameDartTipName;
+			public double xpPerDart;
+			public String ImageFileNamePicture;
+			public String endProductInGameName;
 			AttachFeathersToDartTips(String guiOption,String InGameDartTipName, double xpPerDart, String ImageFileNamePicture, String endProductInGameName){
 				this.guiOption=guiOption;
 				this.InGameDartTipName=InGameDartTipName;
@@ -269,10 +270,10 @@ public class AutoFletcherEliteData {
 			Dragonstone("Dragonstone","Uncut dragonstone","Dragonstone.png","Dragonstone"),
 			Onyx("Onyx","Uncut onyx","Onyx.png","Onyx");
 
-			String guiOption;
-			String InGameGemName;
-			String ImageFileNameUnCutGem;
-			String FinalProductCutGemInGameName;
+			public String guiOption;
+			public String InGameGemName;
+			public String ImageFileNameUnCutGem;
+			public String FinalProductCutGemInGameName;
 			UncutGemCutting(String guiOption,String InGameGemName,String ImageFileNameUnCutGem,String FinalProductCutGemInGameName){
 				this.guiOption=guiOption;
 				this.InGameGemName=InGameGemName;
@@ -298,11 +299,11 @@ public class AutoFletcherEliteData {
 			Dragonstone(UncutGemCutting.Dragonstone,8,12,"Dragon.png","Dragon bolt tips"),
 			Onyx(UncutGemCutting.Onyx,9,24,"Onyx.png","Onyx bolt tips");
 
-			UncutGemCutting UnCutGem;
-			double xpPerConsumedGem;
-			int rewardedTipPerGem;
-			String ImageFileNameGemTips;
-			String FinalInGameProduct;
+			public UncutGemCutting UnCutGem;
+			public double xpPerConsumedGem;
+			public int rewardedTipPerGem;
+			public String ImageFileNameGemTips;
+			public String FinalInGameProduct;
 			CutGemstoTips(UncutGemCutting UnCutGem, double xpPerConsumedGem,int rewardedTipPerGem,String ImageFileNameGemTips,String FinalInGameProduct){
 				this.UnCutGem=UnCutGem;
 				this.xpPerConsumedGem=xpPerConsumedGem;
@@ -325,11 +326,11 @@ public class AutoFletcherEliteData {
 			Adamant("Adamant","Adamant bolts(unf)",7,"Adamant.png","Adamant bolts"),
 			Rune("Rune","Runite bolts (unf)",10,"Runite.png","Runite bolts");
 
-			String guiOption;
-			String InGameBoltName;
-			double xpPerBolt;
-			String ImageFileNameBolts;
-			String FinalProductInGameName;
+			public String guiOption;
+			public String InGameBoltName;
+			public double xpPerBolt;
+			public String ImageFileNameBolts;
+			public String FinalProductInGameName;
 			AttachFeathersToBolts(String guiOption,String InGameBoltName, double xpPerBolt, String ImageFileNameBolts, String FinalProductInGameName){
 				this.guiOption=guiOption;
 				this.InGameBoltName=InGameBoltName;
@@ -372,13 +373,13 @@ public class AutoFletcherEliteData {
 			RuneOnyxTips("Rune",AttachFeathersToBolts.Rune,CutGemstoTips.Onyx.FinalInGameProduct,9.4,CutGemstoTips.Onyx.ImageFileNameGemTips,"Onyx.png","Onyx bolts")
 			;
 
-			String guiOption;
-			AttachFeathersToBolts Bolt;
-			String InGameTipName;
-			double xpPerBoltTip;
-			String ImageFileNameTipImage;
-			String ImageFileEndProduct;
-			String FinalProductInGameName;
+			public String guiOption;
+			public AttachFeathersToBolts Bolt;
+			public String InGameTipName;
+			public double xpPerBoltTip;
+			public String ImageFileNameTipImage;
+			public String ImageFileEndProduct;
+			public String FinalProductInGameName;
 			AttachBoltTips(String guiOption,AttachFeathersToBolts Bolt, String InGameTipName, double xpPerBoltTip,String ImageFileNameTipImage, String ImageFileEndProduct, String FinalProductInGameName){
 				this.guiOption=guiOption;
 				this.Bolt=Bolt;

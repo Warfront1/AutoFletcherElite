@@ -1,4 +1,4 @@
-package scripts;
+package scripts.userinterface;
 
 import java.awt.Component;
 import java.awt.EventQueue;
@@ -10,10 +10,6 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.DefaultComboBoxModel;
 
-import scripts.AutoFletcherEliteData.Arrows;
-import scripts.AutoFletcherEliteData.Bolts;
-import scripts.AutoFletcherEliteData.Bows;
-import scripts.AutoFletcherEliteData.Darts;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -21,10 +17,24 @@ import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.Box;
 
-public class AutoFletcherEliteGUISwing extends JFrame {
+import scripts.data.ItemData.Arrows;
+import scripts.data.ItemData.Bolts;
+import scripts.data.ItemData.Bows;
+import scripts.data.ItemData.Darts;
+import scripts.data.ItemData.Arrows.AttachArrowTips;
+import scripts.data.ItemData.Arrows.HeadlessArrows;
+import scripts.data.ItemData.Bolts.AttachBoltTips;
+import scripts.data.ItemData.Bolts.AttachFeathersToBolts;
+import scripts.data.ItemData.Bolts.CutGemstoTips;
+import scripts.data.ItemData.Bolts.UncutGemCutting;
+import scripts.data.ItemData.Bows.Cutting;
+import scripts.data.ItemData.Bows.Stringing;
+import scripts.data.ItemData.Darts.AttachFeathersToDartTips;
+
+public class SwingUI extends JFrame {
 	
-	static Object Object = null;
-	static boolean Start = false;
+	public static Object Object = null;
+	public static boolean Start = false;
 
 	private JPanel contentPane;
 
@@ -35,7 +45,7 @@ public class AutoFletcherEliteGUISwing extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AutoFletcherEliteGUISwing frame = new AutoFletcherEliteGUISwing();
+					SwingUI frame = new SwingUI();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -47,7 +57,7 @@ public class AutoFletcherEliteGUISwing extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AutoFletcherEliteGUISwing() {
+	public SwingUI() {
 		setTitle("Auto Fletcher Elite");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 238, 397);
