@@ -3,93 +3,116 @@
 <head>
     <link href="./bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="bootstrap/bootstrapSelect/bootstrap-select.css" rel="stylesheet">
-    <link href="DanubeRegularFont/Stylesheet.css" rel="stylesheet">
-    <link href="OverPassBoldFont/Stylesheet.css" rel="stylesheet">
-    <link href="./TypeAhead/typeahead.css" rel="stylesheet">
-    <style type="text/css"></style>
+    <link href="./DanubeRegularFont/Stylesheet.css" rel="stylesheet">
+    <link href="./OverPassBoldFont/Stylesheet.css" rel="stylesheet">
     <script src="./bootstrap/js/jquery-2.1.0.min.js"></script>
     <script src="./bootstrap/js/bootstrap.js"></script>
     <script src="bootstrap/bootstrapSelect/bootstrap-select.js"></script>
-    <script src="./TypeAhead/typeahead.js"></script>
-    <script src="./FletchingRecipes.js"></script>
     <!--<script type='text/javascript' src='http://getfirebug.com/releases/lite/1.2/firebug-lite-compressed.js'></script>-->
     <script>
         var $ =jQuery.noConflict();
-
-        var substringMatcher = function(strs) {
-            return function findMatches(q, cb) {
-                var matches, substrRegex;
-
-                // an array that will be populated with substring matches
-                matches = [];
-
-                // regex used to determine if a string contains the substring `q`
-                substrRegex = new RegExp(q, 'i');
-
-                // iterate through the pool of strings and for any string that
-                // contains the substring `q`, add it to the `matches` array
-                $.each(strs, function(i, str) {
-                    if (substrRegex.test(str)) {
-                        // the typeahead jQuery plugin expects suggestions to a
-                        // JavaScript object, refer to typeahead docs for more info
-                        matches.push({ value: str });
-                    }
-                });
-
-                cb(matches);
-            };
-        };
-
-
-        $( document ).ready(function() {
-            $('#the-basics .typeahead').typeahead({
-                        hint: true,
-                        highlight: true,
-                        minLength: 1
-                    },
-                    {
-                        name: 'states',
-                        displayKey: 'value',
-                        source: substringMatcher(getEndProductArray())
-                    })
-                    .on('typeahead:closed', function($e, datum){
-                        var TypeAheadInputValue = $('#the-basics .typeahead').typeahead('val');
-                        var Recipe = getRecipeFromEndProduct(TypeAheadInputValue);
-                        if (typeof Recipe === "undefined") {
-                            <!--NO Real Recipe Found-->
-                            console.log("No Real Recipe Completed Yet")
-                            if($('#MainInputPanel').hasClass('panel-success')){
-                                $('#MainInputPanel').toggleClass('panel-primary panel-success');
-                            }
-                            hideEverything();
-                            $('#StartButton').hide();
-                        }
-                        else{
-                            <!--Real Recipe Found-->
-                            if(!$('#MainInputPanel').hasClass('panel-success')){
-                                $('#MainInputPanel').toggleClass('panel-primary panel-success');
-                            }
-                            setFirstItemImage(getItemURLByName(Recipe["Item1"]),Recipe["Item1"]);
-                            setSecondItemImage(getItemURLByName(Recipe["Item2"]),Recipe["Item2"]);
-                            setThirdItemImage(getItemURLByName(Recipe["EndProduct"]),Recipe["EndProduct"]);
-                            showFirstColumn();
-                            showSecondColumn();
-                            showThirdColumn();
-                            $('#StartButton').show();
-                            console.log(Recipe);
-                        }
-                    });
+        function onFirstBoxChange(){
+            $("#FirstBox").attr('class', "panel panel-success");
+            $("#SecondBox").attr('class', "panel panel-primary");
+            $("#ThirdBox").attr('class', "panel panel-primary");
+            $("#SecondBox").show();
+            $("#ThirdBox").hide();
             $("#StartButton").hide();
+            $('.selectpicker').selectpicker('refresh');
+            hideEverything();
+            fadeAndRemoveLargeLogo();
+        }
+//        function onSecondBoxChange(){
+//            $("#SecondBox").attr('class', "panel panel-success");
+//            $("#ThirdBox").attr('class', "panel panel-primary");
+//            console.log('Firing ThirdBox Changes');
+//            eval(setThirdBox);
+//            $("#StartButton").show();
+//            $('.selectpicker').selectpicker('refresh');
+//        }
+        function onThirdBoxChange(){
+            $("#ThirdBox").attr('class', "panel panel-success");
+            $('.selectpicker').selectpicker('refresh');
+            eval(setThirdBoxTable);
+        }
+//        $('#AdvancedButton').click(function(e) {
+//            e.preventDefault();// prevent the default anchor functionality
+//            alert('alerted');
+//        });
+        $( document ).ready(function() {
+            $("#StartButton").hide();
+            $('.selectpicker').selectpicker();
             hideEverything();
             $("#MainHeader").hide();
 
+            $( "#AdvancedButton" ).on( "click", function() {
+                alert( $( this ).text() );
+            });
+            $("#e1").change(function() {
+                console.log("lol");
+//            window["java"][testBridge]();
+                eval(startmethod);
+                onFirstBoxChange();
+                eval(testBridge);
+            });
+            $("#e2").change(function() {
+                $("#SecondBox").attr('class', "panel panel-success");
+                $("#ThirdBox").attr('class', "panel panel-primary");
+                console.log('Firing ThirdBox Changes');
+                eval(setThirdBox);
+                $("#StartButton").show();
+                $('.selectpicker').selectpicker('refresh');
+            });
         });
-        function exit1(){
-            return $('#the-basics .typeahead').typeahead('val');
+        function createOptionsList(StringArrayList, extravar){
+            var returnString = "<option id='blank'></option>";
+            for(var i = 0; i<StringArrayList.length; i++){
+                returnString = returnString+'<option '+extravar+' value="'+StringArrayList[i]+'">'+StringArrayList[i]+"</option>";
+                //returnString = returnString+'<option value="'+StringArrayList[i]+'">'+StringArrayList[i]+"</option>";
+            }
+            return returnString;
         }
-
     </script>
     <script>
+        function getFirstBoxString(){
+            return $('#e1').find(":selected").text();
+        }
+        function getSecondBoxString(){
+            return $('#e2').find(":selected").text();
+        }
+        function getThirdBoxString(){
+            return $('#e3').find(":selected").text();
+        }
+        function setFirstBoxString(inputArray, onClick){
+            $('#e1').html( createOptionsList(inputArray,onClick));
+            $('.selectpicker').selectpicker('refresh');
+        }
+        function setSecondBoxString(inputArray, onClick){
+            $('#e2').html( createOptionsList(inputArray,onClick));
+            $('.selectpicker').selectpicker('refresh');
+        }
+        function setThirdBoxString(inputArray,onClick){
+            $('#e3').html( createOptionsList(inputArray,onClick));
+            $('.selectpicker').selectpicker('refresh');
+        }
+        function showFirstBox(){
+            $("#FirdBox").show();
+        }
+        function showSecondBox(){
+            $("#SecondBox").show();
+        }
+        function showThirdBox(){
+            $("#ThirdBox").show();
+        }
+        function hideFirstBox(){
+            $("#FirdBox").hide();
+        }
+        function hideSecondBox(){
+            $("#SecondBox").hide();
+        }
+        function hideThirdBox(){
+            $("#ThirdBox").hide();
+        }
         function setFirstItemImage(ItemImageURL, ItemName){
             $("#td1").html('<img src="./Images/'+ItemImageURL+'">');
             $("#td6").html(ItemName);
@@ -209,20 +232,54 @@
             </div><!-- /.navbar-collapse -->
         </div>
     </nav>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-9">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="#">Link</a></li>
+                <li><a href="#">Link</a></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
     </div>
-    <div id="MainInputPanel" class="panel panel-primary">
-        <div class="panel-heading">
-            Enter the Fletching Item to Create:
-        </div>
-        <div class="panel-body">
-            <div id="the-basics" class="container-fluid">
-                <div class="col-xs-2 col-xs-offset-2 col-md-2 col-md-offset-5 col-sm-2 col-sm-offset-3">
-                    <input class="typeahead" type="text" placeholder="Item to Fletch">
-                </div>
-            </div>
+    <div id="FirstBox" class="panel panel-primary">
+        <div class="panel-heading">Type of Fletching</div>
+        <div class="panel-body" style="text-align:center">
+            <!--<select id="e1" class="selectpicker" onchange="onFirstBoxChange()">-->
+            <select id="e1" class="selectpicker">
+                <option id='blank'></option>
+                <option value="Bows" onchange="onFirstBoxChange()">Bows</option>
+                <option value="Arrows">Arrows</option>
+                <option value="Darts">Darts</option>
+                <option value="Bolts">Bolts</option>
+            </select>
         </div>
     </div>
 
+    <div id="SecondBox" class="panel panel-primary">
+        <div id='Box2Title' class="panel-heading">Types of Fletching</div>
+        <div class="panel-body" style="text-align:center">
+            <select class="selectpicker" id="e2">
+                <!--Filled By JavaScript-->
+            </select>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $("#SecondBox").hide();
+//        $('animate-area').css('width',$(container).width);
+    </script>
+
+    <div id="ThirdBox" class="panel panel-primary">
+        <div id='Box3Title' class="panel-heading">Types of Fletching</div>
+        <div class="panel-body" style="text-align:center">
+            <select class="selectpicker" onchange="onThirdBoxChange()" id="e3">
+                <!--Filled By JavaScript-->
+            </select>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $("#ThirdBox").hide();
+    </script>
     <div class="span6" style="text-align:center">
 
         <button onclick="eval(exit);" id="StartButton" class="btn btn-lg btn-success">
@@ -256,7 +313,22 @@
                 <td id="td10" style="text-align: center; vertical-align: middle;"></td>
             </tr>
         </table>
+        <!--<a href="http://hatscripts.com/addskype?tvcontrolsyou1">-->
+            <!--<img src="./Images/Extra/SkypeLogo.png">-->
+        <!--</a> tvcontrolsyou1-->
+        <!--<a href="http://elitescripts.tk/tsredirect.php">-->
+            <!--<img src="./Images/Extra/TeamspeakLogo.png">-->
+        <!--</a> elitescripts.tk-->
     </div>
+    <!--<script type="text/javascript">-->
+
+        <!--$("#StartButton").hide();-->
+        <!--$('.selectpicker').selectpicker();-->
+        <!--hideEverything();-->
+        <!--$("#MainHeader").hide();-->
+
+    <!--</script>-->
+<!--<p><a class="btn btn-lg btn-success" href="#" role="button">Start</a></p>-->
 </div>
 </body>
 </html>
