@@ -10,7 +10,7 @@
 /* ----------- */
 
 html {
-    overflow-y: scroll;
+    *overflow-y: scroll;
     *overflow-x: hidden;
 }
 

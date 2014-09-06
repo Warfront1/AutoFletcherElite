@@ -13,8 +13,9 @@
     font-style: normal;
 
 }
-#element::-webkit-scrollbar { 
-    display: none; 
+html{
+    overflow-x: hidden;
+    overflow-y: hidden;
 }
 @keyframes animatedBackground {
     from { background-position: 0 0; }
