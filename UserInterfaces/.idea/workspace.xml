@@ -6,6 +6,7 @@
     <ignored path=".idea/workspace.xml" />
     <file path="/AutoFletcherEliteGUI.html" changelist="4e1d7349-5240-43ee-bc94-2ea027a28837" time="1409970006898" ignored="false" />
     <file path="/stylesheet.css" changelist="4e1d7349-5240-43ee-bc94-2ea027a28837" time="1393057527925" ignored="false" />
+    <file path="$PROJECT_DIR$/TypeAhead/typeahead.css" changelist="4e1d7349-5240-43ee-bc94-2ea027a28837" time="1409970723488" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,7 +29,7 @@
       <file leaf-file-name="AutoFletcherEliteGUI.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/AutoFletcherEliteGUI.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="231" column="9" selection-start="9447" selection-end="9447" vertical-scroll-proportion="0.20622568">
+            <state line="232" column="4" selection-start="9487" selection-end="9487" vertical-scroll-proportion="0.38261998">
               <folding />
             </state>
           </provider>
@@ -91,7 +92,7 @@
       <file leaf-file-name="stylesheet.css" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DanubeRegularFont/stylesheet.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="79" column="0" selection-start="2409" selection-end="2409" vertical-scroll-proportion="0.0">
+            <state line="76" column="0" selection-start="2356" selection-end="2356" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -400,14 +401,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/DanubeRegularFont/stylesheet.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="79" column="0" selection-start="2409" selection-end="2409" vertical-scroll-proportion="0.0">
+        <state line="76" column="0" selection-start="2356" selection-end="2356" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/AutoFletcherEliteGUI.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="231" column="9" selection-start="9447" selection-end="9447" vertical-scroll-proportion="0.20622568">
+        <state line="232" column="4" selection-start="9487" selection-end="9487" vertical-scroll-proportion="0.38261998">
           <folding />
         </state>
       </provider>
