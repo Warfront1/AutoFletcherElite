@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="./bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="bootstrap/bootstrapSelect/bootstrap-select.css" rel="stylesheet">
+    <link href="DanubeRegularFont/Stylesheet.css" rel="stylesheet">
+    <link href="OverPassBoldFont/Stylesheet.css" rel="stylesheet">
+    <link href="./TypeAhead/typeahead.css" rel="stylesheet">
+    <style type="text/css"></style>
+    <script src="./bootstrap/js/jquery-2.1.0.min.js"></script>
+    <script src="./bootstrap/js/bootstrap.js"></script>
+    <script src="bootstrap/bootstrapSelect/bootstrap-select.js"></script>
+    <script src="./TypeAhead/typeahead.js"></script>
+    <script src="./FletchingRecipes.js"></script>
+    <!--<script type='text/javascript' src='http://getfirebug.com/releases/lite/1.2/firebug-lite-compressed.js'></script>-->
+    <script>
+        var $ =jQuery.noConflict();
+
+        var substringMatcher = function(strs) {
+            return function findMatches(q, cb) {
+                var matches, substrRegex;
+
+                // an array that will be populated with substring matches
+                matches = [];
+
+                // regex used to determine if a string contains the substring `q`
+                substrRegex = new RegExp(q, 'i');
+
+                // iterate through the pool of strings and for any string that
+                // contains the substring `q`, add it to the `matches` array
+                $.each(strs, function(i, str) {
+                    if (substrRegex.test(str)) {
+                        // the typeahead jQuery plugin expects suggestions to a
+                        // JavaScript object, refer to typeahead docs for more info
+                        matches.push({ value: str });
+                    }
+                });
+
+                cb(matches);
+            };
+        };
+
+
+        $( document ).ready(function() {
+            $('#the-basics .typeahead').typeahead({
+                        hint: true,
+                        highlight: true,
+                        minLength: 1
+                    },
+                    {
+                        name: 'states',
+                        displayKey: 'value',
+                        source: substringMatcher(getEndProductArray())
+                    })
+                    .on('typeahead:closed', function($e, datum){
+                        var TypeAheadInputValue = $('#the-basics .typeahead').typeahead('val');
+                        var Recipe = getRecipeFromEndProduct(TypeAheadInputValue);
+                        if (typeof Recipe === "undefined") {
+                            <!--NO Real Recipe Found-->
+                            console.log("No Real Recipe Completed Yet")
+                            if($('#MainInputPanel').hasClass('panel-success')){
+                                $('#MainInputPanel').toggleClass('panel-primary panel-success');
+                            }
+                            hideEverything();
+                            $('#StartButton').hide();
+                        }
+                        else{
+                            <!--Real Recipe Found-->
+                            if(!$('#MainInputPanel').hasClass('panel-success')){
+                                $('#MainInputPanel').toggleClass('panel-primary panel-success');
+                            }
+                            setFirstItemImage(getItemURLByName(Recipe["Item1"]),Recipe["Item1"]);
+                            setSecondItemImage(getItemURLByName(Recipe["Item2"]),Recipe["Item2"]);
+                            setThirdItemImage(getItemURLByName(Recipe["EndProduct"]),Recipe["EndProduct"]);
+                            showFirstColumn();
+                            showSecondColumn();
+                            showThirdColumn();
+                            $('#StartButton').show();
+                            console.log(Recipe);
+                        }
+                    });
+            $("#StartButton").hide();
+            hideEverything();
+            $("#MainHeader").hide();
+
+        });
+        function exit1(){
+            return $('#the-basics .typeahead').typeahead('val');
+        }
+
+    </script>
+    <script>
+        function setFirstItemImage(ItemImageURL, ItemName){
+            $("#td1").html('<img src="./Images/'+ItemImageURL+'">');
+            $("#td6").html(ItemName);
+            hideEverythingPastFirstColumn();
+            showFirstColumn();
+        }
+        function setSecondItemImage(ItemImageURL, ItemName){
+            $("#td3").html('<img src="./Images/'+ItemImageURL+'">');
+            $("#td8").html(ItemName);
+            hideEverythingPastSecondColumn();
+            showSecondColumn();
+        }
+        function setThirdItemImage(ItemImageURL, ItemName){
+            $("#td5").html('<img src="./Images/'+ItemImageURL+'">');
+            $("#td10").html(ItemName);
+            showThirdColumn();
+        }
+        function hideEverything(){
+            $("#td1").hide();
+            $("#td2").hide();
+            $("#td3").hide();
+            $("#td4").hide();
+            $("#td5").hide();
+            $("#td6").hide();
+            $("#td7").hide();
+            $("#td8").hide();
+            $("#td9").hide();
+            $("#td10").hide();
+        }
+        function hideEverythingPastFirstColumn(){
+            $("#td2").hide();
+            $("#td3").hide();
+            $("#td4").hide();
+            $("#td5").hide();
+            $("#td7").hide();
+            $("#td8").hide();
+            $("#td9").hide();
+            $("#td10").hide();
+        }
+        function hideEverythingPastSecondColumn(){
+            $("#td4").hide();
+            $("#td5").hide();
+            $("#td7").hide();
+            $("#td8").hide();
+        }
+        function showFirstColumn(){
+            $("#td1").show();
+            $("#td6").show();
+        }
+        function showSecondColumn(){
+            $("#td2").show();
+            $("#td3").show();
+            $("#td7").show();
+            $("#td8").show();
+        }
+        function showThirdColumn(){
+            $("#td4").show();
+            $("#td5").show();
+            $("#td9").show();
+            $("#td10").show();
+        }
+        function fadeAndRemoveLargeLogo(){
+            $("#animate-area").fadeOut(2000,function() {
+//                ("#animate-area").hide();
+                $("#MainHeader").fadeIn(1000,function(){});
+            });
+        }
+//        var testBridge = " ";
+//        var startmethod = " ";
+//        var setThirdBox = " ";
+//        var exit = " ";
+//        var setThirdBoxTable = " ";
+
+
+    </script>
+    <title>Auto Fletcher Elite</title>
+</head>
+<body>
+<div class="container">
+    <div id="animate-area" class="jumbotron">
+        <div class="textzone classic">
+            <h1>Auto</h1>
+            <h2>Fletcher Elite</h2>
+            <h3>Created by Warfront1</h3>
+        </div>
+    </div>
+    <nav id="MainHeader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <!-- We use the fluid option here to avoid overriding the fixed width of a normal container within the narrow content columns. -->
+        <div class="container-fluid">
+            <div id="animate-area" class="navbar-header">
+                <div>
+                    <button style="background-color:rgba(0, 0, 0, 0.5)" type="button" class="navbar-toggle" data-toggle="collapse"
+                            data-target="#bs-example-navbar-collapse-8">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <!--<a class="navbar-brand" href="#">Auto Fletcher Elite</a>-->
+                    <!--<a class="navbar-brand" href="#"><p class="text-warning">Auto Fletcher Elite</p></a>-->
+                    <a style="background-color:rgba(0, 0, 0, 0.5)" class="navbar-brand" href="#">
+                        <ul class="nav nav-pills">
+                            <li class="active">
+                                Auto Fletcher Elite
+                            </li>
+                        </ul>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-8">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Basic</a></li>
+                    <li class="disabled"><a id="AdvancedButton" href="#">Advanced (not available yet!)</a></li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div>
+    </nav>
+    </div>
+    <div id="MainInputPanel" class="panel panel-primary">
+        <div class="panel-heading">
+            Enter the Fletching Item to Create:
+        </div>
+        <div class="panel-body">
+            <div id="the-basics" class="container-fluid">
+                <div class="col-xs-2 col-xs-offset-2 col-md-2 col-md-offset-5 col-sm-2 col-sm-offset-3">
+                    <input class="typeahead" type="text" placeholder="Item to Fletch">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="span6" style="text-align:center">
+
+        <button onclick="eval(exit);" id="StartButton" class="btn btn-lg btn-success">
+            Start
+        </button>
+    </div>
+    <div class="footer navbar-fixed-bottom">
+        <table class="table" style="float:center">
+            <tr>
+                <td id="td1" style="text-align: center; vertical-align: middle;"></td>
+                <!--&nbsp;-->
+                <td id="td2" style="text-align: center; vertical-align: middle;"><span
+                        class="glyphicon glyphicon-plus"></span></td>
+                <!--&nbsp;-->
+                <td id="td3" style="text-align: center; vertical-align: middle;"></td>
+                <!--&nbsp;-->
+                <td id="td4" style="text-align: center; vertical-align: middle;"><span
+                        class="glyphicon glyphicon-random"></span></td>
+                <!--&nbsp;-->
+                <td id="td5" style="text-align: center; vertical-align: middle;"></td>
+            </tr>
+            <tr>
+                <td id="td6" style="text-align: center; vertical-align: middle;"></td>
+                <!--&nbsp;-->
+                <td id="td7" style="text-align: center; vertical-align: middle;"></td>
+                <!--&nbsp;-->
+                <td id="td8" style="text-align: center; vertical-align: middle;"></td>
+                <!--&nbsp;-->
+                <td id="td9" style="text-align: center; vertical-align: middle;"></td>
+                <!--&nbsp;-->
+                <td id="td10" style="text-align: center; vertical-align: middle;"></td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>

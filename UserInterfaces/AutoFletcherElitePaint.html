@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="./bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="bootstrap/bootstrapSelect/bootstrap-select.css" rel="stylesheet">
+    <link href="DanubeRegularFont/Stylesheet.css" rel="stylesheet">
+    <link href="OverPassBoldFont/Stylesheet.css" rel="stylesheet">
+    <script src="./bootstrap/js/jquery-2.1.0.min.js"></script>
+    <script src="./bootstrap/js/bootstrap.js"></script>
+    <script src="bootstrap/bootstrapSelect/bootstrap-select.js"></script>
+    <!--<script type='text/javascript' src='http://getfirebug.com/releases/lite/1.2/firebug-lite-compressed.js'></script>-->
+<body>
+	<div id="MainPaintUI">
+		<div id="levelProgression" class="container">
+            <div class="row">
+                <div class="col-xs-4  col-sm-4 ">
+                    <h4>
+                        <span class="label label-danger">
+                            Auto Fletcher Elite
+                        </span>
+                    </h4>
+                </div>
+                <div class="col-xs-1  col-sm-1 ">
+                    <h6>
+                        <span class="label label-info">
+                            V: 1.0
+                        </span>
+                    </h6>
+                </div>
+                <div class="col-xs-6  col-sm-6">
+                    <h4>
+                        <span class="label label-warning">
+                            Status:
+                        </span>
+                        <span id="Status" class="label label-default">
+                            Starting
+                        </span>
+                    </h4>
+                </div>
+                <div class="col-xs-1  col-sm-1">
+                    <button id="ToggleButton1" type="button" class="btn btn-default btn-xs">
+                        <span class="glyphicon glyphicon-resize-small"></span>
+                    </button>
+                    <button id="ToggleButton2" type="button" class="btn btn-default btn-xs">
+                        <span class="glyphicon glyphicon-resize-full"></span>
+                    </button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6 col-sm-6">
+                    <h4>
+                        <span class="label label-success">
+                            <span id="ItemName1" >
+                                N/A
+                            </span>
+                        /Hr:
+                        </span>
+                        <span class="label label-default">
+                            <span id="ItemAmountMadePerHour">
+                                0
+                            </span>
+                        </span>
+                    </h4>
+                </div>
+                <div class="col-xs-6 col-sm-6">
+                    <h4>
+                        <span class="label label-success">
+                            <span id="ItemName2" >
+                                N/A
+                            </span>
+                        :
+                        </span>
+                        <span class="label label-default">
+                            <span id="ItemAmountMade">
+                                0
+                            </span>
+
+                        </span>
+                    </h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-4  col-sm-4 ">
+                    <h4>
+                        <span class="label label-success">
+                            Run Time:
+                        </span>
+                        <span id="runTime" class="label label-default">
+                                00:00:00
+                        </span>
+                    </h4>
+                </div>
+                <div class="col-xs-4  col-sm-4">
+                    <h4>
+                        <span class="label label-success">
+                            TTL:
+                        </span>
+                            <span id="TimeTolevel" class="label label-default">
+                                N/A
+                            </span>
+                    </h4>
+                </div>
+                <div class="col-xs-4  col-sm-4 ">
+                    <h4>
+                        <span class="label label-success">
+                            XP/Hr:
+                        </span>
+                        <span id="XPPerHour" class="label label-default">
+                                0
+                        </span>
+                    </h4>
+                </div>
+            </div>
+            <div class="row-fluid">
+                <div class="col-xs-1 col-sm-1">
+                        <span id="currentLevel"  class="badge pull-right">
+                        0
+                        </span>
+                </div>
+                <div class="col-xs-10 col-sm-10" >
+                    <div class="progress">
+                        <div id="Progressbar" class="progress-bar progress-bar-success progress-bar-striped" role="progressbar"
+                             aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+                             0%
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-1 col-sm-1">
+                        <span id="NextLevel"  class="badge pull-right">
+                        1
+                        </span>
+                </div>
+            </div>
+	</div>
+    <script>
+        var $ =jQuery.noConflict();
+        function setStatus(currentStatus) {
+            $("#Status").html(currentStatus);
+        }
+        function setItemName(ItemName) {
+            $("#ItemName1").html(ItemName);
+            $("#ItemName2").html(ItemName);
+        }
+        function setRunTime(RunTimeFormated) {
+            $("#runTime").html(RunTimeFormated);
+        }
+        function setXPPerHour(XpPerHour) {
+            $("#XPPerHour").html(XpPerHour);
+        }
+        function setTimeTolevel(TimeTolevel) {
+            $("#TimeTolevel").html(TimeTolevel);
+        }
+        function setCurrentLevel(CurrentLevel) {
+            $("#currentLevel").html(CurrentLevel);
+        }
+        function setNextLevel(NextLevel) {
+            $("#NextLevel").html(NextLevel);
+        }
+        function setProgressBar(Progress){
+            var a = Progress+"%";
+            $('#Progressbar').animate({ width: a },0);
+            $('#Progressbar').html(a);
+        }
+        function setAmountofItemMade(ItemAmount){
+            $("#ItemAmountMade").html(ItemAmount);
+        }
+        function setPaint(){
+            $("#ToggleButton1").toggle();
+            $("#ToggleButton2").toggle();
+        }
+
+        function setAmountofItemMadePerHour(ItemAmount){
+            $("#ItemAmountMadePerHour").html(ItemAmount);
+        }
+//        var updateMethodName = " ";
+        $( document ).ready(function() {
+            window.setInterval(function(){
+                eval(updateMethodName);
+            }, 500);
+        });
+
+        $("#ToggleButton2").hide();
+
+
+    </script>
+</body>
+</html>
