@@ -33,7 +33,7 @@
 #animate-area	{
     /*250 x 354*/
     /*background-size:100px 100px;*/
-    background-image: url(http://i.imgur.com/9D12vpu.png);
+    background-image: url(../Images/ScrollingJumbotronBackground.png);
     background-position: 10000px 0;
     background-repeat: repeat;
     background-color: #1c1e22;
