@@ -17,6 +17,7 @@ public class TribotFrontEnd extends Script implements Painting, MouseActions{
 	@Override
 	public void run() {
         AutoFletcherEliteV2.runFrontEndViaJavaFX();
+//		AutoFletcherEliteV2.runFrontEndViaSwing();
 	}
 	
 	@Override
@@ -26,7 +27,7 @@ public class TribotFrontEnd extends Script implements Painting, MouseActions{
 
 	@Override
 	public void mouseClicked(Point arg0, int arg1, boolean arg2) {
-		Paint.PaintToggleHandeling(General.getRealMousePos());
+//		Paint.PaintToggleHandeling(General.getRealMousePos());
 	}
 
 	@Override

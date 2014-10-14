@@ -8,13 +8,11 @@ import org.tribot.api.input.Keyboard;
 import org.tribot.api.input.Mouse;
 import org.tribot.api2007.Banking;
 import org.tribot.api2007.Interfaces;
-import org.tribot.api2007.Inventory;
 import org.tribot.api2007.Player;
 import org.tribot.api2007.Skills;
 import org.tribot.api2007.Skills.SKILLS;
 import org.tribot.api2007.types.RSInterfaceChild;
 import org.tribot.api2007.types.RSItem;
-import org.tribot.api2007.types.RSItemDefinition;
 
 import scripts.actions.Utilities.RSItems;
 
@@ -32,12 +30,6 @@ public class ClientAPIWrappers {
 		return General.getTRiBotUsername();
 	}
 	
-	/** Returns the in game Runescape Username as a String */
-	/** Only used for statistical analysis, return an empty String if no method is available */
-	public static String getRunescapeUserName(){
-		return Player.getRSPlayer().getName();
-	}
-	
 	/** Returns the current total experience obtained in the Fletching Skill as an int */
 	public static int getFletchingXP(){
 		return Skills.getXP(SKILLS.FLETCHING);
@@ -53,16 +45,11 @@ public class ClientAPIWrappers {
 		General.sleep(Millisecond);
 	}
 	
-	/** Returns true if the Runescape Banking interface is Open. Returns false otherwise. */
-	public static boolean isBankScreenOpen(){
-		return Banking.isBankScreenOpen();
-	}
-	
 	/** Withdraws an inputed String Parameter ItemName and a specific Amount denoted as the parameter AmountToWithdraw */
 	/** Returns true if the withdraw successfully placed the items within the inventory.*/
 	/** The return Boolean is only used in order to assist with dynamic sleeping, and is not 100% mandatory in the case of a primitive BotClient API.  */
-	public static boolean withdrawItems(int AmountToWithdraw,String ItemName){
-		return Banking.withdraw(AmountToWithdraw, ItemName);
+	public static boolean withdrawItems(int AmountToWithdraw,int ID){
+		return Banking.withdraw(AmountToWithdraw, ID);
 	}
 	
 	/** Deposits everything in the inventory except inputed parameter(s) ID's provided */
@@ -114,21 +101,15 @@ public class ClientAPIWrappers {
 		return (IFace !=null && IFace.isHidden());
 	}
 	
-	/** Returns a String pertaining to the Name of an item, given it's ID as an int input parameter. */	
-	/** When using RSItemDefintions (cache extraction, etc.), in the case of a null return an empty string. */	
-	public static String getItemNameFromID(int ID){
-		RSItem[] Item = Inventory.find(ID);
-		if(Item!=null && Item.length>0){
-			RSItemDefinition ItemDefinition = Item[0].getDefinition();
-			if(ItemDefinition!=null){
-				String NameDefinition = ItemDefinition.getName();
-				if(NameDefinition !=null){
-					return NameDefinition;
-				}
-			}
+	/** Returns the String Text of an interface. If the text is null or the interface is null return an empty String */	
+	public static String getText(int InterfaceMaster, int InterfaceChild){
+		RSInterfaceChild IFace = org.tribot.api2007.Interfaces.get(InterfaceMaster,InterfaceChild);
+		if(IFace !=null && !IFace.isHidden() && IFace.getText()!=null){
+			return IFace.getText();
 		}
 		return "";
 	}
+	
 	
 	/** Utilizing all inventory items, Generate an array of RSItems (a script based Items Object) */	
 	/** Basic RSItem Construction: new RSItems(String ItemName, Rectangle ItemRectangle, int StackSize, int ID) */	
@@ -137,7 +118,7 @@ public class ClientAPIWrappers {
 		if(itemsDefined!=null && itemsDefined.length>0){
 			ArrayList<RSItems> ItemArrayReturn = new ArrayList<RSItems>();
 			for(RSItem i: itemsDefined){
-				ItemArrayReturn.add(new RSItems(getItemNameFromID(i.getID()), i.getArea(),i.getStack(),i.getID()));
+				ItemArrayReturn.add(new RSItems(i.getArea(),i.getStack(),i.getID()));
 			}
 			return ItemArrayReturn.toArray(new RSItems[ItemArrayReturn.size()]);
 		}

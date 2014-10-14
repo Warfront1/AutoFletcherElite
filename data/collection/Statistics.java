@@ -2,6 +2,8 @@ package scripts.data.collection;
 
 import java.text.DecimalFormat;
 
+import org.tribot.api2007.Player;
+
 import scripts.ClientAPIWrappers;
 
 

@@ -6,6 +6,7 @@ import java.net.URL;
 import java.net.URLConnection;
 
 import scripts.ClientAPIWrappers;
+import scripts.actions.Utilities;
 import scripts.userinterface.JavaFXUI;
 
 
@@ -48,11 +49,11 @@ public class DynamicSignature implements Runnable {
 			String FirstSubmit = "http://elitescripts.tk/autofletcherelitedynamicsignatures/datapush.php?"+
 					"BotClient="+ClientAPIWrappers.getBotClientName() +
 					"&BotClient_UserName="+ClientAPIWrappers.getBotClientUserName()+
-					"&Runescape_UserName="+ClientAPIWrappers.getRunescapeUserName()+
+					"&Runescape_UserName="+Utilities.getRuneScapeUserName()+
 					"&Run_Time_Seconds="+Statistics.getRunTimeSeconds()+
 					"&Xp_Gained="+Statistics.getTotalXpGained()+
 					"&Amount_of_Item_Made="+Statistics.getAmountofItemMade()+
-					"&Item_Made="+JavaFXUI.Object.toString();
+					"&Item_Made="+JavaFXUI.obj1Object.toString();
 			sessionID = readURL(FirstSubmit);
 			System.out.println("Dynamic Signature Session ID: "+sessionID);
 		}
@@ -60,11 +61,11 @@ public class DynamicSignature implements Runnable {
 			String SubmitUpdate = "http://elitescripts.tk/autofletcherelitedynamicsignatures/DataUpdate.php?"+
 					"BotClient="+ClientAPIWrappers.getBotClientName() +
 					"&BotClient_UserName="+ClientAPIWrappers.getBotClientUserName()+
-					"&Runescape_UserName="+ClientAPIWrappers.getRunescapeUserName()+
+					"&Runescape_UserName="+Utilities.getRuneScapeUserName()+
 					"&Run_Time_Seconds="+Statistics.getRunTimeSeconds()+
 					"&Xp_Gained="+Statistics.getTotalXpGained()+
 					"&Amount_of_Item_Made="+Statistics.getAmountofItemMade()+
-					"&Item_Made="+JavaFXUI.Object.toString()+
+					"&Item_Made="+JavaFXUI.obj1Object.toString()+
 					"&ID="+sessionID;
 			readURL(SubmitUpdate);
 			System.out.println("Dynamic Signature Session ID: "+sessionID + " - Updated Successfully");

@@ -19,26 +19,25 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
+import scripts.data.FletchingRecipe;
+
 import netscape.javascript.JSObject;
 
-import scripts.data.ItemData;
-import scripts.data.ItemData.Arrows;
-import scripts.data.ItemData.Bolts;
-import scripts.data.ItemData.Bows;
-import scripts.data.ItemData.Darts;
   
 /** 
  * SwingFXWebView 
  */  
 public class JavaFXUI extends JPanel {  
      
-	public static Object Object= null;
+	public static FletchingRecipe Recipe = null;
+	public static Object obj1Object= null;
     private Stage stage;  
     private WebView browser;  
     private JFXPanel jfxPanel;  
     final static JFrame frame = new JFrame(); 
 //    private static WebEngine webEngine;  
   
+    
     public JavaFXUI(){  
         initComponents();  
         setBackground(new java.awt.Color(39, 43, 48));
@@ -46,21 +45,21 @@ public class JavaFXUI extends JPanel {
   
     public static void main(String args[]){  
         // Run this later:
+    	System.out.println("Test 1");
         SwingUtilities.invokeLater(new Runnable() {  
             @Override
             public void run() {  
-                 frame.setTitle("Auto Fletcher Elite");
-                frame.getContentPane().add(new JavaFXUI());  
-                 
-                frame.setMinimumSize(new Dimension(500, 696));  
+            	System.out.println("Test 2");
+                frame.setTitle("Auto Fletcher Elite");
+                frame.setMinimumSize(new Dimension(500, 700));  
                 frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);  
-                frame.setVisible(true);  
+                frame.setVisible(true);
+                frame.getContentPane().add(new JavaFXUI());
             }  
         });     
     }  
      
     private void initComponents(){  
-         
         jfxPanel = new JFXPanel();  
         createScene();  
          
@@ -86,8 +85,6 @@ public class JavaFXUI extends JPanel {
                 stage = new Stage();  
                  
                 stage.setTitle("Hello Java FX");  
-                stage.setResizable(true);  
-   
                 StackPane root =  new StackPane();
                 Scene scene = new Scene(root, 470,680);  
                 stage.setScene(scene);  
@@ -97,7 +94,8 @@ public class JavaFXUI extends JPanel {
                 browser = new WebView();
                 final WebEngine webEngine = browser.getEngine();
                 webEngine.setJavaScriptEnabled(true);
-                webEngine.load("http://elitescripts.tk/autofletcherelite/AutoFletcherEliteGUI.html");
+//                webEngine.load("http://elitescripts.tk/AutoFletcherElite/AutoFletcherEliteGUI.html");
+                webEngine.load("http://warfront1.github.io/AutoFletcherElite/UserInterfaces/AutoFletcherEliteGUI.html");
                 webEngine.getLoadWorker().stateProperty().addListener(
                         new ChangeListener<Worker.State>() {
                             @Override
@@ -113,6 +111,7 @@ public class JavaFXUI extends JPanel {
                 children.add(browser);                     
                 
                 jfxPanel.setScene(scene);  
+                System.out.println("Main FX UI Successfully Created!");
             }  
         });  
     }
@@ -121,263 +120,25 @@ public class JavaFXUI extends JPanel {
         boolean runOnce = true;
         Bridge(WebEngine engine){
             this.engine=engine;
-//            engine.executeScript("$(document).ready(function() {"+
-//            		"startmethod='"+start()+"'; " + 
-//            		"setThirdBox='"+setThirdBox()+"'; " + 
-//            		"setThirdBoxTable='"+setThirdBoxTable()+"'; " + 
-//            		"exit='"+exit()+"'; " + 
-//            		"});");
-	          engine.executeScript("startmethod='"+start()+"'; " + 
-	    		"setThirdBox='"+setThirdBox()+"'; " + 
-	    		"setThirdBoxTable='"+setThirdBoxTable()+"'; " + 
-	    		"exit='"+exit()+"'; ");
+	          engine.executeScript("exit='"+exit()+"'; ");
         }
-//        public String testBridge(){
-//        	System.out.println(("WebEngine Bridge Connectivity Established"));
-//        	Exception e = new Exception();
-//        	e.fillInStackTrace();
-//        	String methodName = e.getStackTrace()[0].getMethodName();
-//        	System.out.println(("java."+methodName+"();"));
-////        	return "'java."+methodName+"();'";
-//        	return "java."+methodName+"()";
-//        }
-        public String start(){
+        public String exit() {
         	if(runOnce){
         		Exception e = new Exception();
-            	e.fillInStackTrace();
-            	String methodName = e.getStackTrace()[0].getMethodName();
-            	return "java."+methodName+"()";
+        		e.fillInStackTrace();
+        		String methodName = e.getStackTrace()[0].getMethodName();
+        		runOnce=false;
+        		System.out.println("FX UI Exit Hooked on: "+"java."+methodName+"()");
+        		return "java."+methodName+"()";
         	}
-//        	System.out.println(("First Box Action Listener Fired"));
-        	setSecond((String) engine.executeScript("getFirstBoxString()"),engine);	
+        	String EndProduct = ""+ engine.executeScript("exit1();");
+        	FletchingRecipe.loadRecipes();
+        	Recipe = FletchingRecipe.Recipes.get(EndProduct);
+        	System.out.println("Fletching Recipe Successfully Loaded from JavaFX UI: "+Recipe.getEndProduct().getInGameName());
+        	frame.dispose();
         	return " ";
         }
-        public String setThirdBox(){
-        	if(runOnce){
-        		Exception e = new Exception();
-            	e.fillInStackTrace();
-            	String methodName = e.getStackTrace()[0].getMethodName();
-            	return "java."+methodName+"()";
-        	}
-        	setThird(engine);
-        	return " ";
-        }
-       public String setThirdBoxTable(){
-       	if(runOnce){
-    		Exception e = new Exception();
-        	e.fillInStackTrace();
-        	String methodName = e.getStackTrace()[0].getMethodName();
-        	return "java."+methodName+"()";
-    	}
-    	   pullFinalObjectFromGUI(engine);
-    	   return " ";
-       }
-       public String exit() {
-          	if(runOnce){
-       		Exception e = new Exception();
-           	e.fillInStackTrace();
-           	String methodName = e.getStackTrace()[0].getMethodName();
-           	runOnce=false;
-           	return "java."+methodName+"()";
-       	}
-       	 Object=pullFinalObjectFromGUI(engine);
-       	 System.out.println("GUI Final Object Selected: "+Object);
-       	 frame.dispose();
-       	 return " ";
-          }
    }
-    public String JavaArrayToJavaScript(Object[] Array){
-    	String returnstring = "var x = [";
-    	for(Object i: Array){
-    		returnstring= returnstring+ "'"+i.toString()+ "',";
-    	}
-    	return returnstring+"];";
-    }
-    public void setThird(WebEngine engine){
-    	switch((String) engine.executeScript("getFirstBoxString()")){
-			case "Bows":
-				switch((String) engine.executeScript("getSecondBoxString()")){
-					case "Cutting":
-						engine.executeScript("setFirstItemImage('"+ItemData.FletchingTools.Knife.getImageLocation()+"','"+ItemData.FletchingTools.Knife.InGameName+"');");
-						engine.executeScript(JavaArrayToJavaScript(Bows.Cutting.values()));
-						engine.executeScript("setThirdBoxString(x);");
-						engine.executeScript("showThirdBox();");
-					break;
-					case "Stringing":
-						engine.executeScript("setFirstItemImage('"+ItemData.FletchingTools.Bowstring.getImageLocation()+"','"+ItemData.FletchingTools.Bowstring.InGameName+"');");
-						engine.executeScript(JavaArrayToJavaScript(Bows.Stringing.values()));
-						engine.executeScript("setThirdBoxString(x);");
-						engine.executeScript("showThirdBox();");
-					break;
-				}
-			break;
-			case "Arrows":
-				switch((String) engine.executeScript("getSecondBoxString()")){
-					case "Arrow Tips":
-						engine.executeScript("setFirstItemImage('"+ItemData.FletchingTools.HeadlessArrow.getImageLocation()+"','"+ItemData.FletchingTools.HeadlessArrow.InGameName+"');");
-						engine.executeScript(JavaArrayToJavaScript(Arrows.AttachArrowTips.values()));
-						engine.executeScript("setThirdBoxString(x);");
-						engine.executeScript("showThirdBox();");
-					break;
-					case "Headless Arrows":
-						engine.executeScript("setFirstItemImage('"+ItemData.FletchingTools.Feather.getImageLocation()+"','"+ItemData.FletchingTools.Feather.InGameName+"');");
-						engine.executeScript("setSecondItemImage('"+ItemData.Bows.Cutting.Shafts.getImageLocation()+"','"+ItemData.Bows.Cutting.Shafts.endProductInGameName+"');");
-						engine.executeScript("setThirdItemImage('"+ItemData.FletchingTools.HeadlessArrow.getImageLocation()+"','"+ItemData.FletchingTools.HeadlessArrow.InGameName+"');");
-						engine.executeScript("hideThirdBox();");
-						Object = Arrows.HeadlessArrows.Shafts;
-					break;
-					case "Shafts":
-						engine.executeScript("setFirstItemImage('"+ItemData.FletchingTools.Knife.getImageLocation()+"','"+ItemData.FletchingTools.Knife.InGameName+"');");
-						engine.executeScript("setSecondItemImage('"+ItemData.LogType.Logs.getImageLocation()+"','"+ItemData.LogType.Logs.InGameLogName+"');");
-						engine.executeScript("setThirdItemImage('"+ItemData.Bows.Cutting.Shafts.getImageLocation()+"','"+ItemData.Bows.Cutting.Shafts.endProductInGameName+"');");
-						engine.executeScript("hideThirdBox();");
-						Object = Bows.Cutting.Shafts;
-					break;
-				}
-			break;
-			case "Darts":
-				switch((String) engine.executeScript("getSecondBoxString()")){
-					case "Attach Feathers":
-						engine.executeScript("setFirstItemImage('"+ItemData.FletchingTools.Feather.getImageLocation()+"','"+ItemData.FletchingTools.Feather.InGameName+"');");
-						engine.executeScript(JavaArrayToJavaScript(Darts.AttachFeathersToDartTips.values()));
-						engine.executeScript("setThirdBoxString(x);");
-						engine.executeScript("showThirdBox();");
-					break;
-				}
-			break;
-			case "Bolts":
-				switch((String) engine.executeScript("getSecondBoxString()")){
-					case "Attach Bolt Tips":
-						engine.executeScript(JavaArrayToJavaScript(Bolts.AttachBoltTips.values()));
-						engine.executeScript("setThirdBoxString(x);");
-						engine.executeScript("showThirdBox();");
-					break;
-					case "Attach Feathers":
-						engine.executeScript("setFirstItemImage('"+ItemData.FletchingTools.Feather.getImageLocation()+"','"+ItemData.FletchingTools.Feather.InGameName+"');");
-						engine.executeScript(JavaArrayToJavaScript(Bolts.AttachFeathersToBolts.values()));
-						engine.executeScript("setThirdBoxString(x);");
-						engine.executeScript("showThirdBox();");
-					break;
-					case  "Cut: Gems -> Tips":
-						engine.executeScript("setFirstItemImage('"+ItemData.FletchingTools.Chisel.getImageLocation()+"','"+ItemData.FletchingTools.Chisel.InGameName+"');");
-						engine.executeScript(JavaArrayToJavaScript(Bolts.CutGemstoTips.values()));
-						engine.executeScript("setThirdBoxString(x);");
-						engine.executeScript("showThirdBox();");
-					break;
-					case "Cut: Uncut Gems -> Gems":
-						engine.executeScript("setFirstItemImage('"+ItemData.FletchingTools.Chisel.getImageLocation()+"','"+ItemData.FletchingTools.Chisel.InGameName+"');");
-						engine.executeScript(JavaArrayToJavaScript(Bolts.UncutGemCutting.values()));
-						engine.executeScript("setThirdBoxString(x);");
-						engine.executeScript("showThirdBox();");
-//						engine.executeScript("$('#e3').on('change', function() {java.setThirdBox();});");
-					break;
-				}
-			break;
-    	}
-    }
-    public Object pullFinalObjectFromGUI(WebEngine engine){
-    	switch((String) engine.executeScript("getFirstBoxString();")){
-			case "Bows":
-				switch((String) engine.executeScript("getSecondBoxString()")){
-					case "Cutting":
-						ItemData.Bows.Cutting objectToReturn= valueOfIgnoreCase(Bows.Cutting.class,(String) engine.executeScript("getThirdBoxString()"));
-						engine.executeScript("setSecondItemImage('"+objectToReturn.log.getImageLocation()+"','"+objectToReturn.log.InGameLogName+"');");
-						engine.executeScript("setThirdItemImage('"+objectToReturn.getImageLocation()+"','"+objectToReturn.endProductInGameName+"');");
-						return objectToReturn;
-					case "Stringing":
-						ItemData.Bows.Stringing objectToReturn2= valueOfIgnoreCase(Bows.Stringing.class,(String) engine.executeScript("getThirdBoxString()"));
-						engine.executeScript("setSecondItemImage('"+objectToReturn2.CutBow.getImageLocation()+"','"+objectToReturn2.CutBow.endProductInGameName+"');");
-						engine.executeScript("setThirdItemImage('"+objectToReturn2.getImageLocation()+"','"+objectToReturn2.endProductInGameName+"');");
-						return objectToReturn2;
-				}
-			break;
-			case "Arrows":
-				switch((String) engine.executeScript("getSecondBoxString()")){
-					case "Arrow Tips":
-						Arrows.AttachArrowTips objectToReturn=valueOfIgnoreCase(Arrows.AttachArrowTips.class,(String) engine.executeScript("getThirdBoxString()"));
-						engine.executeScript("setSecondItemImage('"+objectToReturn.getArrowTipImageLocation()+"','"+objectToReturn.InGameArrowTipName+"');");
-						engine.executeScript("setThirdItemImage('"+objectToReturn.getCompletedArrowImageLocation()+"','"+objectToReturn.FinalProductInGameName+"');");
-						return objectToReturn;
-					case "Headless Arrows":
-						return Arrows.HeadlessArrows.Shafts;
-					case "Shafts":
-						return Bows.Cutting.Shafts;
-				}
-			break;
-			case "Darts":
-				switch((String) engine.executeScript("getSecondBoxString()")){
-					case "Attach Feathers":
-						Darts.AttachFeathersToDartTips objectToReturn= valueOfIgnoreCase(Darts.AttachFeathersToDartTips.class,(String) engine.executeScript("getThirdBoxString()"));
-						engine.executeScript("setSecondItemImage('"+objectToReturn.getDartTipImageLocation()+"','"+objectToReturn.InGameDartTipName+"');");
-						engine.executeScript("setThirdItemImage('"+objectToReturn.getCompletedDartImageLocation()+"','"+objectToReturn.endProductInGameName+"');");
-						return objectToReturn;
-				}
-			break;
-			case "Bolts":
-				switch((String) engine.executeScript("getSecondBoxString()")){
-					case "Attach Bolt Tips":
-						Bolts.AttachBoltTips objectToReturn= valueOfIgnoreCase(Bolts.AttachBoltTips.class,(String) engine.executeScript("getThirdBoxString()"));
-						engine.executeScript("setFirstItemImage('"+objectToReturn.Bolt.getGemBoltFinishedImageLocation()+"','"+objectToReturn.Bolt.FinalProductInGameName+"');");
-						engine.executeScript("setSecondItemImage('"+objectToReturn.getTipeImageFileLocation()+"','"+objectToReturn.InGameTipName+"');");
-						engine.executeScript("setThirdItemImage('"+objectToReturn.getFinalBoltImageFileLocation()+"','"+objectToReturn.FinalProductInGameName+"');");
-						return objectToReturn;
-					case "Attach Feathers":
-						Bolts.AttachFeathersToBolts objectToReturn2= valueOfIgnoreCase(Bolts.AttachFeathersToBolts.class,(String) engine.executeScript("getThirdBoxString()"));
-						engine.executeScript("setSecondItemImage('"+objectToReturn2.getGemBoltUnFinishedImageLocation()+"','"+objectToReturn2.InGameBoltName+"');");
-						engine.executeScript("setThirdItemImage('"+objectToReturn2.getGemBoltFinishedImageLocation()+"','"+objectToReturn2.FinalProductInGameName+"');");
-						return objectToReturn2;
-					case  "Cut: Gems -> Tips":
-						Bolts.CutGemstoTips objectToReturn3= valueOfIgnoreCase(Bolts.CutGemstoTips.class,(String) engine.executeScript("getThirdBoxString()"));
-						engine.executeScript("setSecondItemImage('"+objectToReturn3.UnCutGem.getCutImageLocation()+"','"+objectToReturn3.UnCutGem.FinalProductCutGemInGameName+"');");
-						engine.executeScript("setThirdItemImage('"+objectToReturn3.getGemBoltTipsImageLocation()+"','"+objectToReturn3.FinalInGameProduct+"');");
-						return objectToReturn3;
-					case "Cut: Uncut Gems -> Gems":
-						Bolts.UncutGemCutting objectToReturn4 =  valueOfIgnoreCase(Bolts.UncutGemCutting.class,(String) engine.executeScript("getThirdBoxString()"));
-						engine.executeScript("setSecondItemImage('"+objectToReturn4.getUnCutImageLocation()+"','"+objectToReturn4.InGameGemName+"');");
-						engine.executeScript("setThirdItemImage('"+objectToReturn4.getCutImageLocation()+"','"+objectToReturn4.FinalProductCutGemInGameName+"');");
-						return objectToReturn4;
-				}
-			break;
-    	}
-    	return null;
-    }
-    
-    public void setSecond(String FirstSelection, WebEngine engine){
-//    	System.out.println("First: "+(String) engine.executeScript("getFirstBoxString();"));
-    	engine.executeScript("hideThirdBox()");
-    	switch(FirstSelection){
-			case "Bows":
-				engine.executeScript("var x = ['Cutting','Stringing' ];");
-				engine.executeScript("setSecondBoxString(x);");
-				engine.executeScript("showSecondBox();");
-				engine.executeScript("$('#e2').on('change', function() {java.setThirdBox();});");
-			break;
-			case "Arrows":
-				engine.executeScript("var x = ['Arrow Tips', 'Headless Arrows', 'Shafts'];");
-				engine.executeScript("setSecondBoxString(x);");
-				engine.executeScript("showSecondBox();");
-				engine.executeScript("$('#e2').on('change', function() {java.setThirdBox();});");
-			break;
-			case "Darts":
-				engine.executeScript("var x = ['Attach Feathers'];");
-				engine.executeScript("setSecondBoxString(x);");
-				engine.executeScript("showSecondBox();");
-				engine.executeScript("$('#e2').on('change', function() {java.setThirdBox();});");
-			break;
-			case "Bolts":
-				engine.executeScript("var x = ['Attach Bolt Tips' , 'Attach Feathers' , 'Cut: Gems -> Tips', 'Cut: Uncut Gems -> Gems'];");
-				engine.executeScript("setSecondBoxString(x);");
-				engine.executeScript("showSecondBox();");
-				engine.executeScript("$('#e2').on('change', function() {java.setThirdBox();});");
-			break;
-    	}
-    }
-    public static <T extends Enum<T>> T valueOfIgnoreCase(Class<T> enumeration, String name) {
-        for(T enumValue : enumeration.getEnumConstants()) {
-            if (enumValue.name().equalsIgnoreCase(name)) {
-                return enumValue;
-            }
-        }
-        throw new IllegalArgumentException("There is no value with name '" + name + " in Enum " + enumeration.getClass().getName());        
-    }
+
+
 }

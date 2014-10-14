@@ -7,22 +7,26 @@ import java.util.Random;
 
 import scripts.AntiBanCompliance;
 import scripts.ClientAPIWrappers;
-import scripts.data.ItemData.Bows;
-import scripts.data.ItemData.Bows.Cutting;
+import scripts.data.FletchingItem;
+import scripts.data.FletchingRecipe;
 import scripts.data.collection.Statistics;
+import scripts.timing.Condition;
+import scripts.timing.Timer;
 
 public class Utilities {
 	
-	static boolean isCuttingIFaceOpen(){
-		for(Cutting BowType : Bows.Cutting.values()){
-			if(ClientAPIWrappers.isInterfaceValid(BowType.InterfaceMasterIndex)){
-				return true;
-			}
+	public static String getRuneScapeUserName(){
+		interfaces UserNameIFace = interfaces.get(137, 1);
+		if(UserNameIFace!=null){
+			return UserNameIFace.getText().split(":")[0];
 		}
-		return false;
+		return "";
 	}
 	static boolean isEnterXIFaceOpen(){
 		return !ClientAPIWrappers.isInterfaceHidden(548, 123);
+	}
+	static boolean isBankOpen(){
+		return ClientAPIWrappers.isInterfaceValid(12);
 	}
 	static boolean isInventoryOpen(){
 		return !ClientAPIWrappers.isInterfaceHidden(149, 0);
@@ -31,7 +35,7 @@ public class Utilities {
 		return !ClientAPIWrappers.clickInterface(548, 51, "Inventory");
 	}
 	
-    public static boolean isReadyToFletch(String ItemOneName,int ItemOneAmount,String ItemTwoName,int ItemTwoAmount){
+    public static boolean isReadyToFletch(FletchingRecipe Recipe, int ItemOneAmount, int ItemTwoAmount){
     	if(interfaces.get(165, 2)!=null || interfaces.get(519,2)!=null || interfaces.get(210,1)!=null){
 			interfaces LevelUpScreen = interfaces.get(165,2);
 			interfaces NewFeaturesDueToUpgradeScreen = interfaces.get(519,2);
@@ -51,8 +55,8 @@ public class Utilities {
 			    }
 			    }, Utilities.getRandom(1500, 2500));
     	}
-    	if(RSItems.get(ItemOneName)!=null && RSItems.get(ItemOneName).length>0 && RSItems.get(ItemTwoName)!=null && RSItems.get(ItemTwoName).length>0){
-    		if(!ClientAPIWrappers.isBankScreenOpen()){
+    	if(RSItems.get(Recipe.getItem1().getID())!=null && RSItems.get(Recipe.getItem1().getID()).length>0 && RSItems.get(Recipe.getItem2().getID())!=null && RSItems.get(Recipe.getItem2().getID()).length>0){
+    		if(!isBankOpen()){
     			if(Utilities.isInventoryOpen()){
     				if(ClientAPIWrappers.getPlayerAnimation()!=-1){
     					Statistics.Status="Fletching";
@@ -71,26 +75,26 @@ public class Utilities {
     			ClientAPIWrappers.closeBank();
     		}
     	}
-    	else if(!IsMyInventoryCorrect(ItemOneName, ItemOneAmount, ItemTwoName, ItemTwoAmount)){
-    		GenericBanking(ItemOneName, ItemOneAmount, ItemTwoName, ItemTwoAmount);
+    	else if(!IsMyInventoryCorrect(Recipe.getItem1(), ItemOneAmount, Recipe.getItem2(), ItemTwoAmount)){
+    		GenericBanking(Recipe.getItem1(), ItemOneAmount, Recipe.getItem2(), ItemTwoAmount);
     	}
     	return false;
     }
-    public static boolean IsMyInventoryCorrect(String ItemName1, int ItemAmount1, String ItemName2, int ItemAmount2){
-    	if(RSItems.get(ItemName1)!=null && RSItems.get(ItemName1).length>0 && (RSItems.get(ItemName1).length==ItemAmount1||RSItems.get(ItemName1)[0].getStackSize()==ItemAmount1 )){
-        	if(RSItems.get(ItemName2)!=null && RSItems.get(ItemName2).length>0 && (RSItems.get(ItemName2).length==ItemAmount2||RSItems.get(ItemName2)[0].getStackSize()==ItemAmount2 )){
+    public static boolean IsMyInventoryCorrect(final FletchingItem Item1, final int ItemAmount1, final FletchingItem Item2, final int ItemAmount2){
+    	if(RSItems.get(Item1.getID())!=null && RSItems.get(Item1.getID()).length>0 && (RSItems.get(Item1.getID()).length==ItemAmount1||RSItems.get(Item1.getID())[0].getStackSize()==ItemAmount1 )){
+        	if(RSItems.get(Item2.getID())!=null && RSItems.get(Item2.getID()).length>0 && (RSItems.get(Item2.getID()).length==ItemAmount2||RSItems.get(Item2.getID())[0].getStackSize()==ItemAmount2 )){
         		return true;
         	}
     	}
     	return false;
     }
-    public static void GenericBanking(final String ItemName1, final int ItemAmount1, final String ItemName2, final int ItemAmount2){
+    public static void GenericBanking(final FletchingItem Item1, final int ItemAmount1, final FletchingItem Item2, final int ItemAmount2){
 		Statistics.Status="Banking";
-    	if(ClientAPIWrappers.isBankScreenOpen()){
+    	if(isBankOpen()){
     		int CorrectItem = 0;
     		int SecondCorrectItem = 0;
-    		RSItems[] Item1Defined = RSItems.get(ItemName1);
-    		final RSItems[] Item2Defined = RSItems.get(ItemName2);
+    		RSItems[] Item1Defined = RSItems.get(Item1.getID());
+    		final RSItems[] Item2Defined = RSItems.get(Item2.getID());
     		if(Item1Defined!=null && Item1Defined.length>0 && (Item1Defined.length==ItemAmount1||Item1Defined[0].getStackSize()==ItemAmount1)){
     			CorrectItem = Item1Defined[0].getID();
     		}
@@ -99,18 +103,18 @@ public class Utilities {
     		}
     		ClientAPIWrappers.DepositAllItemsExcept(CorrectItem, SecondCorrectItem);
     		if(CorrectItem ==0){
-    			ClientAPIWrappers.withdrawItems(ItemAmount1, ItemName1);
+    			ClientAPIWrappers.withdrawItems(ItemAmount1, Item1.getID());
     			Utilities.waitFor(new Condition() {@Override
 				    public boolean active() {
-				         return (RSItems.get(ItemName1)!=null && RSItems.get(ItemName1).length>0 && (RSItems.get(ItemName1).length==ItemAmount1||RSItems.get(ItemName1)[0].getStackSize()==ItemAmount1 ));
+				         return (RSItems.get(Item1.getID())!=null && RSItems.get(Item1.getID()).length>0 && (RSItems.get(Item1.getID()).length==ItemAmount1||RSItems.get(Item1.getID())[0].getStackSize()==ItemAmount1 ));
 				    }
 				    }, Utilities.getRandom(2000, 2500));
     		}
     		if(SecondCorrectItem==0){
-    			ClientAPIWrappers.withdrawItems(ItemAmount2, ItemName2);
+    			ClientAPIWrappers.withdrawItems(ItemAmount2, Item2.getID());
     			Utilities.waitFor(new Condition() {@Override
 				    public boolean active() {
-				         return (RSItems.get(ItemName2)!=null && RSItems.get(ItemName2).length>0 && (RSItems.get(ItemName2).length==ItemAmount2||RSItems.get(ItemName2)[0].getStackSize()==ItemAmount2 ));
+				         return (RSItems.get(Item2.getID())!=null && RSItems.get(Item2.getID()).length>0 && (RSItems.get(Item2.getID()).length==ItemAmount2||RSItems.get(Item2.getID())[0].getStackSize()==ItemAmount2 ));
 				    }
 				    }, Utilities.getRandom(2000, 2500));
     		}
@@ -119,7 +123,7 @@ public class Utilities {
     		ClientAPIWrappers.openBank();
     	}
     }
-    public static void SleepWhileFlashAnimating(scripts.actions.Condition condition){
+    public static void SleepWhileFlashAnimating(Condition condition){
     	long START_TIME = System.currentTimeMillis();
     	long ROLLING_TIME = System.currentTimeMillis();
     	while((ROLLING_TIME-START_TIME)<5000){
@@ -134,7 +138,7 @@ public class Utilities {
     		ClientAPIWrappers.sleep(Utilities.getRandom(150,250));
     	}
     }
-    public static void SleepWhileInventoryIsChanging(scripts.actions.Condition condition){
+    public static void SleepWhileInventoryIsChanging(Condition condition){
     	long START_TIME = System.currentTimeMillis();
     	long ROLLING_TIME = System.currentTimeMillis();
     	RSItems[] AllInventoryItems = RSItems.getAll();
@@ -161,13 +165,14 @@ public class Utilities {
     	}
     	return true;
     }
+   
     public static int getRandom(int min, int max) {
         Random rand = new Random();
         int randomNum = rand.nextInt((max - min) + 1) + min;
 
         return randomNum;
     }
-    static boolean waitFor(scripts.actions.Condition condition, int timeout) {
+    static boolean waitFor(Condition condition, int timeout) {
         Timer time = new Timer(timeout);
         while ((time.isRunning()) && (!condition.active())) {
         	ClientAPIWrappers.sleep(20);
@@ -192,6 +197,32 @@ public class Utilities {
 			}
 			return null;
 		}
+		public static interfaces getByText(String Text){
+			String IFaceText;
+			for(interfaces IFace: getAll()){
+				IFaceText = IFace.getText();
+				IFaceText = IFaceText.replaceAll("[\\s ]","");
+				if(IFaceText.toLowerCase().contains(Text)){
+					return IFace;
+				}
+			}
+			return null;
+		}
+		public static interfaces[] getAll(){
+			ArrayList<interfaces> InterfaceReturn = new ArrayList<interfaces>();
+			for(int Master=0; Master<594; Master++){
+				for(int Child=0; Child<2000; Child++){
+					interfaces IFace = get(Master,Child);
+					if(IFace!=null){
+						InterfaceReturn.add(IFace);
+					}
+				}
+			}
+			return InterfaceReturn.toArray(new interfaces[InterfaceReturn.size()]);
+		}
+		public String getText(){
+			return ClientAPIWrappers.getText(this.MasterInterfaceID, this.ChildInterfaceID);
+		}
 		public boolean click(String string) {
 			return ClientAPIWrappers.clickInterface(this.MasterInterfaceID, this.ChildInterfaceID, string);
 		}
@@ -201,23 +232,21 @@ public class Utilities {
 			
 	}
 	public static class RSItems {
-		String ItemName;
 		Rectangle ItemRectangle;
 		int StackSize;
 		int ID;
-		public RSItems(String ItemName, Rectangle ItemRectangle, int StackSize, int ID){
-			this.ItemName=ItemName;
+		public RSItems(Rectangle ItemRectangle, int StackSize, int ID){
 			this.ItemRectangle=ItemRectangle;
 			this.StackSize=StackSize;
 			this.ID=ID;
 		}
-		public static RSItems[] get(String ItemName){
+		public static RSItems[] get(int ID){
 
 			RSItems[] AllItems = ClientAPIWrappers.getAllItems();
 			if(AllItems!=null && AllItems.length>0){
 				ArrayList<RSItems> ItemArrayReturn = new ArrayList<RSItems>();
 				for(RSItems i: AllItems){
-					if(i.getItemName().equals(ItemName)){
+					if(i.getID()==ID){
 						ItemArrayReturn.add(i);
 					}
 				}
@@ -237,9 +266,6 @@ public class Utilities {
 		}
 		public int getID(){
 			return this.ID;
-		}
-		public String getItemName(){
-			return this.ItemName;
 		}
 			
 	}

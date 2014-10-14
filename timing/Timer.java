@@ -1,4 +1,4 @@
-package scripts.actions;
+package scripts.timing;
 
 public class Timer {
 		private long end;

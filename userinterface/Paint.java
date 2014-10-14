@@ -110,7 +110,7 @@ public class Paint extends JPanel {
                 browser = new WebView();
                 final WebEngine webEngine = browser.getEngine();
                 webEngine.setJavaScriptEnabled(true);
-                webEngine.load("http://elitescripts.tk/autofletcherelite/AutoFletcherElitePaint.html");
+                webEngine.load("http://warfront1.github.io/AutoFletcherElite/UserInterfaces/AutoFletcherElitePaint.html");
                 webEngine.getLoadWorker().stateProperty().addListener(
                         new ChangeListener<Worker.State>() {
                             @Override
@@ -216,7 +216,7 @@ public class Paint extends JPanel {
 		javafx.application.Platform.runLater(new Runnable() {
             @Override
             public void run() {
-        		if(mouseposition!=null && JavaFXUI.Object!=null){
+        		if(mouseposition!=null){
         			if(new Rectangle(494, 340, 20, 20).contains(mouseposition)){
         				Paint.browser.getEngine().executeScript( "setPaint(); ");
         				minimizePaint=!minimizePaint;
