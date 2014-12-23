@@ -23,7 +23,7 @@ public class Utilities {
 		return "";
 	}
 	static boolean isEnterXIFaceOpen(){
-		return !ClientAPIWrappers.isInterfaceHidden(548, 123);
+		return !ClientAPIWrappers.isInterfaceHidden(548, 120);
 	}
 	static boolean isBankOpen(){
 		return ClientAPIWrappers.isInterfaceValid(12);

@@ -61,7 +61,6 @@ public class AntiBanCompliance {
 			abcl.performRotateCamera();
 			abcl.performFriendsCheck();
 		}
-
 	}
 	public static void enableAntiBan(){
 		try{
