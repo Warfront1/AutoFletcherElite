@@ -5,7 +5,6 @@ import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.Random;
 
-import scripts.AntiBanCompliance;
 import scripts.ClientAPIWrappers;
 import scripts.data.FletchingItem;
 import scripts.data.FletchingRecipe;
@@ -60,7 +59,7 @@ public class Utilities {
     			if(Utilities.isInventoryOpen()){
     				if(ClientAPIWrappers.getPlayerAnimation()!=-1){
     					Statistics.Status="Fletching";
-    					AntiBanCompliance.runAntiBanActions();
+    					ClientAPIWrappers.runAntiBanActions();
     				}
     				else{
     					return true;
@@ -127,7 +126,7 @@ public class Utilities {
     	long START_TIME = System.currentTimeMillis();
     	long ROLLING_TIME = System.currentTimeMillis();
     	while((ROLLING_TIME-START_TIME)<5000){
-    		AntiBanCompliance.runAntiBanActions();
+    		ClientAPIWrappers.runAntiBanActions();
     		if(ClientAPIWrappers.getPlayerAnimation()!=-1){
     			START_TIME = System.currentTimeMillis();
     		}
@@ -143,7 +142,7 @@ public class Utilities {
     	long ROLLING_TIME = System.currentTimeMillis();
     	RSItems[] AllInventoryItems = RSItems.getAll();
     	while((ROLLING_TIME-START_TIME)<5000){
-    		AntiBanCompliance.runAntiBanActions();
+    		ClientAPIWrappers.runAntiBanActions();
     		if(!InventoriesAreTheSame(AllInventoryItems, RSItems.getAll())){
     			AllInventoryItems = RSItems.getAll();
     			START_TIME = System.currentTimeMillis();
@@ -211,7 +210,7 @@ public class Utilities {
 		public static interfaces[] getAll(){
 			ArrayList<interfaces> InterfaceReturn = new ArrayList<interfaces>();
 			for(int Master=0; Master<594; Master++){
-				for(int Child=0; Child<2000; Child++){
+				for(int Child=0; Child<1000; Child++){
 					interfaces IFace = get(Master,Child);
 					if(IFace!=null){
 						InterfaceReturn.add(IFace);

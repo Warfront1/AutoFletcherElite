@@ -1,6 +1,5 @@
 package scripts.actions;
 
-import scripts.AntiBanCompliance;
 import scripts.ClientAPIWrappers;
 import scripts.actions.Utilities.interfaces;
 import scripts.actions.Utilities.RSItems;
@@ -29,10 +28,10 @@ public class FletchingActions {
 				RSItems[] Item2Defined = RSItems.get(Recipe.getItem2().getID());
 				if(KnifeDefined!=null && KnifeDefined.length>0){
 					KnifeDefined[0].click("");
-					AntiBanCompliance.waitItemDelay();
+					ClientAPIWrappers.waitItemDelay();
 					if(Item2Defined!=null && Item2Defined.length>0){
 						if(Item2Defined[0].click("")){
-							AntiBanCompliance.waitItemDelay();
+							ClientAPIWrappers.waitItemDelay();
 							Utilities.waitFor(new Condition() {@Override
 								public boolean active() {
 								return interfaces.getByText(IFaceText)!=null;
@@ -46,7 +45,7 @@ public class FletchingActions {
 		else{
 			Statistics.Status="Clicking Make X";
 			if(FletchingIFace.click("Make x")){
-				AntiBanCompliance.waitItemDelay();
+				ClientAPIWrappers.waitItemDelay();
 				Utilities.waitFor(new Condition() {@Override
 					public boolean active() {
 					return Utilities.isEnterXIFaceOpen();
@@ -62,10 +61,10 @@ public class FletchingActions {
 			RSItems[] Item2Defined = RSItems.get(Recipe.getItem2().getID());
 			if(Item1Defined!=null && Item1Defined.length>0){
 				Item1Defined[0].click("");
-				AntiBanCompliance.waitItemDelay();
+				ClientAPIWrappers.waitItemDelay();
 				if(Item2Defined!=null && Item2Defined.length>0){
 					Item2Defined[0].click("");
-					AntiBanCompliance.waitItemDelay();
+					ClientAPIWrappers.waitItemDelay();
 					Utilities.waitFor(new Condition() {@Override
 						public boolean active() {
 						return ( interfaces.get(309,6)!=null && !interfaces.get(309,6).isHidden());
@@ -94,10 +93,10 @@ public class FletchingActions {
 			RSItems[] Item2Defined = RSItems.get(Recipe.getItem2().getID());
 			if(Item1Defined!=null && Item1Defined.length>0){
 				Item1Defined[0].click("use");
-				AntiBanCompliance.waitItemDelay();
+				ClientAPIWrappers.waitItemDelay();
 				if(Item2Defined!=null && Item2Defined.length>0){
 					Item2Defined[0].click("");
-					AntiBanCompliance.waitItemDelay();
+					ClientAPIWrappers.waitItemDelay();
 					Utilities.waitFor(new Condition() {@Override
 						public boolean active() {
 						return ClientAPIWrappers.isInterfaceValid(582);
@@ -127,10 +126,10 @@ public class FletchingActions {
 		final RSItems[] Item2Defined = RSItems.get(Recipe.getItem2().getID());
 		if(Item1Defined!=null && Item1Defined.length>0){
 			Item1Defined[0].click("");
-			AntiBanCompliance.waitItemDelay();
+			ClientAPIWrappers.waitItemDelay();
 			if(Item2Defined!=null && Item2Defined.length>0){
 				Item2Defined[0].click("");
-				AntiBanCompliance.waitItemDelay();
+				ClientAPIWrappers.waitItemDelay();
 				Utilities.waitFor(new Condition() {@Override
 					public boolean active() {
 					RSItems[] ItemTwoCheck = RSItems.get(Recipe.getItem2().getID());
@@ -147,10 +146,10 @@ public class FletchingActions {
 			RSItems[] Item2Defined = RSItems.get(Recipe.getItem2().getID());
 			if(Item1Defined!=null && Item1Defined.length>0){
 				Item1Defined[0].click("");
-				AntiBanCompliance.waitItemDelay();
+				ClientAPIWrappers.waitItemDelay();
 				if(Item2Defined!=null && Item2Defined.length>0){
 					Item2Defined[0].click("");
-					AntiBanCompliance.waitItemDelay();
+					ClientAPIWrappers.waitItemDelay();
 					Utilities.waitFor(new Condition() {@Override
 						public boolean active() {
 						return ClientAPIWrappers.isInterfaceValid(309);

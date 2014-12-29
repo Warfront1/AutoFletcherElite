@@ -7,7 +7,6 @@ import java.net.URLConnection;
 
 import scripts.ClientAPIWrappers;
 import scripts.actions.Utilities;
-import scripts.userinterface.JavaFXUI;
 
 
 public class DynamicSignature implements Runnable {
@@ -53,7 +52,7 @@ public class DynamicSignature implements Runnable {
 					"&Run_Time_Seconds="+Statistics.getRunTimeSeconds()+
 					"&Xp_Gained="+Statistics.getTotalXpGained()+
 					"&Amount_of_Item_Made="+Statistics.getAmountofItemMade()+
-					"&Item_Made="+JavaFXUI.obj1Object.toString();
+					"&Item_Made="+Statistics.getEndProductName();
 			sessionID = readURL(FirstSubmit);
 			System.out.println("Dynamic Signature Session ID: "+sessionID);
 		}
@@ -65,7 +64,7 @@ public class DynamicSignature implements Runnable {
 					"&Run_Time_Seconds="+Statistics.getRunTimeSeconds()+
 					"&Xp_Gained="+Statistics.getTotalXpGained()+
 					"&Amount_of_Item_Made="+Statistics.getAmountofItemMade()+
-					"&Item_Made="+JavaFXUI.obj1Object.toString()+
+					"&Item_Made="+Statistics.getEndProductName()+
 					"&ID="+sessionID;
 			readURL(SubmitUpdate);
 			System.out.println("Dynamic Signature Session ID: "+sessionID + " - Updated Successfully");

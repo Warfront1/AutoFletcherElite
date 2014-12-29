@@ -2,23 +2,20 @@ package scripts.data.collection;
 
 import java.text.DecimalFormat;
 
-import org.tribot.api2007.Player;
-
 import scripts.ClientAPIWrappers;
+import scripts.userinterface.JavaFXUI;
 
 
 public class Statistics {
 	public static String Status = " ";
-	public static String ItemName = " ";
-	public static double xpPerItem = 1.0;
 	static final long startTime =System.currentTimeMillis();
 	static int startingFletchingXP=ClientAPIWrappers.getFletchingXP();
 
-	public void setItemName(String ItemName1){
-		ItemName=ItemName1;
+	public static String getEndProductName(){
+		return JavaFXUI.Recipe.getEndProduct().getInGameName();
 	}
-	public void setxpPerItem(double xpPerItem1){
-		xpPerItem=xpPerItem1;
+	public static double getXPperItem(){
+		return JavaFXUI.Recipe.getXPPer();
 	}
 
 	public final static int[] xpTable = new int[]{
@@ -98,7 +95,7 @@ public class Statistics {
 	
 //	Returns the amount of item created
 	public static int getAmountofItemMade(){
-		return (int) (getTotalXpGained()/xpPerItem);
+		return (int) (getTotalXpGained()/getXPperItem());
 	}
 	
 //	Returns the amount of item created per hour

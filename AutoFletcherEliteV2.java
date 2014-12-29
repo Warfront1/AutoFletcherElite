@@ -19,12 +19,6 @@ public class AutoFletcherEliteV2{
 		JavaFXUI.main(null);
 		Paint.main(null);
 		DynamicSignature.StartDynamicSignatureThread();
-		while(JavaFXUI.Recipe==null){
-			ClientAPIWrappers.sleep(500);
-		}
-		AntiBanCompliance.enableAntiBan();
-		Statistics.ItemName=JavaFXUI.Recipe.getEndProduct().getInGameName();
-		Statistics.xpPerItem=JavaFXUI.Recipe.getXPPer();
 		while(true){
 			JavaFXUI.Recipe.run();
 		}
@@ -36,9 +30,6 @@ public class AutoFletcherEliteV2{
 		while(SwingUI.Recipe==null){
 			ClientAPIWrappers.sleep(500);
 		}
-		AntiBanCompliance.enableAntiBan();
-		Statistics.ItemName=SwingUI.Recipe.getEndProduct().getInGameName();
-		Statistics.xpPerItem=SwingUI.Recipe.getXPPer();
 		while(true){
 			SwingUI.Recipe.run();
 		}

@@ -168,7 +168,7 @@ public class Paint extends JPanel {
         	engine.executeScript("setStatus('"+Statistics.Status+"');");
         }
         public void setItemName(){
-        	engine.executeScript("setItemName('"+Statistics.ItemName+"');");
+        	engine.executeScript("setItemName('"+Statistics.getEndProductName()+"');");
         }
         public void setRunTime(){
         	engine.executeScript("setRunTime('"+Statistics.getFormatedRunTime()+"');");

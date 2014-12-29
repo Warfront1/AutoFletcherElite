@@ -19,6 +19,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
+import scripts.ClientAPIWrappers;
 import scripts.data.FletchingRecipe;
 
 import netscape.javascript.JSObject;
@@ -30,12 +31,10 @@ import netscape.javascript.JSObject;
 public class JavaFXUI extends JPanel {  
      
 	public static FletchingRecipe Recipe = null;
-	public static Object obj1Object= null;
     private Stage stage;  
     private WebView browser;  
     private JFXPanel jfxPanel;  
     final static JFrame frame = new JFrame(); 
-//    private static WebEngine webEngine;  
   
     
     public JavaFXUI(){  
@@ -44,19 +43,27 @@ public class JavaFXUI extends JPanel {
     }  
   
     public static void main(String args[]){  
-        // Run this later:
-    	System.out.println("Test 1");
-        SwingUtilities.invokeLater(new Runnable() {  
-            @Override
-            public void run() {  
-            	System.out.println("Test 2");
-                frame.setTitle("Auto Fletcher Elite");
-                frame.setMinimumSize(new Dimension(500, 700));  
-                frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);  
-                frame.setVisible(true);
-                frame.getContentPane().add(new JavaFXUI());
-            }  
-        });     
+    	// Null Check Recipe to see if it was already assigned a value (ie. Bot Clients with Re-Run features that retain static assignments)
+    	if(Recipe==null){
+	        // Run this later:
+	        SwingUtilities.invokeLater(new Runnable() {  
+	            @Override
+	            public void run() {  
+	                frame.setTitle("Auto Fletcher Elite");
+	                frame.setMinimumSize(new Dimension(500, 700));  
+	                frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);  
+	                frame.setVisible(true);
+	                frame.getContentPane().add(new JavaFXUI());
+	            }  
+	        });
+	        // Sleep Main Script Thread while user Select Item to Fletch
+	        while(Recipe == null){
+	        	ClientAPIWrappers.sleep(500);
+	        }
+    	}
+    	else{
+    		System.out.println("Re-Run Detected, Restart the Script if you would like to select another Item to Fletch");
+    	}
     }  
      
     private void initComponents(){  
@@ -131,11 +138,13 @@ public class JavaFXUI extends JPanel {
         		System.out.println("FX UI Exit Hooked on: "+"java."+methodName+"()");
         		return "java."+methodName+"()";
         	}
-        	String EndProduct = ""+ engine.executeScript("exit1();");
+//        	String EndProduct = ""+ engine.executeScript("exit1();");
+        	String EndProduct = ""+ engine.executeScript("$('#td10').text();");
         	FletchingRecipe.loadRecipes();
         	Recipe = FletchingRecipe.Recipes.get(EndProduct);
         	System.out.println("Fletching Recipe Successfully Loaded from JavaFX UI: "+Recipe.getEndProduct().getInGameName());
         	frame.dispose();
+        	Thread.currentThread().stop();
         	return " ";
         }
    }
