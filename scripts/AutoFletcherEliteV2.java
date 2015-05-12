@@ -7,7 +7,6 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
 import scripts.data.collection.DynamicSignature;
-import scripts.data.collection.Statistics;
 import scripts.userinterface.JavaFXUI;
 import scripts.userinterface.SwingUI;
 import scripts.userinterface.Paint;

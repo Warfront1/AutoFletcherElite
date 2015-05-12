@@ -3,13 +3,10 @@ package scripts;
 import java.awt.Graphics;
 import java.awt.Point;
 
-import org.tribot.api.General;
 import org.tribot.script.Script;
 import org.tribot.script.ScriptManifest;
 import org.tribot.script.interfaces.MouseActions;
 import org.tribot.script.interfaces.Painting;
-
-import scripts.userinterface.Paint;
 
 @ScriptManifest(authors = { "Warfront1" }, category = "Fletching", name = "Auto Fletcher Elite V2")
 public class TribotFrontEnd extends Script implements Painting, MouseActions{

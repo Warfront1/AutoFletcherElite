@@ -140,7 +140,7 @@ public class FletchingActions {
 		}
 	}
 	public static void cutGems(final FletchingRecipe Recipe){
-		if(ClientAPIWrappers.isInterfaceValid(309)){
+		if(!ClientAPIWrappers.isInterfaceValid(309)){
 			Statistics.Status="Using "+Recipe.getItem1().getInGameName();
 			RSItems[] Item1Defined = RSItems.get(Recipe.getItem1().getID());
 			RSItems[] Item2Defined = RSItems.get(Recipe.getItem2().getID());
