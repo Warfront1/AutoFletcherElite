@@ -35,8 +35,9 @@ public class Utilities {
 	}
 	
     public static boolean isReadyToFletch(FletchingRecipe Recipe, int ItemOneAmount, int ItemTwoAmount){
-    	if(interfaces.get(165, 2)!=null || interfaces.get(519,2)!=null || interfaces.get(210,1)!=null){
-			interfaces LevelUpScreen = interfaces.get(165,2);
+    	if(interfaces.get(223, 2)!=null || interfaces.get(519,2)!=null || interfaces.get(210,1)!=null){
+			// Possibly switch all three of these hard coded master/children level up screens to click to continue IFace
+			interfaces LevelUpScreen = interfaces.get(223,2); //http://i.imgur.com/k0xN8J8.png Image of IFace
 			interfaces NewFeaturesDueToUpgradeScreen = interfaces.get(519,2);
 			interfaces NewFeaturesDueToUpgradeScreen2 = interfaces.get(210,1);
 			if(LevelUpScreen!=null){
