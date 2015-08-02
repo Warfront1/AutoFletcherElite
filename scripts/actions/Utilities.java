@@ -5,6 +5,7 @@ import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.Random;
 
+import com.sun.deploy.util.SessionState;
 import scripts.ClientAPIWrappers;
 import scripts.data.FletchingItem;
 import scripts.data.FletchingRecipe;
@@ -31,27 +32,27 @@ public class Utilities {
 		return !ClientAPIWrappers.isInterfaceHidden(149, 0);
 	}
 	static boolean openInventory(){
-		return !ClientAPIWrappers.clickInterface(548, 51, "Inventory");
+		interfaces inventoryIFace = interfaces.getByAction("Inventory");
+		if(inventoryIFace!=null){
+			return inventoryIFace.click("Inventory");
+		}
+		return false;
+	}
+	static interfaces getClickToContinue(){
+		return interfaces.getByText("Click here to continue");
 	}
 	
     public static boolean isReadyToFletch(FletchingRecipe Recipe, int ItemOneAmount, int ItemTwoAmount){
-    	if(interfaces.get(223, 2)!=null || interfaces.get(519,2)!=null || interfaces.get(210,1)!=null){
+    	interfaces clickToContinueIFace = getClickToContinue();
+		if(clickToContinueIFace!=null){
 			// Possibly switch all three of these hard coded master/children level up screens to click to continue IFace
-			interfaces LevelUpScreen = interfaces.get(223,2); //http://i.imgur.com/k0xN8J8.png Image of IFace
-			interfaces NewFeaturesDueToUpgradeScreen = interfaces.get(519,2);
-			interfaces NewFeaturesDueToUpgradeScreen2 = interfaces.get(210,1);
-			if(LevelUpScreen!=null){
-				if(LevelUpScreen.click(""));
-			}
-			else if(NewFeaturesDueToUpgradeScreen!=null){
-				NewFeaturesDueToUpgradeScreen.click("");
-			}
-			else if(NewFeaturesDueToUpgradeScreen2!=null){
-				NewFeaturesDueToUpgradeScreen2.click("");
-			}
+//			interfaces LevelUpScreen = interfaces.get(223,2); //http://i.imgur.com/k0xN8J8.png Image of IFace
+//			interfaces NewFeaturesDueToUpgradeScreen = interfaces.get(519,2);
+//			interfaces NewFeaturesDueToUpgradeScreen2 = interfaces.get(210,1);
+			clickToContinueIFace.click("");
 			Utilities.waitFor(new Condition() {@Override
 			    public boolean active() {
-			         return !(interfaces.get(165, 2)!=null || interfaces.get(519,2)!=null || interfaces.get(210,1)!=null);
+			         return getClickToContinue() == null;
 			    }
 			    }, Utilities.getRandom(1500, 2500));
     	}
@@ -208,6 +209,19 @@ public class Utilities {
 			}
 			return null;
 		}
+		public static interfaces getByAction(String action){
+			for(interfaces IFace: getAll()){
+				String[] actions = IFace.getActions();
+				for (String indivudalAction: actions){
+					if(indivudalAction!=null) {
+						if (indivudalAction.contains(action)) {
+							return IFace;
+						}
+					}
+				}
+			}
+			return null;
+		}
 		public static interfaces[] getAll(){
 			ArrayList<interfaces> InterfaceReturn = new ArrayList<interfaces>();
 			for(int Master=0; Master<594; Master++){
@@ -222,6 +236,18 @@ public class Utilities {
 		}
 		public String getText(){
 			return ClientAPIWrappers.getText(this.MasterInterfaceID, this.ChildInterfaceID);
+		}
+		public String[] getActions(){
+			return ClientAPIWrappers.getActions(this.MasterInterfaceID, this.ChildInterfaceID);
+		}
+		public boolean hasAction(String action){
+			String[] allActions = ClientAPIWrappers.getActions(this.MasterInterfaceID,this.ChildInterfaceID);
+			for (String individualAction : allActions){
+				if(individualAction.contains(action)){
+					return true;
+				}
+			}
+			return false;
 		}
 		public boolean click(String string) {
 			return ClientAPIWrappers.clickInterface(this.MasterInterfaceID, this.ChildInterfaceID, string);

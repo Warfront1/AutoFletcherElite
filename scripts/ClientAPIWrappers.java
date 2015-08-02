@@ -109,6 +109,21 @@ public class ClientAPIWrappers {
 		}
 		return "";
 	}
+
+	/** Returns the Actions String Array of an interface. If the iFace is null or no actions it will return a empty string array */
+	public static String[] getActions(int InterfaceMaster, int InterfaceChild){
+		ArrayList<String> returnArrayList = new ArrayList<String>();
+		RSInterfaceChild IFace = org.tribot.api2007.Interfaces.get(InterfaceMaster,InterfaceChild);
+		if(IFace !=null){
+			String[] actions = IFace.getActions();
+			if(actions!=null){
+				for (String action : actions){
+					returnArrayList.add(action);
+				}
+			}
+		}
+		return returnArrayList.toArray(new String[returnArrayList.size()]);
+	}
 	
 	
 	/** Utilizing all inventory items, Generate an array of RSItems (a script based Items Object) */	
