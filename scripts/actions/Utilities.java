@@ -5,7 +5,6 @@ import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.Random;
 
-import com.sun.deploy.util.SessionState;
 import scripts.ClientAPIWrappers;
 import scripts.data.FletchingItem;
 import scripts.data.FletchingRecipe;
