@@ -1,1 +1,610 @@
-<?xml version="1.0" encoding="UTF-8"?><Recipe>	<!--			misc Recipes	-->	<Headlessarrows>		<Item1>Feather</Item1>		<Item2>Shaft</Item2>		<EndProduct>Headless arrow</EndProduct>		<xp>0.33</xp>		<Action>AttachingFeathers</Action>	</Headlessarrows>	<Shafts>		<Item1>Knife</Item1>		<Item2>Logs</Item2>		<EndProduct>Shaft</EndProduct>		<xp>0.33</xp>		<Action>Cutting</Action>	</Shafts>		<!--			End of misc Recipes	-->	<!--			Bow Cutting Recipes	-->	<Shortbow-unf>		<Item1>Knife</Item1>		<Item2>Logs</Item2>		<EndProduct>Shortbow (u)</EndProduct>		<xp>5</xp>		<Action>Cutting</Action>	</Shortbow-unf>	<Longbow-unf>		<Item1>Knife</Item1>		<Item2>Logs</Item2>		<EndProduct>Longbow (u)</EndProduct>		<xp>10</xp>		<Action>Cutting</Action>	</Longbow-unf>	<Oakshortbow-unf>		<Item1>Knife</Item1>		<Item2>Oak logs</Item2>		<EndProduct>Oak shortbow (u)</EndProduct>		<xp>16.5</xp>		<Action>Cutting</Action>	</Oakshortbow-unf>	<Oaklongbow-unf>		<Item1>Knife</Item1>		<Item2>Oak logs</Item2>		<EndProduct>Oak longbow (u)</EndProduct>		<xp>25</xp>		<Action>Cutting</Action>	</Oaklongbow-unf>	<Willowshortbow-unf>		<Item1>Knife</Item1>		<Item2>Willow logs</Item2>		<EndProduct>Willow shortbow (u)</EndProduct>		<xp>33.25</xp>		<Action>Cutting</Action>	</Willowshortbow-unf>	<Willowlongbow-unf>		<Item1>Knife</Item1>		<Item2>Willow logs</Item2>		<EndProduct>Willow longbow (u)</EndProduct>		<xp>41.5</xp>		<Action>Cutting</Action>	</Willowlongbow-unf>	<Mapleshortbow-unf>		<Item1>Knife</Item1>		<Item2>Maple logs</Item2>		<EndProduct>Maple shortbow (u)</EndProduct>		<xp>50</xp>		<Action>Cutting</Action>	</Mapleshortbow-unf>	<Maplelongbow-unf>		<Item1>Knife</Item1>		<Item2>Maple logs</Item2>		<EndProduct>Maple longbow (u)</EndProduct>		<xp>58.3</xp>		<Action>Cutting</Action>	</Maplelongbow-unf>	<Yewshortbow-unf>		<Item1>Knife</Item1>		<Item2>Yew logs</Item2>		<EndProduct>Yew shortbow (u)</EndProduct>		<xp>67.5</xp>		<Action>Cutting</Action>	</Yewshortbow-unf>	<Yewlongbow-unf>		<Item1>Knife</Item1>		<Item2>Yew logs</Item2>		<EndProduct>Yew longbow (u)</EndProduct>		<xp>75</xp>		<Action>Cutting</Action>	</Yewlongbow-unf>	<Magicshortbow-unf>		<Item1>Knife</Item1>		<Item2>Magic logs</Item2>		<EndProduct>Magic shortbow (u)</EndProduct>		<xp>83.3</xp>		<Action>Cutting</Action>	</Magicshortbow-unf>	<Magiclongbow-unf>		<Item1>Knife</Item1>		<Item2>Magic logs</Item2>		<EndProduct>Magic longbow (u)</EndProduct>		<xp>91.5</xp>		<Action>Cutting</Action>	</Magiclongbow-unf>	<!--			End of Runescape Bow Cutting Recipes	-->	<!--			Bow Stringing Recipes	-->	<Shortbow>		<Item1>Bow string</Item1>		<Item2>Shortbow (u)</Item2>		<EndProduct>Shortbow</EndProduct>		<xp>5</xp>		<Action>Stringing</Action>	</Shortbow>	<Longbow>		<Item1>Bow string</Item1>		<Item2>Longbow (u)</Item2>		<EndProduct>Longbow</EndProduct>		<xp>10</xp>		<Action>Stringing</Action>	</Longbow>	<Oakshortbow>		<Item1>Bow string</Item1>		<Item2>Oak shortbow (u)</Item2>		<EndProduct>Oak shortbow</EndProduct>		<xp>16.5</xp>		<Action>Stringing</Action>	</Oakshortbow>	<Oaklongbow>		<Item1>Bow string</Item1>		<Item2>Oak longbow (u)</Item2>		<EndProduct>Oak longbow</EndProduct>		<xp>25</xp>		<Action>Stringing</Action>	</Oaklongbow>	<Willowshortbow>		<Item1>Bow string</Item1>		<Item2>Willow shortbow (u)</Item2>		<EndProduct>Willow shortbow</EndProduct>		<xp>33.25</xp>		<Action>Stringing</Action>	</Willowshortbow>	<Willowlongbow>		<Item1>Bow string</Item1>		<Item2>Willow longbow (u)</Item2>		<EndProduct>Willow longbow</EndProduct>		<xp>41.5</xp>		<Action>Stringing</Action>	</Willowlongbow>	<Mapleshortbow>		<Item1>Bow string</Item1>		<Item2>Maple shortbow (u)</Item2>		<EndProduct>Maple shortbow</EndProduct>		<xp>50</xp>		<Action>Stringing</Action>	</Mapleshortbow>	<Maplelongbow>		<Item1>Bow string</Item1>		<Item2>Maple longbow (u)</Item2>		<EndProduct>Maple longbow</EndProduct>		<xp>58.3</xp>		<Action>Stringing</Action>	</Maplelongbow>	<Yewshortbow>		<Item1>Bow string</Item1>		<Item2>Yew shortbow (u)</Item2>		<EndProduct>Yew shortbow</EndProduct>		<xp>67.5</xp>		<Action>Stringing</Action>	</Yewshortbow>	<Yewlongbow>		<Item1>Bow string</Item1>		<Item2>Yew longbow (u)</Item2>		<EndProduct>Yew longbow</EndProduct>		<xp>75</xp>		<Action>Stringing</Action>	</Yewlongbow>	<Magicshortbow>		<Item1>Bow string</Item1>		<Item2>Magic shortbow (u)</Item2>		<EndProduct>Magic shortbow</EndProduct>		<xp>83.3</xp>		<Action>Stringing</Action>	</Magicshortbow>	<Magiclongbow>		<Item1>Bow string</Item1>		<Item2>Magic longbow (u)</Item2>		<EndProduct>Magic longbow</EndProduct>		<xp>91.5</xp>		<Action>Stringing</Action>	</Magiclongbow>	<!--			End of Bow Stringing Recipes	-->	<!--			Arrows tips Recipes	-->	<Bronzearrow>		<Item1>Headless arrow</Item1>		<Item2>Bronze arrowtips</Item2>		<EndProduct>Bronze arrow</EndProduct>		<xp>2.6</xp>		<Action>AttachingHead</Action>	</Bronzearrow>	<Ironarrow>		<Item1>Headless arrow</Item1>		<Item2>Iron arrowtips</Item2>		<EndProduct>Iron arrow</EndProduct>		<xp>3.8</xp>		<Action>AttachingHead</Action>	</Ironarrow>	<Steelarrow>		<Item1>Headless arrow</Item1>		<Item2>Steel arrowtips</Item2>		<EndProduct>Steel arrow</EndProduct>		<xp>6.3</xp>		<Action>AttachingHead</Action>	</Steelarrow>	<Mithrilarrow>		<Item1>Headless arrow</Item1>		<Item2>Mithril arrowtips</Item2>		<EndProduct>Mithril arrow</EndProduct>		<xp>8.8</xp>		<Action>AttachingHead</Action>	</Mithrilarrow>		<Adamantarrow>		<Item1>Headless arrow</Item1>		<Item2>Adamant arrowtips</Item2>		<EndProduct>Adamant arrow</EndProduct>		<xp>10</xp>		<Action>AttachingHead</Action>	</Adamantarrow>		<Runearrow>		<Item1>Headless arrow</Item1>		<Item2>Rune arrowtips</Item2>		<EndProduct>Rune arrow</EndProduct>		<xp>13.8</xp>		<Action>AttachingHead</Action>	</Runearrow>		<Dragonarrow>		<Item1>Headless arrow</Item1>		<Item2>Dragon arrowtips</Item2>		<EndProduct>Dragon arrow</EndProduct>		<xp>15</xp>		<Action>AttachingHead</Action>	</Dragonarrow>		<!--			End of Arrow tips Recipes	-->	<!--			Darts Recipes	-->	<Bronzedarts>		<Item1>Feather</Item1>		<Item2>Bronze dart tip</Item2>		<EndProduct>Bronze dart</EndProduct>		<xp>1.8</xp>		<Action>AttachingFeathers</Action>	</Bronzedarts>		<Irondarts>		<Item1>Feather</Item1>		<Item2>Iron dart tip</Item2>		<EndProduct>Iron dart</EndProduct>		<xp>3.8</xp>		<Action>AttachingFeathers</Action>	</Irondarts>	<Steeldarts>		<Item1>Feather</Item1>		<Item2>Steel dart tip</Item2>		<EndProduct>Steel dart</EndProduct>		<xp>7.5</xp>		<Action>AttachingFeathers</Action>	</Steeldarts>		<Mithrildarts>		<Item1>Feather</Item1>		<Item2>Mithril dart tip</Item2>		<EndProduct>Mithril dart</EndProduct>		<xp>11.2</xp>		<Action>AttachingFeathers</Action>	</Mithrildarts>		<Adamantdarts>		<Item1>Feather</Item1>		<Item2>Adamant dart tip</Item2>		<EndProduct>Adamant dart</EndProduct>		<xp>15</xp>		<Action>AttachingFeathers</Action>	</Adamantdarts>		<Runedarts>		<Item1>Feather</Item1>		<Item2>Rune dart tip</Item2>		<EndProduct>Rune dart</EndProduct>		<xp>18.8</xp>		<Action>AttachingFeathers</Action>	</Runedarts>		<Dragondarts>		<Item1>Feather</Item1>		<Item2>Dragon dart tip</Item2>		<EndProduct>Dragon dart</EndProduct>		<xp>25</xp>		<Action>AttachingFeathers</Action>	</Dragondarts>		<!--			End of Darts Recipes	-->	<!--			Bolt Tip Attachment Recipes	-->	<Opalbolts>		<Item1>Bronze bolts</Item1>		<Item2>Opal bolt tips</Item2>		<EndProduct>Opal bolts</EndProduct>		<xp>1.6</xp>		<Action>AttachingHead</Action>	</Opalbolts>	<Barbedbolts>		<Item1>Bronze bolts</Item1>		<Item2>Barb bolttips</Item2>		<EndProduct>Barbed bolts</EndProduct>		<xp>2</xp>		<Action>AttachingHead</Action>	</Barbedbolts>	<Jadebolts>		<Item1>Blurite bolts</Item1>		<Item2>Jade bolt tips</Item2>		<EndProduct>Jade bolts</EndProduct>		<xp>2.4</xp>		<Action>AttachingHead</Action>	</Jadebolts>	<Pearlbolts>		<Item1>Iron bolts</Item1>		<Item2>Pearl bolt tips</Item2>		<EndProduct>Pearl bolts</EndProduct>		<xp>3.2</xp>		<Action>AttachingHead</Action>	</Pearlbolts>	<Sapphirebolts>		<Item1>Mithril bolts</Item1>		<Item2>Sapphire bolt tips</Item2>		<EndProduct>Sapphire bolts</EndProduct>		<xp>4.7</xp>		<Action>AttachingHead</Action>	</Sapphirebolts>	<Emeraldbolts>		<Item1>Mithril bolts</Item1>		<Item2>Emerald bolt tips</Item2>		<EndProduct>Emerald bolts</EndProduct>		<xp>5.5</xp>		<Action>AttachingHead</Action>	</Emeraldbolts>	<Mithgrapple>		<Item1>Mithril bolts</Item1>		<Item2>Mith grapple tip</Item2>		<EndProduct>Mith grapple</EndProduct>		<xp>11</xp>		<Action>AttachingHead</Action>	</Mithgrapple>	<Rubybolts>		<Item1>Adamant bolts</Item1>		<Item2>Ruby bolt tips</Item2>		<EndProduct>Ruby bolts</EndProduct>		<xp>6.3</xp>		<Action>AttachingHead</Action>	</Rubybolts>	<Diamondbolts>		<Item1>Adamant bolts</Item1>		<Item2>Diamond bolt tips</Item2>		<EndProduct>Diamond bolts</EndProduct>		<xp>7</xp>		<Action>AttachingHead</Action>	</Diamondbolts>	<Dragonbolts>		<Item1>Runite bolts</Item1>		<Item2>Dragon bolt tips</Item2>		<EndProduct>Dragon bolts</EndProduct>		<xp>8.2</xp>		<Action>AttachingHead</Action>	</Dragonbolts>	<Onyxbolts>		<Item1>Runite bolts</Item1>		<Item2>Onyx bolt tips</Item2>		<EndProduct>Onyx bolts</EndProduct>		<xp>9.4</xp>		<Action>AttachingHead</Action>	</Onyxbolts>	<!--			End of Bolt Tip Attachment Recipes	-->	<!--			Bolt Feather Attachment Recipes	-->	<Bronzebolts>		<Item1>Feather</Item1>		<Item2>Bronze bolts (unf)</Item2>		<EndProduct>Bronze bolts</EndProduct>		<xp>0.5</xp>		<Action>AttachingFeathers</Action>	</Bronzebolts>		<Bluritebolts>		<Item1>Feather</Item1>		<Item2>Blurite bolts (unf)</Item2>		<EndProduct>Blurite bolts</EndProduct>		<xp>1</xp>		<Action>AttachingFeathers</Action>	</Bluritebolts>	<Ironbolts>		<Item1>Feather</Item1>		<Item2>Iron bolts (unf)</Item2>		<EndProduct>Iron bolts</EndProduct>		<xp>1.5</xp>		<Action>AttachingFeathers</Action>	</Ironbolts>	<Silverbolts>		<Item1>Feather</Item1>		<Item2>Silver bolts (unf)</Item2>		<EndProduct>Silver bolts</EndProduct>		<xp>2.5</xp>		<Action>AttachingFeathers</Action>	</Silverbolts>	<Steelbolts>		<Item1>Feather</Item1>		<Item2>Steel bolts (unf)</Item2>		<EndProduct>Steel bolts</EndProduct>		<xp>3.5</xp>		<Action>AttachingFeathers</Action>	</Steelbolts>	<Mithrilbolts>		<Item1>Feather</Item1>		<Item2>Mithril bolts (unf)</Item2>		<EndProduct>Mithril bolts</EndProduct>		<xp>5</xp>		<Action>AttachingFeathers</Action>	</Mithrilbolts>	<Broadbolts>		<Item1>Feather</Item1>		<Item2>Unfinished broad bolts</Item2>		<EndProduct>Broad bolts</EndProduct>		<xp>3</xp>		<Action>AttachingFeathers</Action>	</Broadbolts>	<Adamantbolts>		<Item1>Feather</Item1>		<Item2>Adamant bolts(unf)</Item2>		<EndProduct>Adamant bolts</EndProduct>		<xp>7</xp>		<Action>AttachingFeathers</Action>	</Adamantbolts>	<Runebolts>		<Item1>Feather</Item1>		<Item2>Runite bolts (unf)</Item2>		<EndProduct>Runite bolts</EndProduct>		<xp>10</xp>		<Action>AttachingFeathers</Action>	</Runebolts>	<!--			End of Feather Attachment Recipes	-->	<!--			Gem Cutting Recipes	-->	<Opal>		<Item1>Chisel</Item1>		<Item2>Uncut opal</Item2>		<EndProduct>Opal</EndProduct>		<xp>0</xp>		<Action>CuttingGems</Action>	</Opal>		<Jade>		<Item1>Chisel</Item1>		<Item2>Uncut jade</Item2>		<EndProduct>Jade</EndProduct>		<xp>0</xp>		<Action>CuttingGems</Action>	</Jade>		<RedTopaz>		<Item1>Chisel</Item1>		<Item2>Uncut red topaz</Item2>		<EndProduct>Red topaz</EndProduct>		<xp>0</xp>		<Action>CuttingGems</Action>	</RedTopaz>	<RedTopaz>		<Item1>Chisel</Item1>		<Item2>Uncut red topaz</Item2>		<EndProduct>Red topaz</EndProduct>		<xp>0</xp>		<Action>CuttingGems</Action>	</RedTopaz>	<Sapphire>		<Item1>Chisel</Item1>		<Item2>Uncut sapphire</Item2>		<EndProduct>Sapphire</EndProduct>		<xp>0</xp>		<Action>CuttingGems</Action>	</Sapphire>	<Emerald>		<Item1>Chisel</Item1>		<Item2>Uncut emerald</Item2>		<EndProduct>Emerald</EndProduct>		<xp>0</xp>		<Action>CuttingGems</Action>	</Emerald>	<Ruby>		<Item1>Chisel</Item1>		<Item2>Uncut ruby</Item2>		<EndProduct>Ruby</EndProduct>		<xp>0</xp>		<Action>CuttingGems</Action>	</Ruby>	<Diamond>		<Item1>Chisel</Item1>		<Item2>Uncut diamond</Item2>		<EndProduct>Diamond</EndProduct>		<xp>0</xp>		<Action>CuttingGems</Action>	</Diamond>	<Dragonstone>		<Item1>Chisel</Item1>		<Item2>Uncut dragonstone</Item2>		<EndProduct>Dragonstone</EndProduct>		<xp>0</xp>		<Action>CuttingGems</Action>	</Dragonstone>	<Onyx>		<Item1>Chisel</Item1>		<Item2>Uncut onyx</Item2>		<EndProduct>Onyx</EndProduct>		<xp>0</xp>		<Action>CuttingGems</Action>	</Onyx>	<!--			End of Gem Cutting Recipes	-->	<!--			Gem Tip Cutting Recipes	-->	<Opalboltips>		<Item1>Chisel</Item1>		<Item2>Opal</Item2>		<EndProduct>Opal bolt tips</EndProduct>		<xp>1</xp>		<Action>CuttingGems</Action>	</Opalboltips>	<Jadeboltips>		<Item1>Chisel</Item1>		<Item2>Jade</Item2>		<EndProduct>Jade bolt tips</EndProduct>		<xp>2</xp>		<Action>CuttingGems</Action>	</Jadeboltips>	<Topazboltips>		<Item1>Chisel</Item1>		<Item2>Red topaz</Item2>		<EndProduct>Topaz bolt tips</EndProduct>		<xp>4</xp>				<Action>CuttingGems</Action>	</Topazboltips>	<Sapphireboltips>		<Item1>Chisel</Item1>		<Item2>Sapphire</Item2>		<EndProduct>Sapphire bolt tips</EndProduct>		<xp>4</xp>		<Action>CuttingGems</Action>	</Sapphireboltips>	<Emeraldboltips>		<Item1>Chisel</Item1>		<Item2>Emerald</Item2>		<EndProduct>Emerald bolt tips</EndProduct>		<xp>5.5</xp>		<Action>CuttingGems</Action>	</Emeraldboltips>	<Rubyboltips>		<Item1>Chisel</Item1>		<Item2>Ruby</Item2>		<EndProduct>Ruby bolt tips</EndProduct>		<xp>6</xp>		<Action>CuttingGems</Action>	</Rubyboltips>	<Diamondboltips>		<Item1>Chisel</Item1>		<Item2>Diamond</Item2>		<EndProduct>Diamond bolt tips</EndProduct>		<xp>7</xp>		<Action>CuttingGems</Action>	</Diamondboltips>	<Dragonboltips>		<Item1>Chisel</Item1>		<Item2>Dragonstone</Item2>		<EndProduct>Dragon bolt tips</EndProduct>		<xp>8</xp>		<Action>CuttingGems</Action>	</Dragonboltips>	<Onyxboltips>		<Item1>Chisel</Item1>		<Item2>Onyx</Item2>		<EndProduct>Onyx bolt tips</EndProduct>		<xp>9</xp>		<Action>CuttingGems</Action>	</Onyxboltips>	<!--			End of Gem Tip Cutting Recipes	--></Recipe>
+<?xml version="1.0" encoding="UTF-8"?>
+<Recipe>
+	<!--
+			misc Recipes
+	-->
+	<Headlessarrows>
+		<Item1>Feather</Item1>
+		<Item2>Shaft</Item2>
+		<EndProduct>Headless arrow</EndProduct>
+		<xp>0.33</xp>
+		<Action>AttachingHead</Action>
+	</Headlessarrows>
+	<Shafts>
+		<Item1>Knife</Item1>
+		<Item2>Logs</Item2>
+		<EndProduct>Shaft</EndProduct>
+		<xp>0.33</xp>
+		<Action>Cutting</Action>
+	</Shafts>	
+	<!--
+			End of misc Recipes
+	-->
+	<!--
+			Bow Cutting Recipes
+	-->
+	<Shortbow-unf>
+		<Item1>Knife</Item1>
+		<Item2>Logs</Item2>
+		<EndProduct>Shortbow (u)</EndProduct>
+		<xp>5</xp>
+		<Action>Cutting</Action>
+	</Shortbow-unf>
+	<Longbow-unf>
+		<Item1>Knife</Item1>
+		<Item2>Logs</Item2>
+		<EndProduct>Longbow (u)</EndProduct>
+		<xp>10</xp>
+		<Action>Cutting</Action>
+	</Longbow-unf>
+	<Oakshortbow-unf>
+		<Item1>Knife</Item1>
+		<Item2>Oak logs</Item2>
+		<EndProduct>Oak shortbow (u)</EndProduct>
+		<xp>16.5</xp>
+		<Action>Cutting</Action>
+	</Oakshortbow-unf>
+	<Oaklongbow-unf>
+		<Item1>Knife</Item1>
+		<Item2>Oak logs</Item2>
+		<EndProduct>Oak longbow (u)</EndProduct>
+		<xp>25</xp>
+		<Action>Cutting</Action>
+	</Oaklongbow-unf>
+	<Willowshortbow-unf>
+		<Item1>Knife</Item1>
+		<Item2>Willow logs</Item2>
+		<EndProduct>Willow shortbow (u)</EndProduct>
+		<xp>33.25</xp>
+		<Action>Cutting</Action>
+	</Willowshortbow-unf>
+	<Willowlongbow-unf>
+		<Item1>Knife</Item1>
+		<Item2>Willow logs</Item2>
+		<EndProduct>Willow longbow (u)</EndProduct>
+		<xp>41.5</xp>
+		<Action>Cutting</Action>
+	</Willowlongbow-unf>
+	<Mapleshortbow-unf>
+		<Item1>Knife</Item1>
+		<Item2>Maple logs</Item2>
+		<EndProduct>Maple shortbow (u)</EndProduct>
+		<xp>50</xp>
+		<Action>Cutting</Action>
+	</Mapleshortbow-unf>
+	<Maplelongbow-unf>
+		<Item1>Knife</Item1>
+		<Item2>Maple logs</Item2>
+		<EndProduct>Maple longbow (u)</EndProduct>
+		<xp>58.3</xp>
+		<Action>Cutting</Action>
+	</Maplelongbow-unf>
+	<Yewshortbow-unf>
+		<Item1>Knife</Item1>
+		<Item2>Yew logs</Item2>
+		<EndProduct>Yew shortbow (u)</EndProduct>
+		<xp>67.5</xp>
+		<Action>Cutting</Action>
+	</Yewshortbow-unf>
+	<Yewlongbow-unf>
+		<Item1>Knife</Item1>
+		<Item2>Yew logs</Item2>
+		<EndProduct>Yew longbow (u)</EndProduct>
+		<xp>75</xp>
+		<Action>Cutting</Action>
+	</Yewlongbow-unf>
+	<Magicshortbow-unf>
+		<Item1>Knife</Item1>
+		<Item2>Magic logs</Item2>
+		<EndProduct>Magic shortbow (u)</EndProduct>
+		<xp>83.3</xp>
+		<Action>Cutting</Action>
+	</Magicshortbow-unf>
+	<Magiclongbow-unf>
+		<Item1>Knife</Item1>
+		<Item2>Magic logs</Item2>
+		<EndProduct>Magic longbow (u)</EndProduct>
+		<xp>91.5</xp>
+		<Action>Cutting</Action>
+	</Magiclongbow-unf>
+	<!--
+			End of Runescape Bow Cutting Recipes
+	-->
+	<!--
+			Bow Stringing Recipes
+	-->
+	<Shortbow>
+		<Item1>Bow string</Item1>
+		<Item2>Shortbow (u)</Item2>
+		<EndProduct>Shortbow</EndProduct>
+		<xp>5</xp>
+		<Action>Stringing</Action>
+	</Shortbow>
+	<Longbow>
+		<Item1>Bow string</Item1>
+		<Item2>Longbow (u)</Item2>
+		<EndProduct>Longbow</EndProduct>
+		<xp>10</xp>
+		<Action>Stringing</Action>
+	</Longbow>
+	<Oakshortbow>
+		<Item1>Bow string</Item1>
+		<Item2>Oak shortbow (u)</Item2>
+		<EndProduct>Oak shortbow</EndProduct>
+		<xp>16.5</xp>
+		<Action>Stringing</Action>
+	</Oakshortbow>
+	<Oaklongbow>
+		<Item1>Bow string</Item1>
+		<Item2>Oak longbow (u)</Item2>
+		<EndProduct>Oak longbow</EndProduct>
+		<xp>25</xp>
+		<Action>Stringing</Action>
+	</Oaklongbow>
+	<Willowshortbow>
+		<Item1>Bow string</Item1>
+		<Item2>Willow shortbow (u)</Item2>
+		<EndProduct>Willow shortbow</EndProduct>
+		<xp>33.25</xp>
+		<Action>Stringing</Action>
+	</Willowshortbow>
+	<Willowlongbow>
+		<Item1>Bow string</Item1>
+		<Item2>Willow longbow (u)</Item2>
+		<EndProduct>Willow longbow</EndProduct>
+		<xp>41.5</xp>
+		<Action>Stringing</Action>
+	</Willowlongbow>
+	<Mapleshortbow>
+		<Item1>Bow string</Item1>
+		<Item2>Maple shortbow (u)</Item2>
+		<EndProduct>Maple shortbow</EndProduct>
+		<xp>50</xp>
+		<Action>Stringing</Action>
+	</Mapleshortbow>
+	<Maplelongbow>
+		<Item1>Bow string</Item1>
+		<Item2>Maple longbow (u)</Item2>
+		<EndProduct>Maple longbow</EndProduct>
+		<xp>58.3</xp>
+		<Action>Stringing</Action>
+	</Maplelongbow>
+	<Yewshortbow>
+		<Item1>Bow string</Item1>
+		<Item2>Yew shortbow (u)</Item2>
+		<EndProduct>Yew shortbow</EndProduct>
+		<xp>67.5</xp>
+		<Action>Stringing</Action>
+	</Yewshortbow>
+	<Yewlongbow>
+		<Item1>Bow string</Item1>
+		<Item2>Yew longbow (u)</Item2>
+		<EndProduct>Yew longbow</EndProduct>
+		<xp>75</xp>
+		<Action>Stringing</Action>
+	</Yewlongbow>
+	<Magicshortbow>
+		<Item1>Bow string</Item1>
+		<Item2>Magic shortbow (u)</Item2>
+		<EndProduct>Magic shortbow</EndProduct>
+		<xp>83.3</xp>
+		<Action>Stringing</Action>
+	</Magicshortbow>
+	<Magiclongbow>
+		<Item1>Bow string</Item1>
+		<Item2>Magic longbow (u)</Item2>
+		<EndProduct>Magic longbow</EndProduct>
+		<xp>91.5</xp>
+		<Action>Stringing</Action>
+	</Magiclongbow>
+	<!--
+			End of Bow Stringing Recipes
+	-->
+	<!--
+			Arrows tips Recipes
+	-->
+	<Bronzearrow>
+		<Item1>Headless arrow</Item1>
+		<Item2>Bronze arrowtips</Item2>
+		<EndProduct>Bronze arrow</EndProduct>
+		<xp>2.6</xp>
+		<Action>AttachingHead</Action>
+	</Bronzearrow>
+	<Ironarrow>
+		<Item1>Headless arrow</Item1>
+		<Item2>Iron arrowtips</Item2>
+		<EndProduct>Iron arrow</EndProduct>
+		<xp>3.8</xp>
+		<Action>AttachingHead</Action>
+	</Ironarrow>
+	<Steelarrow>
+		<Item1>Headless arrow</Item1>
+		<Item2>Steel arrowtips</Item2>
+		<EndProduct>Steel arrow</EndProduct>
+		<xp>6.3</xp>
+		<Action>AttachingHead</Action>
+	</Steelarrow>
+	<Mithrilarrow>
+		<Item1>Headless arrow</Item1>
+		<Item2>Mithril arrowtips</Item2>
+		<EndProduct>Mithril arrow</EndProduct>
+		<xp>8.8</xp>
+		<Action>AttachingHead</Action>
+	</Mithrilarrow>	
+	<Adamantarrow>
+		<Item1>Headless arrow</Item1>
+		<Item2>Adamant arrowtips</Item2>
+		<EndProduct>Adamant arrow</EndProduct>
+		<xp>10</xp>
+		<Action>AttachingHead</Action>
+	</Adamantarrow>	
+	<Runearrow>
+		<Item1>Headless arrow</Item1>
+		<Item2>Rune arrowtips</Item2>
+		<EndProduct>Rune arrow</EndProduct>
+		<xp>13.8</xp>
+		<Action>AttachingHead</Action>
+	</Runearrow>	
+	<Dragonarrow>
+		<Item1>Headless arrow</Item1>
+		<Item2>Dragon arrowtips</Item2>
+		<EndProduct>Dragon arrow</EndProduct>
+		<xp>15</xp>
+		<Action>AttachingHead</Action>
+	</Dragonarrow>	
+	<!--
+			End of Arrow tips Recipes
+	-->
+	<!--
+			Darts Recipes
+	-->
+	<Bronzedarts>
+		<Item1>Feather</Item1>
+		<Item2>Bronze dart tip</Item2>
+		<EndProduct>Bronze dart</EndProduct>
+		<xp>1.8</xp>
+		<Action>AttachingFeathers</Action>
+	</Bronzedarts>	
+	<Irondarts>
+		<Item1>Feather</Item1>
+		<Item2>Iron dart tip</Item2>
+		<EndProduct>Iron dart</EndProduct>
+		<xp>3.8</xp>
+		<Action>AttachingFeathers</Action>
+	</Irondarts>
+	<Steeldarts>
+		<Item1>Feather</Item1>
+		<Item2>Steel dart tip</Item2>
+		<EndProduct>Steel dart</EndProduct>
+		<xp>7.5</xp>
+		<Action>AttachingFeathers</Action>
+	</Steeldarts>	
+	<Mithrildarts>
+		<Item1>Feather</Item1>
+		<Item2>Mithril dart tip</Item2>
+		<EndProduct>Mithril dart</EndProduct>
+		<xp>11.2</xp>
+		<Action>AttachingFeathers</Action>
+	</Mithrildarts>	
+	<Adamantdarts>
+		<Item1>Feather</Item1>
+		<Item2>Adamant dart tip</Item2>
+		<EndProduct>Adamant dart</EndProduct>
+		<xp>15</xp>
+		<Action>AttachingFeathers</Action>
+	</Adamantdarts>	
+	<Runedarts>
+		<Item1>Feather</Item1>
+		<Item2>Rune dart tip</Item2>
+		<EndProduct>Rune dart</EndProduct>
+		<xp>18.8</xp>
+		<Action>AttachingFeathers</Action>
+	</Runedarts>	
+	<Dragondarts>
+		<Item1>Feather</Item1>
+		<Item2>Dragon dart tip</Item2>
+		<EndProduct>Dragon dart</EndProduct>
+		<xp>25</xp>
+		<Action>AttachingFeathers</Action>
+	</Dragondarts>	
+	<!--
+			End of Darts Recipes
+	-->
+	<!--
+			Bolt Tip Attachment Recipes
+	-->
+	<Opalbolts>
+		<Item1>Bronze bolts</Item1>
+		<Item2>Opal bolt tips</Item2>
+		<EndProduct>Opal bolts</EndProduct>
+		<xp>1.6</xp>
+		<Action>AttachingHead</Action>
+	</Opalbolts>
+	<Barbedbolts>
+		<Item1>Bronze bolts</Item1>
+		<Item2>Barb bolttips</Item2>
+		<EndProduct>Barbed bolts</EndProduct>
+		<xp>2</xp>
+		<Action>AttachingHead</Action>
+	</Barbedbolts>
+	<Jadebolts>
+		<Item1>Blurite bolts</Item1>
+		<Item2>Jade bolt tips</Item2>
+		<EndProduct>Jade bolts</EndProduct>
+		<xp>2.4</xp>
+		<Action>AttachingHead</Action>
+	</Jadebolts>
+	<Pearlbolts>
+		<Item1>Iron bolts</Item1>
+		<Item2>Pearl bolt tips</Item2>
+		<EndProduct>Pearl bolts</EndProduct>
+		<xp>3.2</xp>
+		<Action>AttachingHead</Action>
+	</Pearlbolts>
+	<Sapphirebolts>
+		<Item1>Mithril bolts</Item1>
+		<Item2>Sapphire bolt tips</Item2>
+		<EndProduct>Sapphire bolts</EndProduct>
+		<xp>4.7</xp>
+		<Action>AttachingHead</Action>
+	</Sapphirebolts>
+	<Emeraldbolts>
+		<Item1>Mithril bolts</Item1>
+		<Item2>Emerald bolt tips</Item2>
+		<EndProduct>Emerald bolts</EndProduct>
+		<xp>5.5</xp>
+		<Action>AttachingHead</Action>
+	</Emeraldbolts>
+	<Mithgrapple>
+		<Item1>Mithril bolts</Item1>
+		<Item2>Mith grapple tip</Item2>
+		<EndProduct>Mith grapple</EndProduct>
+		<xp>11</xp>
+		<Action>AttachingHead</Action>
+	</Mithgrapple>
+	<Rubybolts>
+		<Item1>Adamant bolts</Item1>
+		<Item2>Ruby bolt tips</Item2>
+		<EndProduct>Ruby bolts</EndProduct>
+		<xp>6.3</xp>
+		<Action>AttachingHead</Action>
+	</Rubybolts>
+	<Diamondbolts>
+		<Item1>Adamant bolts</Item1>
+		<Item2>Diamond bolt tips</Item2>
+		<EndProduct>Diamond bolts</EndProduct>
+		<xp>7</xp>
+		<Action>AttachingHead</Action>
+	</Diamondbolts>
+	<Dragonbolts>
+		<Item1>Runite bolts</Item1>
+		<Item2>Dragon bolt tips</Item2>
+		<EndProduct>Dragon bolts</EndProduct>
+		<xp>8.2</xp>
+		<Action>AttachingHead</Action>
+	</Dragonbolts>
+	<Onyxbolts>
+		<Item1>Runite bolts</Item1>
+		<Item2>Onyx bolt tips</Item2>
+		<EndProduct>Onyx bolts</EndProduct>
+		<xp>9.4</xp>
+		<Action>AttachingHead</Action>
+	</Onyxbolts>
+	<!--
+			End of Bolt Tip Attachment Recipes
+	-->
+	<!--
+			Bolt Feather Attachment Recipes
+	-->
+	<Bronzebolts>
+		<Item1>Feather</Item1>
+		<Item2>Bronze bolts (unf)</Item2>
+		<EndProduct>Bronze bolts</EndProduct>
+		<xp>0.5</xp>
+		<Action>AttachingFeathers</Action>
+	</Bronzebolts>	
+	<Bluritebolts>
+		<Item1>Feather</Item1>
+		<Item2>Blurite bolts (unf)</Item2>
+		<EndProduct>Blurite bolts</EndProduct>
+		<xp>1</xp>
+		<Action>AttachingFeathers</Action>
+	</Bluritebolts>
+	<Ironbolts>
+		<Item1>Feather</Item1>
+		<Item2>Iron bolts (unf)</Item2>
+		<EndProduct>Iron bolts</EndProduct>
+		<xp>1.5</xp>
+		<Action>AttachingFeathers</Action>
+	</Ironbolts>
+	<Silverbolts>
+		<Item1>Feather</Item1>
+		<Item2>Silver bolts (unf)</Item2>
+		<EndProduct>Silver bolts</EndProduct>
+		<xp>2.5</xp>
+		<Action>AttachingFeathers</Action>
+	</Silverbolts>
+	<Steelbolts>
+		<Item1>Feather</Item1>
+		<Item2>Steel bolts (unf)</Item2>
+		<EndProduct>Steel bolts</EndProduct>
+		<xp>3.5</xp>
+		<Action>AttachingFeathers</Action>
+	</Steelbolts>
+	<Mithrilbolts>
+		<Item1>Feather</Item1>
+		<Item2>Mithril bolts (unf)</Item2>
+		<EndProduct>Mithril bolts</EndProduct>
+		<xp>5</xp>
+		<Action>AttachingFeathers</Action>
+	</Mithrilbolts>
+	<Broadbolts>
+		<Item1>Feather</Item1>
+		<Item2>Unfinished broad bolts</Item2>
+		<EndProduct>Broad bolts</EndProduct>
+		<xp>3</xp>
+		<Action>AttachingFeathers</Action>
+	</Broadbolts>
+	<Adamantbolts>
+		<Item1>Feather</Item1>
+		<Item2>Adamant bolts(unf)</Item2>
+		<EndProduct>Adamant bolts</EndProduct>
+		<xp>7</xp>
+		<Action>AttachingFeathers</Action>
+	</Adamantbolts>
+	<Runebolts>
+		<Item1>Feather</Item1>
+		<Item2>Runite bolts (unf)</Item2>
+		<EndProduct>Runite bolts</EndProduct>
+		<xp>10</xp>
+		<Action>AttachingFeathers</Action>
+	</Runebolts>
+	<!--
+			End of Feather Attachment Recipes
+	-->
+	<!--
+			Gem Cutting Recipes
+	-->
+	<Opal>
+		<Item1>Chisel</Item1>
+		<Item2>Uncut opal</Item2>
+		<EndProduct>Opal</EndProduct>
+		<xp>0</xp>
+		<Action>CuttingGems</Action>
+	</Opal>	
+	<Jade>
+		<Item1>Chisel</Item1>
+		<Item2>Uncut jade</Item2>
+		<EndProduct>Jade</EndProduct>
+		<xp>0</xp>
+		<Action>CuttingGems</Action>
+	</Jade>	
+	<RedTopaz>
+		<Item1>Chisel</Item1>
+		<Item2>Uncut red topaz</Item2>
+		<EndProduct>Red topaz</EndProduct>
+		<xp>0</xp>
+		<Action>CuttingGems</Action>
+	</RedTopaz>
+	<RedTopaz>
+		<Item1>Chisel</Item1>
+		<Item2>Uncut red topaz</Item2>
+		<EndProduct>Red topaz</EndProduct>
+		<xp>0</xp>
+		<Action>CuttingGems</Action>
+	</RedTopaz>
+	<Sapphire>
+		<Item1>Chisel</Item1>
+		<Item2>Uncut sapphire</Item2>
+		<EndProduct>Sapphire</EndProduct>
+		<xp>0</xp>
+		<Action>CuttingGems</Action>
+	</Sapphire>
+	<Emerald>
+		<Item1>Chisel</Item1>
+		<Item2>Uncut emerald</Item2>
+		<EndProduct>Emerald</EndProduct>
+		<xp>0</xp>
+		<Action>CuttingGems</Action>
+	</Emerald>
+	<Ruby>
+		<Item1>Chisel</Item1>
+		<Item2>Uncut ruby</Item2>
+		<EndProduct>Ruby</EndProduct>
+		<xp>0</xp>
+		<Action>CuttingGems</Action>
+	</Ruby>
+	<Diamond>
+		<Item1>Chisel</Item1>
+		<Item2>Uncut diamond</Item2>
+		<EndProduct>Diamond</EndProduct>
+		<xp>0</xp>
+		<Action>CuttingGems</Action>
+	</Diamond>
+	<Dragonstone>
+		<Item1>Chisel</Item1>
+		<Item2>Uncut dragonstone</Item2>
+		<EndProduct>Dragonstone</EndProduct>
+		<xp>0</xp>
+		<Action>CuttingGems</Action>
+	</Dragonstone>
+	<Onyx>
+		<Item1>Chisel</Item1>
+		<Item2>Uncut onyx</Item2>
+		<EndProduct>Onyx</EndProduct>
+		<xp>0</xp>
+		<Action>CuttingGems</Action>
+	</Onyx>
+	<!--
+			End of Gem Cutting Recipes
+	-->
+	<!--
+			Gem Tip Cutting Recipes
+	-->
+	<Opalboltips>
+		<Item1>Chisel</Item1>
+		<Item2>Opal</Item2>
+		<EndProduct>Opal bolt tips</EndProduct>
+		<xp>1</xp>
+		<Action>CuttingGems</Action>
+	</Opalboltips>
+	<Jadeboltips>
+		<Item1>Chisel</Item1>
+		<Item2>Jade</Item2>
+		<EndProduct>Jade bolt tips</EndProduct>
+		<xp>2</xp>
+		<Action>CuttingGems</Action>
+	</Jadeboltips>
+	<Topazboltips>
+		<Item1>Chisel</Item1>
+		<Item2>Red topaz</Item2>
+		<EndProduct>Topaz bolt tips</EndProduct>
+		<xp>4</xp>		
+		<Action>CuttingGems</Action>
+	</Topazboltips>
+	<Sapphireboltips>
+		<Item1>Chisel</Item1>
+		<Item2>Sapphire</Item2>
+		<EndProduct>Sapphire bolt tips</EndProduct>
+		<xp>4</xp>
+		<Action>CuttingGems</Action>
+	</Sapphireboltips>
+	<Emeraldboltips>
+		<Item1>Chisel</Item1>
+		<Item2>Emerald</Item2>
+		<EndProduct>Emerald bolt tips</EndProduct>
+		<xp>5.5</xp>
+		<Action>CuttingGems</Action>
+	</Emeraldboltips>
+	<Rubyboltips>
+		<Item1>Chisel</Item1>
+		<Item2>Ruby</Item2>
+		<EndProduct>Ruby bolt tips</EndProduct>
+		<xp>6</xp>
+		<Action>CuttingGems</Action>
+	</Rubyboltips>
+	<Diamondboltips>
+		<Item1>Chisel</Item1>
+		<Item2>Diamond</Item2>
+		<EndProduct>Diamond bolt tips</EndProduct>
+		<xp>7</xp>
+		<Action>CuttingGems</Action>
+	</Diamondboltips>
+	<Dragonboltips>
+		<Item1>Chisel</Item1>
+		<Item2>Dragonstone</Item2>
+		<EndProduct>Dragon bolt tips</EndProduct>
+		<xp>8</xp>
+		<Action>CuttingGems</Action>
+	</Dragonboltips>
+	<Onyxboltips>
+		<Item1>Chisel</Item1>
+		<Item2>Onyx</Item2>
+		<EndProduct>Onyx bolt tips</EndProduct>
+		<xp>9</xp>
+		<Action>CuttingGems</Action>
+	</Onyxboltips>
+	<!--
+			End of Gem Tip Cutting Recipes
+	-->
+</Recipe>
