@@ -5,7 +5,7 @@
 	-->
 	<Headlessarrows>
 		<Item1>Feather</Item1>
-		<Item2>Shaft</Item2>
+		<Item2>Arrow shaft</Item2>
 		<EndProduct>Headless arrow</EndProduct>
 		<xp>0.33</xp>
 		<Action>AttachingHead</Action>
