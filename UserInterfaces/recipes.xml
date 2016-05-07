@@ -17,7 +17,15 @@
 		<xp>0.33</xp>
 		<Action>Cutting</Action>
 		<InterfaceText>15 Arrows</InterfaceText>
-	</Shafts>	
+	</Shafts>
+	<JavelinShaft>
+		<Item1>Knife</Item1>
+		<Item2>Logs</Item2>
+		<EndProduct>Javelin shaft</EndProduct>
+		<xp>0.33</xp>
+		<Action>Cutting</Action>
+		<InterfaceText>15 Javelins</InterfaceText>
+	</JavelinShaft>
 	<!--
 			End of misc Recipes
 	-->
