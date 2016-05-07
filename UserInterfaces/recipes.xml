@@ -13,7 +13,7 @@
 	<Shafts>
 		<Item1>Knife</Item1>
 		<Item2>Logs</Item2>
-		<EndProduct>Shaft</EndProduct>
+		<EndProduct>Arrow shaft</EndProduct>
 		<xp>0.33</xp>
 		<Action>Cutting</Action>
 	</Shafts>	
