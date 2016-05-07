@@ -16,6 +16,7 @@
 		<EndProduct>Arrow shaft</EndProduct>
 		<xp>0.33</xp>
 		<Action>Cutting</Action>
+		<InterfaceText>15 Arrows</InterfaceText>
 	</Shafts>	
 	<!--
 			End of misc Recipes
