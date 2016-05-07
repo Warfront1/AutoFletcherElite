@@ -25,12 +25,14 @@ public class FletchingRecipe {
 	FletchingItem EndProduct;
 	double xp;
 	String Action;
-	FletchingRecipe(String Item1, String Item2, String EndProduct,double xp,String Action){
+	String interfaceText;
+	FletchingRecipe(String Item1, String Item2, String EndProduct,double xp,String Action, String interfaceText){
 		this.Item1=FletchingItem.Items.get(Item1);
 		this.Item2=FletchingItem.Items.get(Item2);
 		this.EndProduct=FletchingItem.Items.get(EndProduct);
 		this.xp=xp;
 		this.Action=Action;
+		this.interfaceText=interfaceText;
 	}
 	public String getAction(){
 		return this.Action;
@@ -46,6 +48,9 @@ public class FletchingRecipe {
 	}
 	public FletchingItem getEndProduct() {
 		return this.EndProduct;
+	}
+	public String getInterfaceText() {
+		return this.interfaceText;
 	}
 	public void run(){
 		switch(Action){
@@ -92,6 +97,7 @@ public class FletchingRecipe {
 			String EndProduct="";
 			double xp=0.0; 
 			String Action="";
+			String interfaceText;
 			while(XmlReader.hasNext()) {
 				XmlReader.next();
 				switch(XmlReader.getEventType()){
@@ -113,7 +119,14 @@ public class FletchingRecipe {
 						}
 						else if(LastLocalName.equals("Action")){
 							Action = XmlReader.getText().trim();
-							FletchingRecipesMap.put(EndProduct,new FletchingRecipe(Item1,Item2,EndProduct, xp, Action));
+							FletchingRecipesMap.put(EndProduct,new FletchingRecipe(Item1,Item2,EndProduct, xp, Action,
+									null));
+						}
+						else if(LastLocalName.equals("InterfaceText")){
+							interfaceText = XmlReader.getText().trim();
+							FletchingRecipesMap.remove(EndProduct);
+							FletchingRecipesMap.put(EndProduct,new FletchingRecipe(Item1,Item2,EndProduct, xp, Action,
+									interfaceText));
 						}
 					}
 					break;

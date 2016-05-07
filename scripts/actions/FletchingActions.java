@@ -10,7 +10,11 @@ import scripts.timing.Condition;
 public class FletchingActions {
 
 	public static void GenericBowCutting(final FletchingRecipe Recipe){
-		final String IFaceText = (Recipe.getEndProduct().getInGameName().replace("(u)", "")).replaceAll("[\\s ]","").toLowerCase();
+		String IFaceText = Recipe.getInterfaceText();
+		if (IFaceText == null){
+			IFaceText = (Recipe.getEndProduct().getInGameName().replace("(u)", ""));
+		}
+		System.out.println(IFaceText);
 		interfaces FletchingIFace = interfaces.getByText(IFaceText);
 		if(FletchingIFace==null){
 			if(Utilities.isEnterXIFaceOpen()){
@@ -32,9 +36,10 @@ public class FletchingActions {
 					if(Item2Defined!=null && Item2Defined.length>0){
 						if(Item2Defined[0].click("")){
 							ClientAPIWrappers.waitItemDelay();
+							final String finalIFaceText = IFaceText;
 							Utilities.waitFor(new Condition() {@Override
 								public boolean active() {
-								return interfaces.getByText(IFaceText)!=null;
+								return interfaces.getByText(finalIFaceText)!=null;
 							}
 							}, Utilities.getRandom(1000, 1500));
 						}

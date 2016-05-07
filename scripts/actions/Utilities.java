@@ -198,10 +198,11 @@ public class Utilities {
 			return null;
 		}
 		public static interfaces getByText(String Text){
+			Text = Text.replaceAll("[\\sï¿½]","").toLowerCase();
 			String IFaceText;
 			for(interfaces IFace: getAll()){
 				IFaceText = IFace.getText();
-				IFaceText = IFaceText.replaceAll("[\\s ]","");
+				IFaceText = IFaceText.replaceAll("[\\sï¿½]","");
 				if(IFaceText.toLowerCase().contains(Text)){
 					return IFace;
 				}
