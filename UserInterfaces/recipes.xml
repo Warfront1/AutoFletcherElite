@@ -210,6 +210,61 @@
 			End of Bow Stringing Recipes
 	-->
 	<!--
+        Javelin tips Recipes
+	-->
+	<Bronzejavelin>
+		<Item1>Javelin shaft</Item1>
+		<Item2>Bronze javelin heads</Item2>
+		<EndProduct>Bronze javelin</EndProduct>
+		<xp>0</xp>
+		<Action>AttachingHead</Action>
+	</Bronzejavelin>
+	<Ironjavelin>
+		<Item1>Javelin shaft</Item1>
+		<Item2>Iron javelin heads</Item2>
+		<EndProduct>Iron javelin</EndProduct>
+		<xp>0</xp>
+		<Action>AttachingHead</Action>
+	</Ironjavelin>
+	<Steeljavelin>
+		<Item1>Javelin shaft</Item1>
+		<Item2>Steel javelin heads</Item2>
+		<EndProduct>Steel javelin</EndProduct>
+		<xp>0</xp>
+		<Action>AttachingHead</Action>
+	</Steeljavelin>
+	<Mithriljavelin>
+		<Item1>Javelin shaft</Item1>
+		<Item2>Mithril javelin heads</Item2>
+		<EndProduct>Mithril javelin</EndProduct>
+		<xp>0</xp>
+		<Action>AttachingHead</Action>
+	</Mithriljavelin>
+	<Adamantjavelin>
+		<Item1>Javelin shaft</Item1>
+		<Item2>Adamant javelin heads</Item2>
+		<EndProduct>Adamant javelin</EndProduct>
+		<xp>0</xp>
+		<Action>AttachingHead</Action>
+	</Adamantjavelin>
+	<Runejavelin>
+		<Item1>Javelin shaft</Item1>
+		<Item2>Rune javelin heads</Item2>
+		<EndProduct>Rune javelin</EndProduct>
+		<xp>0</xp>
+		<Action>AttachingHead</Action>
+	</Runejavelin>
+	<Dragonjavelin>
+		<Item1>Javelin shaft</Item1>
+		<Item2>Dragon javelin heads</Item2>
+		<EndProduct>Dragon javelin</EndProduct>
+		<xp>0</xp>
+		<Action>AttachingHead</Action>
+	</Dragonjavelin>
+	<!--
+			End of Javelin tips Recipes
+	-->
+	<!--
 			Arrows tips Recipes
 	-->
 	<Bronzearrow>
