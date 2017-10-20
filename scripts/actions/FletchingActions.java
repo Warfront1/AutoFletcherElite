@@ -15,7 +15,7 @@ public class FletchingActions {
 			IFaceText = (Recipe.getEndProduct().getInGameName().replace("(u)", ""));
 		}
 		System.out.println(IFaceText);
-		interfaces FletchingIFace = interfaces.getByText(IFaceText);
+		interfaces FletchingIFace = interfaces.getByComponentName(IFaceText);
 		if(FletchingIFace==null){
 			if(Utilities.isEnterXIFaceOpen()){
 				Statistics.Status="Entering Amount";
@@ -48,14 +48,19 @@ public class FletchingActions {
 			}
 		}
 		else{
-			Statistics.Status="Clicking Make X";
-			if(FletchingIFace.click("Make x")){
-				ClientAPIWrappers.waitItemDelay();
+			interfaces makeAllIFace = interfaces.getByAction("All"); // The All IFace only has the Action "ALL" when not active
+			if(makeAllIFace != null){
+				Statistics.Status="Clicking Make All";
+				makeAllIFace.click("");
 				Utilities.waitFor(new Condition() {@Override
-					public boolean active() {
-					return Utilities.isEnterXIFaceOpen();
+				public boolean active() {
+					return interfaces.getByAction("All") == null;
 				}
 				}, Utilities.getRandom(2000, 3500));
+			}
+			else{
+				Statistics.Status="Clicking Make All";
+				FletchingIFace.click("");
 			}
 		}
 	}

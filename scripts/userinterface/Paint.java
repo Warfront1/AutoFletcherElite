@@ -145,8 +145,8 @@ public class Paint extends JPanel {
         	if(updateMethodName){
             	Exception e = new Exception();
             	e.fillInStackTrace();
-            	String methodName = e.getStackTrace()[0].getMethodName();
-            	System.out.println("Paint JavaFX Update Method hooked on: "+"java."+methodName+"()");
+            	String methodName = new Object(){}.getClass().getEnclosingMethod().getName();
+            	System.out.println("Paint JavaFX Update Method hooked on : "+"java."+methodName+"()");
             	updateMethodName = false;
             	return "java."+methodName+"()";
         	}
