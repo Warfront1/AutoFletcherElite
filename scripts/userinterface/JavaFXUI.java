@@ -133,7 +133,7 @@ public class JavaFXUI extends JPanel {
         	if(runOnce){
         		Exception e = new Exception();
         		e.fillInStackTrace();
-        		String methodName = e.getStackTrace()[0].getMethodName();
+        		String methodName = new Object(){}.getClass().getEnclosingMethod().getName();
         		runOnce=false;
         		System.out.println("FX UI Exit Hooked on: "+"java."+methodName+"()");
         		return "java."+methodName+"()";

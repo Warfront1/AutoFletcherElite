@@ -209,6 +209,18 @@ public class Utilities {
 			}
 			return null;
 		}
+		public static interfaces getByComponentName(String Text){
+			Text = Text.replaceAll("[\\s�]","").toLowerCase();
+			String IFaceText;
+			for(interfaces IFace: getAll()){
+				IFaceText = IFace.getComponentName();
+				IFaceText = IFaceText.replaceAll("[\\s�]","");
+				if(IFaceText.toLowerCase().contains(Text)){
+					return IFace;
+				}
+			}
+			return null;
+		}
 		public static interfaces getByAction(String action){
 			for(interfaces IFace: getAll()){
 				String[] actions = IFace.getActions();
@@ -236,6 +248,9 @@ public class Utilities {
 		}
 		public String getText(){
 			return ClientAPIWrappers.getText(this.MasterInterfaceID, this.ChildInterfaceID);
+		}
+		public String getComponentName(){
+			return ClientAPIWrappers.getComponentName(this.MasterInterfaceID, this.ChildInterfaceID);
 		}
 		public String[] getActions(){
 			return ClientAPIWrappers.getActions(this.MasterInterfaceID, this.ChildInterfaceID);

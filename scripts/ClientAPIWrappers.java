@@ -101,11 +101,20 @@ public class ClientAPIWrappers {
 		return (IFace !=null && IFace.isHidden());
 	}
 	
-	/** Returns the String Text of an interface. If the text is null or the interface is null return an empty String */	
+	/** Returns the String Text of an interface. If the text is null or the interface is null return an empty String */
 	public static String getText(int InterfaceMaster, int InterfaceChild){
 		RSInterfaceChild IFace = org.tribot.api2007.Interfaces.get(InterfaceMaster,InterfaceChild);
 		if(IFace !=null && !IFace.isHidden() && IFace.getText()!=null){
 			return IFace.getText();
+		}
+		return "";
+	}
+
+	/** Returns the String Component Name of an interface. If the text is null or the interface is null return an empty String */
+	public static String getComponentName(int InterfaceMaster, int InterfaceChild){
+		RSInterfaceChild IFace = org.tribot.api2007.Interfaces.get(InterfaceMaster,InterfaceChild);
+		if(IFace !=null && !IFace.isHidden() && IFace.getComponentName()!=null){
+			return IFace.getComponentName();
 		}
 		return "";
 	}
