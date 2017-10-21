@@ -1,5 +1,6 @@
 package scripts.userinterface;
 
+import com.allatori.annotations.DoNotRename;
 import com.sun.javafx.application.PlatformImpl;
 
 
@@ -141,11 +142,12 @@ public class Paint extends JPanel {
 //            		"});");
             engine.executeScript("updateMethodName='"+update()+"'; ");
         }
+        @DoNotRename
         public String update(){
+            String methodName = new Object(){}.getClass().getEnclosingMethod().getName();
         	if(updateMethodName){
-            	Exception e = new Exception();
-            	e.fillInStackTrace();
-            	String methodName = new Object(){}.getClass().getEnclosingMethod().getName();
+//            	Exception e = new Exception();
+//            	e.fillInStackTrace();
             	System.out.println("Paint JavaFX Update Method hooked on : "+"java."+methodName+"()");
             	updateMethodName = false;
             	return "java."+methodName+"()";
