@@ -2,6 +2,7 @@ package scripts.userinterface;
 
 import com.sun.javafx.application.PlatformImpl;
 import java.awt.Dimension;
+import com.allatori.annotations.DoNotRename;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -129,11 +130,12 @@ public class JavaFXUI extends JPanel {
             this.engine=engine;
 	          engine.executeScript("exit='"+exit()+"'; ");
         }
+        @DoNotRename
         public String exit() {
+            String methodName = new Object(){}.getClass().getEnclosingMethod().getName();
         	if(runOnce){
-        		Exception e = new Exception();
-        		e.fillInStackTrace();
-        		String methodName = new Object(){}.getClass().getEnclosingMethod().getName();
+//        		Exception e = new Exception();
+//        		e.fillInStackTrace();
         		runOnce=false;
         		System.out.println("FX UI Exit Hooked on: "+"java."+methodName+"()");
         		return "java."+methodName+"()";
