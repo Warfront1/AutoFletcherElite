@@ -61,6 +61,11 @@ public class FletchingActions {
 			else{
 				Statistics.Status="Clicking Make All";
 				FletchingIFace.click("");
+				Utilities.waitFor(new Condition() {@Override
+				public boolean active() {
+					return ClientAPIWrappers.getPlayerAnimation()!=-1;
+				}
+				}, Utilities.getRandom(2000, 3500));
 			}
 		}
 	}
