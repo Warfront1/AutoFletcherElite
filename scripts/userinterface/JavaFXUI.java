@@ -2,7 +2,6 @@ package scripts.userinterface;
 
 import com.sun.javafx.application.PlatformImpl;
 import java.awt.Dimension;
-import com.allatori.annotations.DoNotRename;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -106,11 +105,12 @@ public class JavaFXUI extends JPanel {
                 webEngine.load("http://warfront1.github.io/AutoFletcherElite/UserInterfaces/AutoFletcherEliteGUI.html");
                 webEngine.getLoadWorker().stateProperty().addListener(
                         new ChangeListener<Worker.State>() {
+                            Bridge javaBridge = new Bridge(webEngine);
                             @Override
                             public void changed(ObservableValue ov, Worker.State oldState, Worker.State newState) {
                                 if (newState == Worker.State.SUCCEEDED) {                        
                                     JSObject jso = (JSObject) webEngine.executeScript("window");
-                                    jso.setMember("java", new Bridge(webEngine));
+                                    jso.setMember("java", javaBridge);
                                 }
 
                             }
@@ -130,7 +130,7 @@ public class JavaFXUI extends JPanel {
             this.engine=engine;
 	          engine.executeScript("exit='"+exit()+"'; ");
         }
-        @DoNotRename
+
         public String exit() {
             String methodName = new Object(){}.getClass().getEnclosingMethod().getName();
         	if(runOnce){

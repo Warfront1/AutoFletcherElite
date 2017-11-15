@@ -1,6 +1,5 @@
 package scripts.userinterface;
 
-import com.allatori.annotations.DoNotRename;
 import com.sun.javafx.application.PlatformImpl;
 
 
@@ -114,11 +113,12 @@ public class Paint extends JPanel {
                 webEngine.load("http://warfront1.github.io/AutoFletcherElite/UserInterfaces/AutoFletcherElitePaint.html");
                 webEngine.getLoadWorker().stateProperty().addListener(
                         new ChangeListener<Worker.State>() {
+                            Bridge javaBridge = new Bridge(webEngine);
                             @Override
                             public void changed(ObservableValue ov, Worker.State oldState, Worker.State newState) {
                                 if (newState == Worker.State.SUCCEEDED) {                        
                                     JSObject jso = (JSObject) webEngine.executeScript("window");
-                                    jso.setMember("java", new Bridge(webEngine));
+                                    jso.setMember("java", javaBridge);
                                 }
 
                             }
@@ -142,7 +142,7 @@ public class Paint extends JPanel {
 //            		"});");
             engine.executeScript("updateMethodName='"+update()+"'; ");
         }
-        @DoNotRename
+
         public String update(){
             String methodName = new Object(){}.getClass().getEnclosingMethod().getName();
         	if(updateMethodName){
