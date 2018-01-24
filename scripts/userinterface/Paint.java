@@ -39,12 +39,12 @@ public class Paint extends JPanel {
      
 	static Object Object= null;
 	public static boolean ToolKitReady = false;
-    Stage stage;  
-    static WebEngine webenginetoModify;
+    Stage stage;
     public static BufferedImage imageforPaint;
     static WebView browser;  
     private JFXPanel jfxPanel;   
     public static boolean minimizePaint = false;
+    static JFrame frame;
 //    private static WebEngine webEngine;  
   
     public Paint(){  
@@ -57,13 +57,13 @@ public class Paint extends JPanel {
         SwingUtilities.invokeLater(new Runnable() {  
             @Override
             public void run() {  
-                final JFrame frame = new JFrame();  
-                 frame.setTitle("Auto Fletcher Elite");
+                frame = new JFrame();
+                frame.setTitle("Auto Fletcher Elite");
                 frame.getContentPane().add(new Paint());  
                  
                 frame.setMinimumSize(new Dimension(535, 185));  
                 frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);  
-                frame.setVisible(false); 
+//                frame.setVisible(true);
 //                frame.setMinimumSize(new Dimension(535, 185)); 
 //                frame.setVisible(true);  
                 frame.setMinimumSize(new Dimension(535, 400));
@@ -72,15 +72,10 @@ public class Paint extends JPanel {
     }  
      
     private void initComponents(){  
-         
-        jfxPanel = new JFXPanel();  
-        createScene();  
-         
-//        setLayout(new BorderLayout());  
+        jfxPanel = new JFXPanel();
+        createScene();
         add(jfxPanel);  
         ToolKitReady = true;
-         
-//        add(swingButton, BorderLayout.SOUTH);  
     }     
      
     /** 
@@ -101,7 +96,6 @@ public class Paint extends JPanel {
                 stage.setResizable(true);  
    
                 StackPane root =  new StackPane();
-//                Scene scene = new Scene(root, 519,165);  
                 Scene scene = new Scene(root, 519,400);
                 stage.setScene(scene);  
                 Platform.setImplicitExit(false);
@@ -126,8 +120,7 @@ public class Paint extends JPanel {
                 ObservableList<Node> children = root.getChildren();
                 children.add(browser);                     
                 
-                jfxPanel.setScene(scene); 
-                webenginetoModify=webEngine;
+                jfxPanel.setScene(scene);
             }
 
         });  
@@ -146,11 +139,9 @@ public class Paint extends JPanel {
         public String update(){
             String methodName = new Object(){}.getClass().getEnclosingMethod().getName();
         	if(updateMethodName){
-//            	Exception e = new Exception();
-//            	e.fillInStackTrace();
             	System.out.println("Paint JavaFX Update Method hooked on : "+"java."+methodName+"()");
             	updateMethodName = false;
-            	return "java."+methodName+"()";
+                return "java."+methodName+"()";
         	}
         	setStatus();
         	setItemName();
@@ -164,6 +155,7 @@ public class Paint extends JPanel {
 	        	setAmountofItemMade();
 	        	setAmountofItemMadePerHour();
         	}
+
         	return " ";
         }
         public void setStatus(){
@@ -209,6 +201,14 @@ public class Paint extends JPanel {
 		javafx.application.Platform.runLater(new Runnable() {
             @Override
             public void run() {
+                BufferedImage screenshot = Paint.getScreenshot(Paint.browser);
+
+                if(screenshot.getRGB(10,10) == -1){ //Detect WhiteScreenshot Bug
+                    // Hack work around screenshot bug by quickly setting visible then invisible the jframe
+                    frame.setVisible(true);
+                    frame.setVisible(false);
+                }
+
             	Paint.imageforPaint = Paint.getScreenshot(Paint.browser);
             }
         });

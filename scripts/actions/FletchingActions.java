@@ -155,7 +155,8 @@ public class FletchingActions {
 		}
 	}
 	public static void cutGems(final FletchingRecipe Recipe){
-		if(!ClientAPIWrappers.isInterfaceValid(309)){
+		interfaces FletchingIFace = interfaces.getByComponentName(Recipe.getItem2().getInGameName());
+		if(FletchingIFace == null){
 			Statistics.Status="Using "+Recipe.getItem1().getInGameName();
 			RSItems[] Item1Defined = RSItems.get(Recipe.getItem1().getID());
 			RSItems[] Item2Defined = RSItems.get(Recipe.getItem2().getID());
@@ -167,23 +168,37 @@ public class FletchingActions {
 					ClientAPIWrappers.waitItemDelay();
 					Utilities.waitFor(new Condition() {@Override
 						public boolean active() {
-						return ClientAPIWrappers.isInterfaceValid(309);
+						return interfaces.getByComponentName(Recipe.getItem2().getInGameName()) != null;
 					}
 					}, Utilities.getRandom(1000, 1500));
 				}
 			}
 		}
 		else{
-			Statistics.Status="Clicking Make All";
-			interfaces BowStringingMenu = interfaces.get(309, 6);
-			if(BowStringingMenu!=null && !BowStringingMenu.isHidden()){
-				BowStringingMenu.click("Make All");
-				Utilities.SleepWhileFlashAnimating(new Condition() {@Override
-					public boolean active() {
-					return !(RSItems.get(Recipe.getItem1().getID())!=null && RSItems.get(Recipe.getItem1().getID()).length>0 && RSItems.get(Recipe.getItem2().getID())!=null && RSItems.get(Recipe.getItem2().getID()).length>0);
+			interfaces makeAllIFace = interfaces.getByAction("All"); // The All IFace only has the Action "ALL" when not active
+			if(makeAllIFace != null){
+				Statistics.Status="Clicking Make All";
+				makeAllIFace.click("");
+				Utilities.waitFor(new Condition() {@Override
+				public boolean active() {
+					return interfaces.getByAction("All") == null;
 				}
+				}, Utilities.getRandom(2000, 3500));
+			}
+			else{
+				Statistics.Status="Clicking Make All";
+				FletchingIFace.click("");
+				Utilities.SleepWhileFlashAnimating(new Condition() {
+					@Override
+					public boolean active() {
+						return !(RSItems.get(Recipe.getItem1().getID()) != null &&
+								RSItems.get(Recipe.getItem1().getID()).length > 0 &&
+								RSItems.get(Recipe.getItem2().getID()) != null &&
+								RSItems.get(Recipe.getItem2().getID()).length > 0);
+					}
 				});
 			}
+
 		}
 	}
 }
