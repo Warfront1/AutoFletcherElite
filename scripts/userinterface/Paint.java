@@ -3,9 +3,7 @@ package scripts.userinterface;
 import com.sun.javafx.application.PlatformImpl;
 
 
-import java.awt.Dimension;
-import java.awt.Point;
-import java.awt.Rectangle;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 
 import javafx.application.Platform;
@@ -36,53 +34,39 @@ import netscape.javascript.JSObject;
  * SwingFXWebView 
  */  
 public class Paint extends JPanel {  
-     
-	static Object Object= null;
-	public static boolean ToolKitReady = false;
-    Stage stage;  
-    static WebEngine webenginetoModify;
-    public static BufferedImage imageforPaint;
-    static WebView browser;  
-    private JFXPanel jfxPanel;   
-    public static boolean minimizePaint = false;
-//    private static WebEngine webEngine;  
-  
-    public Paint(){  
-        initComponents();  
-        setBackground(new java.awt.Color(39, 43, 48));
-    }  
-  
-    public static void main(String args[]){  
+
+    private static WebView browser;
+    private static BufferedImage image;
+    //    public static boolean minimizePaint = false;
+
+    public static void main(String args[]){
         // Run this later:
-        SwingUtilities.invokeLater(new Runnable() {  
+        SwingUtilities.invokeLater(new Runnable() {
             @Override
-            public void run() {  
-                final JFrame frame = new JFrame();  
-                 frame.setTitle("Auto Fletcher Elite");
-                frame.getContentPane().add(new Paint());  
-                 
-                frame.setMinimumSize(new Dimension(535, 185));  
-                frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);  
-                frame.setVisible(false); 
-//                frame.setMinimumSize(new Dimension(535, 185)); 
-//                frame.setVisible(true);  
-                frame.setMinimumSize(new Dimension(535, 400));
-            }  
-        });     
-    }  
-     
-    private void initComponents(){  
-         
-        jfxPanel = new JFXPanel();  
-        createScene();  
-         
-//        setLayout(new BorderLayout());  
-        add(jfxPanel);  
-        ToolKitReady = true;
-         
-//        add(swingButton, BorderLayout.SOUTH);  
-    }     
-     
+            public void run() {
+                new Paint().createFrame();
+            }
+        });
+    }
+
+    private void createFrame(){
+        JFrame frame = new JFrame();
+        frame.setTitle("Auto Fletcher Elite");
+        frame.setBackground(new java.awt.Color(39, 43, 48));
+        frame.setMinimumSize(new Dimension(550, 200));
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+//        frame.setState(JFrame.ICONIFIED); // Minimized Jframe
+        frame.setType(javax.swing.JFrame.Type.UTILITY); //Hide window frame
+
+        JFXPanel jfxPanel = new JFXPanel();
+        createScene(jfxPanel);
+        frame.add(jfxPanel);
+
+        frame.setVisible(true);
+        frame.setState(JFrame.ICONIFIED);
+    }
+
+
     /** 
      * createScene 
      * 
@@ -90,20 +74,14 @@ public class Paint extends JPanel {
      *       NOT on the AWT-EventQueue Thread 
      * 
      */  
-    private void createScene() {  
+    private void createScene(JFXPanel jfxPanel) {
         PlatformImpl.startup(new Runnable() {  
             @Override
-            public void run() {  
-                 
-                stage = new Stage();  
-                 
-                stage.setTitle("Hello Java FX");  
-                stage.setResizable(true);  
-   
+            public void run() {
+                Stage stage = new Stage();
                 StackPane root =  new StackPane();
-//                Scene scene = new Scene(root, 519,165);  
-                Scene scene = new Scene(root, 519,400);
-                stage.setScene(scene);  
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
                 Platform.setImplicitExit(false);
                  
                 // Set up the embedded browser:
@@ -116,7 +94,7 @@ public class Paint extends JPanel {
                             Bridge javaBridge = new Bridge(webEngine);
                             @Override
                             public void changed(ObservableValue ov, Worker.State oldState, Worker.State newState) {
-                                if (newState == Worker.State.SUCCEEDED) {                        
+                                if (newState == Worker.State.SUCCEEDED) {
                                     JSObject jso = (JSObject) webEngine.executeScript("window");
                                     jso.setMember("java", javaBridge);
                                 }
@@ -126,8 +104,7 @@ public class Paint extends JPanel {
                 ObservableList<Node> children = root.getChildren();
                 children.add(browser);                     
                 
-                jfxPanel.setScene(scene); 
-                webenginetoModify=webEngine;
+                jfxPanel.setScene(scene);
             }
 
         });  
@@ -146,11 +123,9 @@ public class Paint extends JPanel {
         public String update(){
             String methodName = new Object(){}.getClass().getEnclosingMethod().getName();
         	if(updateMethodName){
-//            	Exception e = new Exception();
-//            	e.fillInStackTrace();
             	System.out.println("Paint JavaFX Update Method hooked on : "+"java."+methodName+"()");
             	updateMethodName = false;
-            	return "java."+methodName+"()";
+                return "java."+methodName+"()";
         	}
         	setStatus();
         	setItemName();
@@ -164,6 +139,7 @@ public class Paint extends JPanel {
 	        	setAmountofItemMade();
 	        	setAmountofItemMadePerHour();
         	}
+
         	return " ";
         }
         public void setStatus(){
@@ -198,36 +174,34 @@ public class Paint extends JPanel {
         }
     }
 
-    public static BufferedImage getScreenshot(WebView browser){
-    	if(browser!=null){
-    		WritableImage returnimage = browser.snapshot(new SnapshotParameters(), null);
-    		return SwingFXUtils.fromFXImage(returnimage, null);
-    	}
-    	return null;
-    }
-    public static void updateAndSavePaint(){
-		javafx.application.Platform.runLater(new Runnable() {
+    public static BufferedImage getScreenshot(){
+        javafx.application.Platform.runLater(new Runnable() {
             @Override
             public void run() {
-            	Paint.imageforPaint = Paint.getScreenshot(Paint.browser);
+                if(browser!=null){
+                    WritableImage returnimage = browser.snapshot(new SnapshotParameters(), null);
+                    image = SwingFXUtils.fromFXImage(returnimage, null);
+                }
             }
         });
+        return image;
+
     }
     
-	public static void PaintToggleHandeling(final Point mouseposition){
-		javafx.application.Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-        		if(mouseposition!=null){
-        			if(new Rectangle(494, 340, 20, 20).contains(mouseposition)){
-        				Paint.browser.getEngine().executeScript( "setPaint(); ");
-        				minimizePaint=!minimizePaint;
-        				
-        			}
-        		}
-            }
-        });
-	}
+//	public static void PaintToggleHandeling(final Point mouseposition){
+//		javafx.application.Platform.runLater(new Runnable() {
+//            @Override
+//            public void run() {
+//        		if(mouseposition!=null){
+//        			if(new Rectangle(494, 340, 20, 20).contains(mouseposition)){
+//        				Paint.browser.getEngine().executeScript( "setPaint(); ");
+//        				minimizePaint=!minimizePaint;
+//
+//        			}
+//        		}
+//            }
+//        });
+//	}
 
 
 }
