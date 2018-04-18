@@ -70,7 +70,8 @@ public class FletchingActions {
 		}
 	}
 	public static void StringBows(final FletchingRecipe Recipe){
-		if(!( interfaces.get(309,6)!=null && !interfaces.get(309,6).isHidden())){
+		interfaces BowStringingMenu = interfaces.getByComponentName(Recipe.getEndProduct().getInGameName());
+		if( BowStringingMenu==null || BowStringingMenu.isHidden()){
 			Statistics.Status="Using Bow String";
 			RSItems[] Item1Defined = RSItems.get(Recipe.getItem1().getID());
 			RSItems[] Item2Defined = RSItems.get(Recipe.getItem2().getID());
@@ -90,9 +91,8 @@ public class FletchingActions {
 		}
 		else{
 			Statistics.Status="Stringing All";
-			interfaces BowStringingMenu = interfaces.get(309, 6);
-			if(BowStringingMenu!=null && !BowStringingMenu.isHidden()){
-				BowStringingMenu.click("Make All");
+			if(!BowStringingMenu.isHidden()){
+				BowStringingMenu.click("");
 				Utilities.SleepWhileFlashAnimating(new Condition() {@Override
 					public boolean active() {
 					return !(RSItems.get(Recipe.getItem1().getID())!=null && RSItems.get(Recipe.getItem1().getID()).length>0 && RSItems.get(Recipe.getItem2().getID())!=null && RSItems.get(Recipe.getItem2().getID()).length>0);
