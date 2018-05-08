@@ -21,9 +21,6 @@ public class Utilities {
 		}
 		return "";
 	}
-	static boolean isEnterXIFaceOpen(){
-		return !ClientAPIWrappers.isInterfaceHidden(162, 32);
-	}
 	static boolean isBankOpen(){
 		return ClientAPIWrappers.isInterfaceValid(12);
 	}
@@ -239,7 +236,7 @@ public class Utilities {
 			for(int Master=0; Master<594; Master++){
 				for(int Child=0; Child<1000; Child++){
 					interfaces IFace = get(Master,Child);
-					if(IFace!=null){
+					if(IFace!=null && !IFace.isHidden()){
 						InterfaceReturn.add(IFace);
 					}
 				}
@@ -254,15 +251,6 @@ public class Utilities {
 		}
 		public String[] getActions(){
 			return ClientAPIWrappers.getActions(this.MasterInterfaceID, this.ChildInterfaceID);
-		}
-		public boolean hasAction(String action){
-			String[] allActions = ClientAPIWrappers.getActions(this.MasterInterfaceID,this.ChildInterfaceID);
-			for (String individualAction : allActions){
-				if(individualAction.contains(action)){
-					return true;
-				}
-			}
-			return false;
 		}
 		public boolean click(String string) {
 			return ClientAPIWrappers.clickInterface(this.MasterInterfaceID, this.ChildInterfaceID, string);

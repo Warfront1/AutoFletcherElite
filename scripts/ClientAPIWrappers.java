@@ -4,7 +4,6 @@ import java.awt.Point;
 import java.util.ArrayList;
 
 import org.tribot.api.General;
-import org.tribot.api.input.Keyboard;
 import org.tribot.api.input.Mouse;
 import org.tribot.api2007.Banking;
 import org.tribot.api2007.Interfaces;
@@ -33,11 +32,6 @@ public class ClientAPIWrappers {
 	/** Returns the current total experience obtained in the Fletching Skill as an int */
 	public static int getFletchingXP(){
 		return Skills.getXP(SKILLS.FLETCHING);
-	}
-	
-	/** Types a String provided as a parameter, and then hits the enter key.  */
-	public static void sendKeyboardKeys(String StringToType){
-		Keyboard.typeSend(StringToType);
 	}
 	
 	/** Stops the thread from spinning for a inputed amount of Milliseconds.  */
@@ -98,7 +92,7 @@ public class ClientAPIWrappers {
 	/** Returns if an RS Interface Child is Hidden given it's RS Interface Master and Child Index. Else returns false */	
 	public static boolean isInterfaceHidden(int InterfaceMaster, int InterfaceChild){
 		RSInterfaceChild IFace = org.tribot.api2007.Interfaces.get(InterfaceMaster,InterfaceChild);
-		return (IFace !=null && IFace.isHidden());
+		return IFace !=null && (IFace.isHidden() || !IFace.isBeingDrawn());
 	}
 	
 	/** Returns the String Text of an interface. If the text is null or the interface is null return an empty String */

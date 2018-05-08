@@ -56,27 +56,27 @@ public class FletchingRecipe {
 		switch(Action){
 			case "Cutting":
 				if(Utilities.isReadyToFletch(this, 1, 27)){
-					FletchingActions.GenericBowCutting(this);
+					FletchingActions.GenericBowCutting(this, "All");
 				}
 				break;
 			case "CuttingGems":
 				if(Utilities.isReadyToFletch(this,1,27)){
-					FletchingActions.cutGems(this);
+					FletchingActions.GenericBowCutting(this, "All");
 				}
 				break;
 			case "AttachingFeathers":
 				if(Utilities.isReadyToFletch(this,1,1)){
-					FletchingActions.useFeathers(this);
+					FletchingActions.GenericBowCutting(this, "10");
 				}
 				break;
 			case "AttachingHead":
 				if(Utilities.isReadyToFletch(this,1,1)){
-					FletchingActions.useArrowHeadorBoltTip(this);
+					FletchingActions.GenericBowCutting(this, "10");
 				}
 				break;
 			case "Stringing":
 				if(Utilities.isReadyToFletch(this,14,14)){
-					FletchingActions.StringBows(this);
+					FletchingActions.GenericBowCutting(this, "All");
 				}
 				break;
 		}
