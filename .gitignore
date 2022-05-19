@@ -1,3 +1,7 @@
 *.project
 .idea/*
 AutoFletcherElite.iml
+build/*
+**/build
+.gradle/*
+tribot-client-*.jar
