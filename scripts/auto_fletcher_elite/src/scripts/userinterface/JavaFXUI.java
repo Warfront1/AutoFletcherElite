@@ -34,7 +34,7 @@ public class JavaFXUI extends JPanel {
     private Stage stage;  
     private WebView browser;  
     private JFXPanel jfxPanel;  
-    final static JFrame frame = new JFrame(); 
+    static JFrame frame;
   
     
     public JavaFXUI(){  
@@ -48,7 +48,8 @@ public class JavaFXUI extends JPanel {
 	        // Run this later:
 	        SwingUtilities.invokeLater(new Runnable() {  
 	            @Override
-	            public void run() {  
+	            public void run() {
+	                frame = new JFrame();
 	                frame.setTitle("Auto Fletcher Elite");
 	                frame.setMinimumSize(new Dimension(500, 700));  
 	                frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);  

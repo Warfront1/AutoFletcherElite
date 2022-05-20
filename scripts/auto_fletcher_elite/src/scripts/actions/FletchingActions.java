@@ -18,20 +18,19 @@ public class FletchingActions {
 		interfaces FletchingIFace = interfaces.getByComponentName(IFaceText);
 		if(FletchingIFace==null){
 			Statistics.Status="Using " + Recipe.getItem1().getInGameName();
-			RSItems[] KnifeDefined = RSItems.get(Recipe.getItem1().getID());
-			RSItems[] Item2Defined = RSItems.get(Recipe.getItem2().getID());
-			if(KnifeDefined!=null && KnifeDefined.length>0){
-				KnifeDefined[0].click("");
+			RSItems[] item1 = RSItems.get(Recipe.getItem1().getID());
+			RSItems[] item2 = RSItems.get(Recipe.getItem2().getID());
+			if(item1!=null && item1.length>0){
+				item1[0].click("");
 				ClientAPIWrappers.waitItemDelay();
-				if(Item2Defined!=null && Item2Defined.length>0){
-					if(Item2Defined[0].click("")){
+				if(item2!=null && item2.length>0){
+					if(item2[0].click("")){
 						ClientAPIWrappers.waitItemDelay();
-						final String finalIFaceText = IFaceText;
-						Utilities.waitFor(new Condition() {@Override
-							public boolean active() {
-							return interfaces.getByText(finalIFaceText)!=null;
+						if(!Recipe.getAction().equals("AttachingFeathers")) {
+							final String finalIFaceText = IFaceText;
+							Utilities.waitFor(() -> interfaces.getByText(finalIFaceText) != null,
+									Utilities.getRandom(1000, 1500));
 						}
-						}, Utilities.getRandom(1000, 1500));
 					}
 				}
 			}

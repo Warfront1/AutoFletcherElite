@@ -58,6 +58,8 @@ public class Utilities {
     				if(ClientAPIWrappers.getPlayerAnimation()!=-1){
     					Statistics.Status="Fletching";
     					ClientAPIWrappers.runAntiBanActions();
+						// When attaching feathers, the animation is not blocking. IE Always ready for the next fletch.
+						return Recipe.getAction().equals("AttachingFeathers");
     				}
     				else{
     					return true;
